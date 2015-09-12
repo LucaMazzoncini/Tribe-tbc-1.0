@@ -1,0 +1,15 @@
+C:\Users\nikolai.3LOGIC\Desktop\XmppCommunicator\bin\Debug\XmppCommunicator.dll
+C:\Users\nikolai.3LOGIC\Desktop\XmppCommunicator\bin\Debug\XmppCommunicator.pdb
+C:\Users\nikolai.3LOGIC\Desktop\XmppCommunicator\obj\Debug\XmppCommunicator.csprojResolveAssemblyReference.cache
+C:\Users\nikolai.3LOGIC\Desktop\XmppCommunicator\obj\Debug\XmppCommunicator.dll
+C:\Users\nikolai.3LOGIC\Desktop\XmppCommunicator\obj\Debug\XmppCommunicator.pdb
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\XmppCommunicator\bin\Debug\XmppCommunicator.dll
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\XmppCommunicator\bin\Debug\XmppCommunicator.pdb
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\XmppCommunicator\obj\Debug\XmppCommunicator.csprojResolveAssemblyReference.cache
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\XmppCommunicator\obj\Debug\XmppCommunicator.dll
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\XmppCommunicator\obj\Debug\XmppCommunicator.pdb
+C:\Users\Nikolai\Documents\Tribe-Tbc\XmppCommunicator\bin\Debug\XmppCommunicator.dll
+C:\Users\Nikolai\Documents\Tribe-Tbc\XmppCommunicator\bin\Debug\XmppCommunicator.pdb
+C:\Users\Nikolai\Documents\Tribe-Tbc\XmppCommunicator\obj\Debug\XmppCommunicator.csprojResolveAssemblyReference.cache
+C:\Users\Nikolai\Documents\Tribe-Tbc\XmppCommunicator\obj\Debug\XmppCommunicator.dll
+C:\Users\Nikolai\Documents\Tribe-Tbc\XmppCommunicator\obj\Debug\XmppCommunicator.pdb

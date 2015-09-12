@@ -1,0 +1,11 @@
+<Card>
+	<Rank> 1 </Rank>
+	<Name> Honorable Mound </Name>
+	<Cost> EEEEE </Cost>
+	<Type> Elemental </Type>
+	<SubType> Earth </SubType>
+	<Role> Tank </Role>
+	<Properties> Guardian </Properties>
+	<Strength> 0 </Strength>
+	<Constitution> 8 </Constitution>
+</Card>

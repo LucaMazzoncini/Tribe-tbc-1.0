@@ -1,0 +1,10 @@
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\GameLogic\bin\Debug\GameLogic.dll
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\GameLogic\bin\Debug\GameLogic.pdb
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\GameLogic\obj\Debug\GameLogic.csprojResolveAssemblyReference.cache
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\GameLogic\obj\Debug\GameLogic.dll
+C:\Users\nikolai.3LOGIC\Documents\Tribe-TBC\GameLogic\obj\Debug\GameLogic.pdb
+C:\Users\Nikolai\Documents\Tribe-Tbc\GameLogic\bin\Debug\GameLogic.dll
+C:\Users\Nikolai\Documents\Tribe-Tbc\GameLogic\bin\Debug\GameLogic.pdb
+C:\Users\Nikolai\Documents\Tribe-Tbc\GameLogic\obj\Debug\GameLogic.dll
+C:\Users\Nikolai\Documents\Tribe-Tbc\GameLogic\obj\Debug\GameLogic.pdb
+C:\Users\Nikolai\Documents\Tribe-Tbc\GameLogic\obj\Debug\GameLogic.csprojResolveAssemblyReference.cache

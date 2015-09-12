@@ -1,0 +1,12 @@
+<Card>
+	<Rank> 1 </Rank>
+	<Name> Basalt Spike </Name>
+	<Cost> EFD </Cost>
+	<Type> Elemental </Type>
+	<SubType> Magma </SubType>
+	<Role> Tank </Role>
+	<Role> Dps </Role>
+	<Properties> Guardian </Properties>
+	<Strength> 1 </Strength>
+	<Constitution> 3 </Constitution>
+</Card>
