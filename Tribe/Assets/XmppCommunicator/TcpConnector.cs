@@ -31,6 +31,7 @@ namespace XmppCommunicator
         private bool listening;
         private XmppMessageManager xmppMessageManager;
         private byte[] mResponse;
+        private bool gameStartedStatus;
 
         //constructors
         public TcpConnector(string nickname, string password, string partner, string serverIp, int port)
@@ -136,13 +137,18 @@ namespace XmppCommunicator
                 completeMessage = "";
                 errorRecieved();
             }
+            //presence after game start management
+            if(completeMessage.Contains("status code=\"100\"") && gameStartedStatus)
+            {
+                gameStartedStatus = false;
+                completeMessage = "";
+            }
             //opponent disconnected
             if (completeMessage.Contains("type=\"unavailable\">"))
             {
                 completeMessage = "";
                 opponentDisconnected();
             }
-
 
             if (completeMessage.EndsWith(expectedClosingTag))
             {
@@ -166,6 +172,7 @@ namespace XmppCommunicator
 
         internal void startGame(string p, string partner)
         {
+            gameStartedStatus = true;
             expectedClosingTag = "/message>";
             readFromServer();
             gameStarted(new GameStartedEventArgs() { Opponent = partner });
