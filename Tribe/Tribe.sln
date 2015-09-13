@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tribe.CSharp", "Tribe.CSharp.csproj", "{DD659044-0999-83BB-C595-FDB711F97588}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD659044-0999-83BB-C595-FDB711F97588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD659044-0999-83BB-C595-FDB711F97588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD659044-0999-83BB-C595-FDB711F97588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD659044-0999-83BB-C595-FDB711F97588}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
