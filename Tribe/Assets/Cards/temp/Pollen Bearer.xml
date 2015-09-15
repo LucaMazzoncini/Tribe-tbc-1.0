@@ -1,0 +1,12 @@
+<Card>
+	<Rank> 1 </Rank>
+	<Name> Pollen Bearer </Name>
+	<Cost> WEL </Cost>
+	<Type> Elemental </Type>
+	<SubType> Flora </SubType>
+	<Role> Healer </Role>
+	<Strength> 0 </Strength>
+	<Constitution> 2 </Constitution>
+	<OnAppear> HealYouAndAllAllies.1 </OnAppear>
+	<Powers> cooldown.0 Heal.2 HealYouAndAllAllies.1  </Powers>
+</Card>

@@ -1,0 +1,19 @@
+<Card>
+	<Rank></Rank>
+	<From></From>
+	<Name></Name>
+	<Cost></Cost>
+	<Type></Type>
+	<SubType></SubType>
+	<Role></Role>
+	<Properties></Properties>
+	<Strength></Strength>
+	<Constitution></Constitution>
+	<Essence></Essence>
+	<OnAppear></OnAppear>
+	<OnDeath></OnDeath>
+	<Powers></Powers>
+	<Effect></Effect>
+
+	<CastLimit></CastLimit>	
+</Card>

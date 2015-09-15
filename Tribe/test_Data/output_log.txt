@@ -1,0 +1,36 @@
+Initialize engine version: 5.2.0f3 (e7947df39b5c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 5900 Series (ID=0x689c)
+    Vendor:   ATI
+    VRAM:     1012 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\GameEventManager.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\GameEventManager.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\GameLogic.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\GameLogic.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\XmppCommunicator.dll (this message is harmless)
+Loading H:\Tribe 1.0\Tribe\test_Data\Managed\XmppCommunicator.dll into Unity Child Domain
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.135 seconds
+desktop: 1920x1080 50Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\System.dll (this message is harmless)
+Platform assembly: H:\Tribe 1.0\Tribe\test_Data\Managed\System.Xml.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2030 -> priority: 1 
+  Thread -> id: 202c -> priority: 1 
+Connessione stabilita.

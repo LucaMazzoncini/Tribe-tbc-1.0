@@ -1,0 +1,16 @@
+<Card>
+	<Rank> 3 </Rank>
+	<From> Flamelord </From>
+	<Name> Piglia Foo Ugnosa </Name>
+	<Cost> FFFFDDDD </Cost>
+	<Type> Elemental </Type>
+	<SubType> Fire </SubType>
+	<Role> Tank Dps Healer</Role>
+	<Properties> Quickness Rage Thorns.1 Penetrate</Properties>
+	<Strength> 16 </Strength>
+	<Constitution> 18 </Constitution>
+	<OnAppear> Armor.2 Heal.2 Damage.1 AddMana Asleep </OnAppear>
+	<OnDeath> Damage.2 Shield Poison.1 LostRandomElement.1 </OnDeath>
+	<Powers> cooldown.0 Incurable Immortal Kill Dispel Asleep AddMana Shield GuardianBuff cooldown.1 Damage.1 Armor.1 Heal.2 DecStr.1 SelfDamage.1 LostRandomElement.1 Poison.2 AddCos.2 HealAllAllies.2 HealYouAndAllAllies.3  </Powers>
+	<CastLimit> 2 </CastLimit>	
+</Card>
