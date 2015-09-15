@@ -8,7 +8,7 @@ namespace GameLogic
     {
         public enum Type
         {
-            None, Spell, Elemental, Spirit, Shaman
+            None, Ritual, Elemental, Spirit, Shaman
         }
 
         public enum SubType
@@ -28,7 +28,7 @@ namespace GameLogic
 
         public enum Properties
         {
-            None, Quickness, Guardian
+            None, Quickness, Guardian ,Penetrate , Rage , Thorns1
         }
     }
 }

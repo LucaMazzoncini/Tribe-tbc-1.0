@@ -18,7 +18,7 @@ namespace GameLogic
         public List<Enums.SubType> subType{ get; set; }
         public List<Enums.Role> role{ get; set; }
         public List<Enums.Properties> properties { get; set; }
-        public Dictionary<string,Action> powers { get; set; }
+        public List<Dictionary<string,Action>> powers { get; set; }  //La lista contiene i poteri composta da piu azioni e cooldown
         public Dictionary<string,Action> onAppearActions { get; set; }
         public Dictionary<string,Action> effects { get; set; }
         public string flavour { get; set; }
@@ -34,12 +34,16 @@ namespace GameLogic
             type = LoadTypeFromString(GetDataFromXml("Type"));
             subType = LoadSubTypeFromString(GetDataFromXml("SubType"));
             role = LoadRoleFromString(GetDataFromXml("Role"));
-            rank = Int32.Parse(GetDataFromXml("Rank"));
-            strength = Int32.Parse(GetDataFromXml("Strength"));
-            constitution = Int32.Parse(GetDataFromXml("Constitution"));
+            if(GetDataFromXml("Rank")!="")
+                rank = Int32.Parse(GetDataFromXml("Rank"));
+            if (GetDataFromXml("Strength") != "")
+                strength = Int32.Parse(GetDataFromXml("Strength"));
+            if (GetDataFromXml("Constitution") != "")
+                constitution = Int32.Parse(GetDataFromXml("Constitution"));
             properties = LoadPropertiesFromString(GetDataFromXml("Properties"));
-            powers = LoadActionsFromString(GetDataFromXml("Powers"));
-            onAppearActions = LoadActionsFromString(GetDataFromXml("OnAppearAbilities"));
+            powers = LoadPowersFromString(GetDataFromXml("Powers"));
+            onAppearActions = LoadActionsFromString(GetDataFromXml("Onappear"));
+            effects = LoadEffectFromString(GetDataFromXml("Effect"));
             flavour = GetDataFromXml("Flavour");
         }
 
@@ -49,7 +53,7 @@ namespace GameLogic
         private List<Enums.Role> LoadRoleFromString(string roleString)
         {
             List<Enums.Role> list = new List<Enums.Role>();
-            string[] roleArray = Utils.SplitString(roleString);
+            string[] roleArray = roleString.ToUpper().Split(' ');
             foreach (string rString in roleArray)
             {
                 switch (rString)
@@ -73,7 +77,7 @@ namespace GameLogic
         private List<Enums.SubType> LoadSubTypeFromString(string subTypeString)
         {
             List<Enums.SubType> list = new List<Enums.SubType>();
-            string[] subTypeArray = Utils.SplitString(subTypeString);
+            string[] subTypeArray = subTypeString.ToUpper().Split(' ');
             foreach (string sString in subTypeArray)
             {
                 switch (sString)
@@ -108,18 +112,178 @@ namespace GameLogic
 
         private Dictionary<string,Action> LoadActionsFromString(string actionsString)
         {
+            
             Dictionary<string,Action> actionsDict = new Dictionary<string,Action>();
+            if (actionsString != "")
+            {
+                string[] actionsArray = actionsString.Split(' ');//Utils.SplitString(actionsString," ");
+                string[] nameActionArray = new string[actionsArray.Length];
+                string[] valueArray = new string[actionsArray.Length];
+                int i = 0;
+                foreach (string action in actionsArray)
+                {
+                    string[] app = new string[2];  //utilizzo una stringa di appoggio per dividere es: armor.1
+                    app = action.Split('.');       //divido la stringa per separare nome e valore abilita' 
+                    nameActionArray[i] = app[0].ToUpper();      //inserisco il nome dell'abilita' appena parsata
+                    valueArray[i] = app[1];        //inserisco il valore dell'abilita'
+                    i++;
+                }
+                i = 0;                             //riazzero il contatore
+                foreach (string action in nameActionArray)
+                {
+                    Action actionApp;           //variabile di appoggio dove alloco la nuova azione
+                    switch (action)
+                    {
+                        case "ARMOR":
+                            {
+                                actionApp = new ArmorAction(Int32.Parse(valueArray[i]));  //Alloco l'azione passandogli il valore
+                                actionsDict.Add("ARMOR", actionApp);                      //aggiungo l'oggetto alla variabile di ritorno
+                            }
+                            break;
+                        case "DAMAGE":
+                            {
+                                actionApp = new DamageAction(Int32.Parse(valueArray[i]));  //Alloco l'azione passandogli il valore
+                                actionsDict.Add("DAMAGE", actionApp);                      //aggiungo l'oggetto alla variabile di ritorno
+                            }
+                            break;
+                        case "HEALYOUANDALLALLIES":
+                            {
+                                actionApp = new HealYouAndAllAlliesAction(Int32.Parse(valueArray[i]));  //Alloco l'azione passandogli il valore
+                                actionsDict.Add("HEALYOUANDALLALLIES", actionApp);       //aggiungo l'oggetto alla variabile di ritorno
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    i++;
+                }
+            }
+            return actionsDict;
+        }
+
+
+        private Dictionary<string, Action> LoadEffectFromString(string actionsString)
+        {
+            Dictionary<string, Action> actionsDict = new Dictionary<string, Action>();
             string[] actionsArray = Utils.SplitString(actionsString);
             foreach (string action in actionsArray)
             {
                 switch (action)
                 {
-                    case"ARMOR":
+                    case "ARMOR":
                         break;
                     default:
                         break;
                 }
             }
+            return actionsDict;
+        }
+        private List<Dictionary<string, Action>> LoadPowersFromString(string actionsString)
+        {
+            List<Dictionary<string, Action>> actionsDict = new List<Dictionary<string, Action>>(); 
+            string[] actionsArray = actionsString.Split(' ');//Utils.SplitString(actionsString," ");
+            
+            
+            int i = 0;
+
+            Dictionary<string, Action> appEffect = new Dictionary<string, Action>(); //alloco un oggetto temporaneo dove tenere il potere
+            int cd = 0; //creo una variabile di appoggio per mantenere il cooldown
+            string[] appSplit; //creo una variabile di appoggio per splittare
+            foreach (string action in actionsArray)
+            {
+                if( action.Contains("cooldown." ) )//controllo in action c'e' un nuovo potere
+                {
+                    if (appEffect.Count > 0)
+                    {
+                        actionsDict.Add(appEffect); //se dentro appEffect c'e' qualcosa e mi trovo dentro il tag cooldow vuol dire che ci sono piu poteri
+                        actionsDict.Clear();        //devo rimuovere la lista altrimenti al secondo giro ho anche i poteri del primo
+                    }
+                        appSplit = action.Split('.');
+                        cd = Int32.Parse(appSplit[1]);
+                }else
+                {
+                    if( action.Contains(".") ) //nel primo caso ho escluso che la stringa sia del cooldown, adesso tratto tutti i poteri parametrici
+                    {
+                        appSplit = action.Split('.'); //in appSplit[0] ci andra' il nome dell'abilita' e in appSplit[1] il numero dell'effetto (es: 3 danni)
+                        switch (appSplit[0])
+                        {
+                            case "Armor":
+                                appEffect.Add("Armorx", new ArmorPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere (aggiungo la x in fondo perche' sono parametrici)
+                                break;
+                            case "Damage":
+                                    appEffect.Add("Damagex", new DamagePower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Heal":
+                                    appEffect.Add("Healx", new HealPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "DecStr":
+                                    appEffect.Add("DecStrx", new DecStrPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "SelfDamage":
+                                    appEffect.Add("SelfDamagex", new SelfDamagePower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "LostRandomElement":
+                                    appEffect.Add("LostRandomElementx", new LostRandomElementPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Poison":
+                                    appEffect.Add("Poisonx", new PoisonPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "AddCos":
+                                    appEffect.Add("AddCosx", new AddCosPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "HealAllAllies":
+                                    appEffect.Add("HealAllAlliesx", new HealAllAlliesPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+                            case "HealYouAndAllAllies":
+                                    appEffect.Add("HealYouAndAllAlliesx", new HealYouAndAllAlliesPower(Int32.Parse(appSplit[1]), cd)); //qui alloco e compongo il potere
+                                break;
+
+                            default:
+                                { }
+                                break;
+                        }
+                    }else
+                    {
+                        switch (action) //questo e' il caso nel cui ci siano poteri non parametrici
+                        {
+                            case "Incurable":
+                                appEffect.Add("Armor", new ArmorPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Immortal":
+                                appEffect.Add("Immortal", new ImmortalPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Kill":
+                                appEffect.Add("Kill", new KillPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Dispel":
+                                appEffect.Add("Dispel", new DispelPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Asleep":
+                                appEffect.Add("Asleep", new AsleepPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "AddMana":
+                                appEffect.Add("AddMana", new AddManaPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "Shield":
+                                appEffect.Add("Shield", new ShieldPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+                            case "GuardianBuff":
+                                appEffect.Add("GuardianBuff", new GuardianBuffPower(0, cd)); //qui alloco e compongo il potere
+                                break;
+
+
+                            default:
+                                { }
+                                break;
+                        }
+
+                    }
+                }
+                
+                i++;
+            }
+
+            actionsDict.Add(appEffect); //devo ricordarmi sempre di aggiungere l'ultimo
             return actionsDict;
         }
         /// <summary>
@@ -142,7 +306,7 @@ namespace GameLogic
         private List<Enums.Properties> LoadPropertiesFromString(string properties)
         {
             List<Enums.Properties> list = new List<Enums.Properties>();
-            string[] propertiesArray = Utils.SplitString(properties);
+            string[] propertiesArray = properties.ToUpper().Split(' ');
             foreach (string prop in propertiesArray)
             {
                 switch (prop)
@@ -152,6 +316,15 @@ namespace GameLogic
                         break;
                     case"GUARDIAN":
                         list.Add(Enums.Properties.Guardian);
+                        break;
+                    case "PENETRATE":
+                        list.Add(Enums.Properties.Penetrate);
+                        break;
+                    case "RAGE":
+                        list.Add(Enums.Properties.Rage);
+                        break;
+                    case "THORNS.1":
+                        list.Add(Enums.Properties.Thorns1);  //ATTENTO qui ci sara' un problema se si utilizza Thorns.x ma per motivi di tempo per adesso e' cosi
                         break;
                     default:
                         list.Add(Enums.Properties.None);
@@ -164,13 +337,13 @@ namespace GameLogic
         private List<Enums.Type> LoadTypeFromString(string typeString)
         {
             List<Enums.Type> list = new List<Enums.Type>();
-            string[] typeArray = Utils.SplitString(typeString);
+            string[] typeArray = typeString.ToUpper().Split(' ');
             foreach (string tString in typeArray)
             {
                 switch (tString)
                 {
-                    case "SPELL":
-                        list.Add(Enums.Type.Spell);
+                    case "RITUAL":
+                        list.Add(Enums.Type.Ritual);
                         break;
                     case "ELEMENTAL":
                         list.Add(Enums.Type.Elemental);
