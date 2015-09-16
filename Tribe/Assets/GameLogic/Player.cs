@@ -7,7 +7,8 @@ namespace GameLogic
     class Player
     {
         public string Name { get; set; }
-
+        public int hp { get; set; }
+        public int MaxHp { get; set; }
         #region utils methods
         public int ThrowDice(int numberOfFaces)
         {

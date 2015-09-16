@@ -8,7 +8,7 @@ namespace GameLogic
 {
     class Bibliotheca
     {
-        public LinkedList<Invocation> Invocations { get; set; }
+        public LinkedList<Invocation> Invocations { get; set; } //lista di tutte le carte
 
         public Bibliotheca(LinkedList<string> xmlInvocations)
         {
