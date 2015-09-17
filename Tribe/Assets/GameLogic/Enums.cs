@@ -30,5 +30,9 @@ namespace GameLogic
         {
             None, Quickness, Guardian ,Penetrate , Rage , Thorns1
         }
+        public enum Debuff
+        {
+            None, Quickness, Guardian, Penetrate, Rage, Thorns1
+        }
     }
 }

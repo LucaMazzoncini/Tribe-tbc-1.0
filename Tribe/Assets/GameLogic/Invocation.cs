@@ -214,7 +214,6 @@ namespace GameLogic
                         temp = new Power();
                         string[] tmpStr = prop.Split('.');
                         temp.cooldown = Int32.Parse(tmpStr[1]);
-                    
                 }
                 else
                 if(temp != null)

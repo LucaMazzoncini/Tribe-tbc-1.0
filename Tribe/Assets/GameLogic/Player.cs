@@ -9,6 +9,8 @@ namespace GameLogic
         public string Name { get; set; }
         public int hp { get; set; }
         public int MaxHp { get; set; }
+        public Mana mana { get; set; }
+        
         #region utils methods
         public int ThrowDice(int numberOfFaces)
         {
@@ -19,6 +21,8 @@ namespace GameLogic
         public Player(string name)
         {
             this.Name = name;
+            mana = new Mana(); //alloca e genera i mana random
+
         }
     }
 }
