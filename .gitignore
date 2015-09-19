@@ -4,4 +4,15 @@
 **/Temp
 **/test_Data
 **/ProjectSettings
-**/LIbrary
+**/Tribe/LIbrary
+**Tribe/ProjectSettings/
+**/Tribe/Temp/
+**/Unity/
+**/Assets/Mesh/
+*.gitignore
+*.csproj
+*.meta
+*.jpg
+*.apk
+*.exe
+*.user
