@@ -1,8 +1,0 @@
-<Card>
-	<Name> Tongue of Kair </Name>
-	<Cost> FLL </Cost>
-	<Type> Ritual </Type>
-	<SubType> Fire </SubType>
-	<Effect> Damage.1 LostRandomElement.1 </Effect>
-
-</Card>

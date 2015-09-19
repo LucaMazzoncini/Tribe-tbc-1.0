@@ -1,8 +1,0 @@
-<Card>
-	<Name> Burn the Profane </Name>
-	<Cost> FDD </Cost>
-	<Type> Ritual </Type>
-	<SubType> Fire </SubType>
-	<Effect> Damage.amount:2 SelfDamage.amount:1 </Effect>
-
-</Card>

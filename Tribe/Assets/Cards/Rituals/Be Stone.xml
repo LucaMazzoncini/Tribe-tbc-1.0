@@ -1,8 +1,0 @@
-<Card>
-	<Name> Be Stone </Name>
-	<Cost> EE </Cost>
-	<Type> Ritual </Type>
-	<SubType> Earth </SubType>
-	<Effect> AddCos.amount:1 </Effect>
-
-</Card>

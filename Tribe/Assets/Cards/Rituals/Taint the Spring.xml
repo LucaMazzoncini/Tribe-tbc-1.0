@@ -1,8 +1,0 @@
-<Card>
-	<Name> Taint the Spring </Name>
-	<Cost> WDD </Cost>
-	<Type> Ritual </Type>
-	<SubType> Water </SubType>
-	<Effect> Damage.amount:1 Poison.amount:1 </Effect>
-
-</Card>

@@ -1,3 +1,0 @@
-cooldown:y Name.amount:x Name.amount:y
-
-in caso di assenza di uno dei due parametri, non ce lo scrivere.
