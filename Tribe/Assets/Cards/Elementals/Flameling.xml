@@ -1,0 +1,10 @@
+<Card>
+	<Rank> 1 </Rank>
+	<Name> Flameling </Name>
+	<Cost> FFF </Cost>
+	<Type> Elemental </Type>
+	<SubType> Fire </SubType>
+	<Role> Dps </Role>
+	<Strength> 2 </Strength>
+	<Constitution> 2 </Constitution>
+</Card>

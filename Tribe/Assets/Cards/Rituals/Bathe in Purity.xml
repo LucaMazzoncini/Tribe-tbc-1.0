@@ -1,0 +1,8 @@
+<Card>
+	<Name> Bathe in Purity </Name>
+	<Cost> WLL </Cost>
+	<Type> Ritual </Type>
+	<SubType> Water </SubType>
+	<Effect> Dispel </Effect>
+
+</Card>

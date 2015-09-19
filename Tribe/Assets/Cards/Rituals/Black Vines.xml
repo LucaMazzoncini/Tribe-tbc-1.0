@@ -1,0 +1,8 @@
+<Card>
+	<Name> Black Vines </Name>
+	<Cost> WED </Cost>
+	<Type> Ritual </Type>
+	<SubType> Flora </SubType>
+	<Effect> Kill AddMana </Effect>
+
+</Card>

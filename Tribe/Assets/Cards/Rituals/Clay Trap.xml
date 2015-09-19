@@ -1,0 +1,8 @@
+<Card>
+	<Name> Clay Trap </Name>
+	<Cost> ED </Cost>
+	<Type> Ritual </Type>
+	<SubType> Earth </SubType>
+	<Effect> DecStr.amount:1 </Effect>
+
+</Card>
