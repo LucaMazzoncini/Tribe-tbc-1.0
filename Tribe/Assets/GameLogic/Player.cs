@@ -4,15 +4,15 @@ using System.Text;
 
 namespace GameLogic
 {
-    class Player
+    public class Player
     {
         public string Name { get; set; }
         public int hp { get; set; }
         public int MaxHp { get; set; }
-        public Mana mana { get; set; }
+        private Mana mana { get; set; }
         
         #region utils methods
-        public int ThrowDice(int numberOfFaces)
+        public static int ThrowDice(int numberOfFaces)
         {
             return new Random().Next(1,numberOfFaces+1);
         }

@@ -16,6 +16,12 @@ namespace Communication
                 case MessagesEnums.Message.DiceResult:
                     caller.OpponentsDiceResult(Int32.Parse(data.ToString()));
                     break;
+                case MessagesEnums.Message.OpponentName:
+                    caller.OpponentName(data.ToString());
+                    break;
+                case MessagesEnums.Message.nameReceived:
+                    caller.opponentReceveMyName();
+                    break;
                 default:
                     break;
             }
