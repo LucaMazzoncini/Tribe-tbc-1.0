@@ -15,7 +15,11 @@ namespace GameLogic
         {
             
         }*/
-        static MicroActions() // La puttana dei costruttori static! 
+
+        //il richiamo a questa funzione sara' MicroAction.table["nomefunzione"](param);  Dove nomefunzione e' ad esempio Armor e invece param un dizionario stringa stringa
+        //che in caso deve contenere anche il target
+
+        static MicroActions() 
         {
             MicroActions.table = new Dictionary<string, Action<Params>>();
             MicroActions.table.Add("Armor", armor);
@@ -25,7 +29,14 @@ namespace GameLogic
         private static void armor(Params param)
         {
             //qui dentro vanno parsati i parametri
-            //preso l'eventuale target
+
+            //il target gia' si deve avere prima di chiamare questa
+            // target = param["target"]
+
+           /* int idcreature = param["idTarget"];
+            Creature a = Game.getCreature(idcreature);
+            a.hp -= param[armor];*/
+
             //eseguito l'effetto della f
 
             var armorValue = Int32.Parse(param["value"]);
@@ -37,5 +48,12 @@ namespace GameLogic
         {
             return;
         }
+
+        private static void Damage(Params param)
+        {
+            return;
+        }
+
     }   
+
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace GameLogic
-{
+{/*
     class Creature
     {
         #region variables
@@ -79,4 +79,5 @@ namespace GameLogic
         }
         #endregion
     }
+    */
 }

@@ -7,14 +7,14 @@ using System.Text;
 namespace GameLogic
 {
     
-    class Mana
+    public class Mana
     {
         #region variables
-        public const int initMana = 10;
-        public const int maxMana  = 20;
-        public const int manInitMana = 3;
-        public const int costFirstPool = 1;
-        public const int costSecondPool = 2;
+        public const int INITMANA = 10;
+        public const int MAXMANA  = 20;
+        public const int MAXINITMANA = 3;
+        public const int COSTFIRSTPOOL = 1;
+        public const int COSTSECONDPOOL = 2;
         public Dictionary<Enums.Mana, int> valueList { get; set; }
         public Dictionary<Enums.Mana, int> poolList { get; set; }
         #endregion
@@ -36,37 +36,37 @@ namespace GameLogic
             valueList = Init();
             poolList = Init();
             Random random = new Random();
-            for (int i = 0; i < initMana; i++)
+            for (int i = 0; i < INITMANA; i++)
             {
                 int randomNumber = random.Next(1, 6);
                 switch (randomNumber)
                 {
                     case 1:
-                        if (valueList[Enums.Mana.Earth] == manInitMana)
+                        if (valueList[Enums.Mana.Earth] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Earth] += 1;
                         break;
                     case 2:
-                        if (valueList[Enums.Mana.Fire] == manInitMana)
+                        if (valueList[Enums.Mana.Fire] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Fire] += 1;
                         break;
                     case 3:
-                        if (valueList[Enums.Mana.Water] == manInitMana)
+                        if (valueList[Enums.Mana.Water] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Water] += 1;
                         break;
                     case 4:
-                        if (valueList[Enums.Mana.Life] == manInitMana)
+                        if (valueList[Enums.Mana.Life] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Life] += 1;
                         break;
                     case 5:
-                        if (valueList[Enums.Mana.Death] == manInitMana)
+                        if (valueList[Enums.Mana.Death] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Death] += 1;
@@ -100,10 +100,10 @@ namespace GameLogic
             bool capNotReached = true;
             foreach (KeyValuePair<Enums.Mana, int> manaTemp in param) //controllo se posso pagare
             {
-                if (valueList[manaTemp.Key] + manaTemp.Value > maxMana)
+                if (valueList[manaTemp.Key] + manaTemp.Value > MAXMANA)
                     {
                         capNotReached = false;
-                        valueList[manaTemp.Key] = maxMana;
+                        valueList[manaTemp.Key] = MAXMANA;
                     }
                 else
                         valueList[manaTemp.Key] += manaTemp.Value;
@@ -122,7 +122,7 @@ namespace GameLogic
             temp.Add(param, 1);
             return PayMana(temp);
         } //decrementa il mana di un elemento, se è già a 0 torna false
-        public bool addRandomMana() { return true; } //Aggiunge un mana random e se sono tutti a maxMana torna false
+        public Enums.Mana addRandomMana() { return Enums.Mana.None; } //Aggiunge un mana random e se sono tutti a maxMana torna None altrimenti il mana aggiunto
         public bool canCreatePool(Enums.Mana param) { return true; } //controlla se posso creare la polla di un tipo (costo/quantità)
         public bool createPool(Enums.Mana param) { return true; }    //crea la polla di mana del tipo specificato, altrimenti torna false
         public bool addManaPool() { return true; } //aggiunge il mana delle polle alla riserva di mana (torna false se non si può sommare anche solo un mana) quindi se stiamo bruciando mana

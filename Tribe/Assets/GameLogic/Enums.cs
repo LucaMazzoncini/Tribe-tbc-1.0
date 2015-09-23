@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    class Enums
+    public class Enums
     {
         public enum Type
         {
@@ -33,6 +33,14 @@ namespace GameLogic
         public enum Debuff
         {
             None, Quickness, Guardian, Penetrate, Rage, Thorns1
+        }
+        public enum Filter
+        {
+            None, Water, Earth, Fire, Magma, Vapor, Flora, Ancestral, Ritual, Elemental, Spirit, Shaman, Tank, Healer, Dps, Playable
+        }
+        public enum Target
+        {
+            None, Player,Elemental,Spirit
         }
     }
 }

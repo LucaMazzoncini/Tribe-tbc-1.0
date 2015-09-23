@@ -16,7 +16,7 @@ namespace GameLogic
             value = new List<string>();
         }
     }
-    class Invocation
+    public class Invocation
     {
         #region variables
         public string name { get; set; }
