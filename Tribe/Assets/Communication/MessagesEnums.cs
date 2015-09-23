@@ -10,7 +10,8 @@ namespace Communication
         {
             DiceResult,
             OpponentName,
-            nameReceived
+            nameReceived,
+            OpponentInfo
         }
     }
 }

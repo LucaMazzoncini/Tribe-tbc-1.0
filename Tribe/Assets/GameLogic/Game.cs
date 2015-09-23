@@ -34,11 +34,6 @@ namespace GameLogic
             return myRound;
         }
 
-        public void SetOpponent(string name)
-        {
-            opponent = new Player(name);
-        }
-
         public string GetOppenentName()
         {
             return opponent.Name;
@@ -49,7 +44,7 @@ namespace GameLogic
             return shaman.Name;
         }
 
-        public void SetOpponentName(string name)
+        public void SetOpponentName(string name) //da tenere
         {
             opponent.Name = name;
         }
@@ -107,13 +102,13 @@ namespace GameLogic
         public void EndTourn() //viene chiamato quando shaman passa il turno
         {
             myRound = false;
-            //comm.setRound(myRound);
+            comm.setRound(myRound);
         }
         public void StartTourn()
         {
             myRound = true;
-            //comm.setRound(myRound);
-            //comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
+            comm.setRound(myRound);
+            comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
         public void ManaAtStart( Enums.Mana param )
@@ -122,11 +117,11 @@ namespace GameLogic
             Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
             if (manaTemp != Enums.Mana.None)
             {
-                //comm.sendMana(shaman.mana);  //invio l'update del mana
+                comm.sendMana(shaman.mana);  //invio l'update del mana
             }
             //Aggiungo il mana delle polle
             shaman.mana.addManaPool();
-            //comm.sendMana(shaman.mana);  //invio l'update del mana
+            comm.sendMana(shaman.mana);  //invio l'update del mana
         }
 
         public void PlayCard(string name)
@@ -141,6 +136,7 @@ namespace GameLogic
             shaman.target = param;
             shaman.TargetUpdated(); //questo evento viene chiamato per avvertire il player che la carta e' arrivata
         }
+
 
 
         #endregion
@@ -173,15 +169,15 @@ namespace GameLogic
         public void FirstRoundStart()
         {
             //invio i miei dati all'opponent
-            //comm.sendPlayerInfo(Shaman);
-            //comm.setRound(myRound);   //setto il round per la grafica
+            comm.sendPlayerInfo(shaman);
+            comm.setRound(myRound);   //setto il round per la grafica
             if (myRound)
             {
 
                 Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano se ritorno 
                 if (manaTemp != Enums.Mana.None)
                 {
-                    //comm.sendMana(shaman.mana);  //invio il mana random generato al comunicator
+                    comm.sendMana(shaman.mana);  //invio il mana random generato al comunicator
                 }
                 //adesso dovrei aggiungere il mana delle polle ma non e' senso      
             }
@@ -189,7 +185,6 @@ namespace GameLogic
         }
         public void GameStarted()
         {
-
 
             ThrowDice(); //lancio il dado per vedere chi inizia
             comm.game_diceResult(diceResult);

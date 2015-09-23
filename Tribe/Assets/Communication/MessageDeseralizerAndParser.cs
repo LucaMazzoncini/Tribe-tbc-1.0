@@ -22,10 +22,12 @@ namespace Communication
                 case MessagesEnums.Message.nameReceived:
                     caller.opponentReceveMyName();
                     break;
+                case MessagesEnums.Message.OpponentInfo:
+                    caller.SetOpponentInfo(data);
+                    break;
                 default:
                     break;
             }
-
         }
     }
 }

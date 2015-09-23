@@ -52,6 +52,7 @@ namespace Communication
             GameEventManager.loadXmlForBibliotheca += GameEventManager_loadXmlForBibliotheca;
             GameEventManager.sendOpponentName += GameEventManager_SendOpponentName;
             GameEventManager.nameReceived += GameEventManager_nameReceived;
+            GameEventManager.menuFiltered += GameEventManager_menuFiltered; //questa funzione viene chiamata dall'interfaccia per filtrare il menu
             #endregion
 
             tcpConnector.Connect();
@@ -79,6 +80,15 @@ namespace Communication
         #endregion
 
         #region methods triggered by events or called by Game
+        void GameEventManager_menuFiltered(List<string> param)
+        {
+            List<Enums.Filter> Filter = new List<Enums.Filter>();
+            foreach (string a in param)
+            {
+                Filter.Add(parseFilter(a));
+            }
+            game.MenuFiltered(Filter);
+        }
         void GameEventManager_throwDice()
         {
             game.ThrowDice();
@@ -117,6 +127,31 @@ namespace Communication
         {
             GameEventManager.WaitingForOpponent();
         }
+
+        public void sendPlayerInfo(Player param)
+        {
+            //lo invio solo a xmpp
+            sendMessage(generateMessage(MessagesEnums.Message.OpponentInfo, param));
+        }
+        public void getManaAtStart()
+        {
+            GameEventManager.GetManaAtStart();
+        }
+        public void sendMana(Mana mana)
+        {
+            string manaString = "E:"+mana.valueList[Enums.Mana.Earth]+
+                                "F:" + mana.valueList[Enums.Mana.Fire] +
+                                "W:" + mana.valueList[Enums.Mana.Water] +
+                                "L:" + mana.valueList[Enums.Mana.Life] +
+                                "D:" + mana.valueList[Enums.Mana.Death];
+            GameEventManager.SendMana(manaString); //invio il mana del player alla gui
+
+        }
+
+        public void setRound(bool param)
+        {
+            GameEventManager.SetRound(param);
+        }
         #endregion
 
         #region methods triggered by opponent's messages
@@ -138,6 +173,11 @@ namespace Communication
         {
             GameEventManager.OpponentReceiveMyName();
         }
+
+        public void SetOpponentInfo(Object data)
+        {
+            game.SetOpponent((Player)data);
+        }
         #endregion
 
         private void sendMessage(string message)
@@ -150,6 +190,74 @@ namespace Communication
             string json = JsonConvert.SerializeObject(data);
             return name + ":separator:" + json; 
         }
+
+        private Enums.Filter parseFilter(string param)
+        {
+            // Water, Earth, Fire, Magma, Vapor, Flora, Ancestral, Ritual, Elemental, Spirit, Tank, Healer, Dps, Playable,Rank1,Rank2,Rank3
+            Enums.Filter ret = Enums.Filter.None;
+            switch (param)
+            {
+                case "WATER":
+                    ret = Enums.Filter.Water;
+                    break;
+                case "EARTH":
+                    ret = Enums.Filter.Earth;
+                    break;
+                case "FIRE":
+                    ret = Enums.Filter.Fire;
+                    break;
+                case "MAGMA":
+                    ret = Enums.Filter.Magma;
+                    break;
+                case "VAPOR":
+                    ret = Enums.Filter.Vapor;
+                    break;
+                case "FLORA":
+                    ret = Enums.Filter.Flora;
+                    break;
+                case "ANCESTRAL":
+                    ret = Enums.Filter.Ancestral;
+                    break;
+                case "RITUAL":
+                    ret = Enums.Filter.Ritual;
+                    break;
+                case "ELEMENTAL":
+                    ret = Enums.Filter.Elemental;
+                    break;
+                case "SPIRIT":
+                    ret = Enums.Filter.Spirit;
+                    break;
+                case "TANK":
+                    ret = Enums.Filter.Tank;
+                    break;
+                case "HEALER":
+                    ret = Enums.Filter.Healer;
+                    break;
+                case "DPS":
+                    ret = Enums.Filter.Dps;
+                    break;
+                case "PLAYABLE":
+                    ret = Enums.Filter.Playable;
+                    break;
+                case "RANK1":
+                    ret = Enums.Filter.Rank1;
+                    break;
+                case "RANK2":
+                    ret = Enums.Filter.Rank2;
+                    break;
+                case "RANK3":
+                    ret = Enums.Filter.Rank3;
+                    break;
+                default:
+                    break;
+            }    
+
+
+            
+            return ret;
+        }
+
+
 
     }
 }

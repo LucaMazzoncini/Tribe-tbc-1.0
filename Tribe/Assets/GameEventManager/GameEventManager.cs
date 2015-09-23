@@ -11,6 +11,9 @@ namespace GameEventManagement
         public delegate void ResultEventHandler(int result);
         public delegate void GetOpponentNameEventHandler(string name);
         public delegate void SendOpponentNameEventHandler(string name);
+        public delegate void SendStringEventHandler(string name);
+        public delegate void SendBoolEventHandler(bool name);
+        public delegate void SendStringListEventHandler(List<string> name);
         public delegate void LoadXmlForBibliothecaEventHandler(LinkedList<string> xmlList);
         #endregion
 
@@ -24,17 +27,26 @@ namespace GameEventManagement
         public static event LoadXmlForBibliothecaEventHandler loadXmlForBibliotheca;
         public static event GetOpponentNameEventHandler getOpponentName;
         public static event SendOpponentNameEventHandler sendOpponentName;
+        public static event SendStringListEventHandler menuFiltered;
         #endregion
 
         #region events for communicator
         public static event GenericEventHandler throwDice;
         public static event GenericEventHandler opponentReceveMyName;
+        public static event GenericEventHandler getManaAtStart; //richiede la selezione del mana da parte dell'utente
+        public static event SendStringEventHandler sendMana;    //chiamato da game quando c'e' da visualizzare il mana cambiato
+        public static event SendBoolEventHandler setRound;      //per aggiornare lo stato del round
         #endregion
 
         #region methods called from communicator
         public static void DiceResult(int result)
         {
             diceResult(result);
+        }
+
+        public static void GetManaAtStart()
+        {
+            getManaAtStart();
         }
 
         public static void OpponentsDiceResult(int result)
@@ -62,6 +74,14 @@ namespace GameEventManagement
             opponentReceveMyName();
         }
 
+        public static void SendMana(string mana)
+        {
+            sendMana(mana);
+        }
+        public static void SetRound(bool round)
+        {
+            setRound(round);
+        }
         #endregion
 
         #region methods called from interface
@@ -85,6 +105,12 @@ namespace GameEventManagement
         public static void NameReceived()
         {
             nameReceived();
+        }
+        public static void MenuFiltered(List<string> param) //lista separata da spazi
+        {
+
+            menuFiltered(param);
+
         }
         #endregion
     }
