@@ -46,6 +46,8 @@ namespace GameEventManagement
         public static event GenericEventHandler getAnyTarget;
         public static event GenericEventHandler getPlayersTarget;
         public static event GenericEventHandler getElementalTarget;
+        public static event GenericEventHandler getAllyElementalTarget;
+        public static event GenericEventHandler getEnemyElementalTarget;
         #endregion
 
         #region methods called from communicator
@@ -113,6 +115,14 @@ namespace GameEventManagement
         public static void GetElementalTarget()
         {
             getElementalTarget();
+        }
+        public static void GetAllyElementalTarget()
+        {
+            getAllyElementalTarget();
+        }
+        public static void GetEnemyElementalTarget()
+        {
+            getEnemyElementalTarget();
         }
         #endregion
 

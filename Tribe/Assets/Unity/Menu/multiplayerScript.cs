@@ -35,7 +35,8 @@ public class multiplayerScript : MonoBehaviour {
         GameEventManager.opponentsDiceResult += GameEventManager_opponentsDiceResult;
         GameEventManager.requestXmlForBibliotheca += GameEventManager_requestXmlForBibliotheca;
         GameEventManager.getOpponentName += gameEventManager_getOpponentName;
-        GameEventManager.opponentReceveMyName += gameEventManager_opponentReceveMyGame;
+        GameEventManager.opponentReceveMyName += gameEventManager_opponentReceveMyName;
+        
         textOutput = testoOutput.GetComponent<Text>();
         textInput = testoInput.GetComponent<Text>();
     }
@@ -146,7 +147,7 @@ public class multiplayerScript : MonoBehaviour {
         GameEventManager.NameReceived(); //notifico all'opponent che ho ricevuto il suo nome e quindi sono connesso
     }
 
-    static void gameEventManager_opponentReceveMyGame()
+    static void gameEventManager_opponentReceveMyName()
     {
         connected = true;
     }
