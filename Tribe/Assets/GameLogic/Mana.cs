@@ -213,12 +213,12 @@ namespace GameLogic
                 var items = from pair in valueList
                             orderby pair.Value ascending
                             select pair; 
-                            valueList = items; // sorta la riserva di mana in base al valore
-                foreach (KeyValuePair<Enums.mana, int> manaTemp in valueList)// aggiunge il mana delle polle alla riserva di mana
-                    if (TOTALMANA + poolList[manaTemp.key] <= MAXMANA)
+                            valueList = (Dictionary<Enums.Mana,int>)items; // sorta la riserva di mana in base al valore
+                foreach (KeyValuePair<Enums.Mana, int> manaTemp in valueList)// aggiunge il mana delle polle alla riserva di mana
+                    if (TOTALMANA + poolList[manaTemp.Key] <= MAXMANA)
                     {
-                        valueList[manaTemp.key] += poolList[manaTemp.key];
-                        TOTALMANA += poolList[manaTemp.key];
+                        valueList[manaTemp.Key] += poolList[manaTemp.Key];
+                        TOTALMANA += poolList[manaTemp.Key];
                         canAdd = true;
                     }
                     else
