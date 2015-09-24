@@ -36,13 +36,16 @@ namespace GameLogic
         public List<string> onDeath { get; set; }
         public string flavour { get; set; }
         private System.Xml.XmlDocument xmlDoc;
+
+        private string card; //in questa stringa ci vanno tutte le informazioni lette che vanno passate all'interfaccia
         #endregion
 
 
         public Invocation(System.Xml.XmlDocument xmlDoc)
         {
+            //ATTENTO quando si chiama il costruttore si deve inizializzare anche card con un formato da decidere
             this.xmlDoc = xmlDoc;
-            name = GetDataFromXml("Name");
+            name = GetDataFromXml("Name"); 
             from = GetDataFromXml("From");
             manaCost = LoadCostFromString(GetDataFromXml("Cost"));
             type = LoadTypeFromString(GetDataFromXml("Type"));
@@ -63,6 +66,11 @@ namespace GameLogic
             onDeath = LoadActionsAndEffectFromString(GetDataFromXml("OnDeath"));
             flavour = GetDataFromXml("Flavour");
             
+        }
+
+        public string returnStringFormat()
+        {
+            return card;
         }
         /* esempio di chiamata con i funtori
         public void test()

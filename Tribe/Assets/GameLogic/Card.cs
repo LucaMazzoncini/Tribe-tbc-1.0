@@ -12,6 +12,9 @@ namespace GameLogic
         public int id; //identificatore univoco che viene valorizzato quando entra in gioco
         public List<string> powers;
         public Mana cost;
+        public Enums.Type type;
+        public Enums.Target target; //se non puo' essere targettata va' messo a null
+
 
         public Card(string name)
         {

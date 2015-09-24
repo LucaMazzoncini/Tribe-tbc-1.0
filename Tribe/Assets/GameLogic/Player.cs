@@ -6,9 +6,9 @@ namespace GameLogic
 {
     public class Target
     {
-        Enums.Target target;
-        int id = 0;
-        string name = "";
+        public Enums.Target target;
+        public int id = 0;
+        public string name = "";
     }
     public class Player
     {
@@ -19,6 +19,7 @@ namespace GameLogic
         public int maxHp { get; set; }
         public Mana mana { get; set; }
         public Target target;
+        public Card[] cars = new Card[4];  //nella 4 carta ci sta' lo spirito
         
         #endregion
         #region utils methods
@@ -36,7 +37,7 @@ namespace GameLogic
             target = null;
         }
 
-        public void playCard(string nameCard)
+        public void PlayCard(string nameCard)
         {
             // Get powers
             // Get params from card -> params
@@ -44,6 +45,12 @@ namespace GameLogic
                 // TargetUpdate() -> card.play(param)
             // else
                 // card.play()   
+        }
+
+        public bool CanPlayCard(string nameCard)
+        {
+
+            return true;
         }
 
         public void TargetUpdated()

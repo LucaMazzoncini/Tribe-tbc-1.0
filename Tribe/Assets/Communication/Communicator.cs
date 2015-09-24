@@ -53,6 +53,10 @@ namespace Communication
             GameEventManager.sendOpponentName += GameEventManager_SendOpponentName;
             GameEventManager.nameReceived += GameEventManager_nameReceived;
             GameEventManager.menuFiltered += GameEventManager_menuFiltered; //questa funzione viene chiamata dall'interfaccia per filtrare il menu
+            GameEventManager.endRoud += GameEventManager_endRound;
+            GameEventManager.playCard += GameEventManager_playCard;
+            GameEventManager.canPlayCard += GameEventManager_CanPlayCard;
+            GameEventManager.idTarget += GameEventManager_idTarget;
             #endregion
 
             tcpConnector.Connect();
@@ -87,7 +91,8 @@ namespace Communication
             {
                 Filter.Add(parseFilter(a));
             }
-            game.MenuFiltered(Filter);
+            LinkedList<Invocation> cardList = game.MenuFiltered(Filter);
+            parseAndSendMenu(cardList);// trasforma le carte in stringa ed invia le carte richieste
         }
         void GameEventManager_throwDice()
         {
@@ -152,6 +157,18 @@ namespace Communication
         {
             GameEventManager.SetRound(param);
         }
+        public void GetAnyTarget()
+        {
+            GameEventManager.GetAnyTarget();
+        }
+        public void GetPlayersTarget()
+        {
+            GameEventManager.GetPlayersTarget();
+        }
+        public void GetElementalTarget()
+        {
+            GameEventManager.GetElementalTarget();
+        }
         #endregion
 
         #region methods triggered by opponent's messages
@@ -177,6 +194,24 @@ namespace Communication
         public void SetOpponentInfo(Object data)
         {
             game.SetOpponent((Player)data);
+        }
+
+        public void GameEventManager_endRound()
+        {
+            game.EndTourn();
+        }
+        public void GameEventManager_playCard(string name)
+        {
+            game.PlayCard(name);
+        }
+        public void GameEventManager_CanPlayCard(string name)
+        {
+            GameEventManager.CanPlayCardChecked(name, game.CanPlayCard(name));
+        }
+
+        public void GameEventManager_idTarget(int id)
+        {
+            game.TargetEvent(id);
         }
         #endregion
 
@@ -258,6 +293,17 @@ namespace Communication
         }
 
 
+        //callback menu
+        private void parseAndSendMenu(LinkedList<Invocation> param)
+        {
+            List <string> message = new List<string>();
+            foreach(Invocation card in param)
+                message.Add(card.returnStringFormat());
+
+            GameEventManager.MenuProcessed(message);
+
+
+        }
 
     }
 }

@@ -126,14 +126,19 @@ namespace GameLogic
 
         public void PlayCard(string name)
         {
-            shaman.playCard(name);
+            shaman.PlayCard(name);
         }
 
-        public void TargetEvent(Target param) //questa funzione riceve il target richiesto precedentemente
+        public bool CanPlayCard(string name)
+        {
+            return shaman.CanPlayCard(name);
+        }
+
+        public void TargetEvent(int idTarget) //questa funzione riceve il target richiesto precedentemente
         {
             //shaman.targetList.Clear();
             //shaman.targetList.AddRange(param);
-            shaman.target = param;
+            shaman.target = FindTargetById(idTarget);
             shaman.TargetUpdated(); //questo evento viene chiamato per avvertire il player che la carta e' arrivata
         }
 
@@ -165,6 +170,47 @@ namespace GameLogic
         public void LoadBibliotheca(LinkedList<string> xmlInvocations)
         {
             bibliotheca = new Bibliotheca(xmlInvocations);
+        }
+        private Target FindTargetById(int id)
+        {
+            Target ret = new Target();
+            ret.id = id;
+            if (id == 0)
+            {
+                ret.name = "SHAMAN";
+                ret.target = Enums.Target.Player;
+            }
+            if (ret.id == 1)
+            {
+                ret.name = "OPPONENT";
+                ret.target = Enums.Target.Player;
+            }
+            if ( ret.id > 1 )
+            {
+
+                foreach(Card card in shaman.cars)
+                {
+                    if( card.id == id )
+                    {
+                        ret.name = card.name;
+                        ret.target = card.target;
+                        return ret;
+                    }
+                }
+
+                foreach (Card card in opponent.cars)
+                {
+                    if (card.id == id)
+                    {
+                        ret.name = card.name;
+                        ret.target = card.target;
+                        return ret;
+                    }
+                }
+
+            }
+
+                return ret;
         }
         public void FirstRoundStart()
         {
