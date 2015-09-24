@@ -18,7 +18,6 @@ public static event ResultEventHandler diceResult;		    // invio all'interfaccia
 public static event ResultEventHandler opponentsDiceResult; // invio il risultato del tiro dei dadi all'opponent
 public static event GenericEventHandler requestXmlForBibliotheca; //chiedo all'interfaccia di caricare i file xml, perche' stiamo usando unity ( problema di visibilità)
 public static event GetOpponentNameEventHandler getOpponentName; //invio il nome all'interfaccia
-public static event GenericEventHandler opponentReceveMyName; //questo evento in realta' serve per sapere se la comunicazione e' avvenuta correttamente
 public static event GenericEventHandler getManaAtStart; //richiede la selezione del mana da parte dell'utente
 public static event SendStringEventHandler sendMana;    //chiamato da game quando c'e' da visualizzare il mana cambiato
 public static event SendBoolEventHandler setRound;      //per aggiornare lo stato del round    

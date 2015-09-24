@@ -22,11 +22,11 @@ public class multiplayerScript : MonoBehaviour {
     private Text textOutput;
     private Text textInput;
     private static bool gameStart = false;
-    private static bool connected = false; //quando l'opponent mi restituisce il nome lo considero connesso (carico tutta la scena ma aspetto il nome)
     private static string playerName = "";
     private static string opponentName = "";
     private static int opponentDiceResult = 0;
     private static int diceResult = 0;
+    private static bool round = false;
     // Use this for initialization
     void Start () {
         GameEventManager.waitingForOpponent += gameEventManager_waitingForOpponent;
@@ -35,7 +35,7 @@ public class multiplayerScript : MonoBehaviour {
         GameEventManager.opponentsDiceResult += GameEventManager_opponentsDiceResult;
         GameEventManager.requestXmlForBibliotheca += GameEventManager_requestXmlForBibliotheca;
         GameEventManager.getOpponentName += gameEventManager_getOpponentName;
-        GameEventManager.opponentReceveMyName += gameEventManager_opponentReceveMyName;
+        GameEventManager.setRound += gameEventManager_setRound;
         
         textOutput = testoOutput.GetComponent<Text>();
         textInput = testoInput.GetComponent<Text>();
@@ -62,18 +62,7 @@ public class multiplayerScript : MonoBehaviour {
             if(textOutput != null)
                 textOutput.text = outputString;
             inputString = textInput.text;
-            if(gameStart)
-            {
-                if (connected) //questo flag indica che l'avversario si e' connesso alla partita e mi ha inviato il nome
-                {
-                    Application.LoadLevel("Board");
-                    gameStart = false;
-                }
-                else
-                {
-                    GameEventManager.SendOpponentName(playerName); //invio il nome del player fino a che non ricevo il suo
-                }
-            }   
+
     }
     public void Login()
     {
@@ -139,23 +128,32 @@ public class multiplayerScript : MonoBehaviour {
         outputString = "GameStarted!";
         playerName = inputString;
         gameStart = true;
+        GameEventManager.SendOpponentName(playerName); //invio il nome del player 
+        Application.LoadLevel("Board");
+
     }
     static void gameEventManager_getOpponentName(string param)
     {
         opponentName = param;
-        GameEventManager.SendOpponentName(playerName); //invio il nome del player
         GameEventManager.NameReceived(); //notifico all'opponent che ho ricevuto il suo nome e quindi sono connesso
     }
 
-    static void gameEventManager_opponentReceveMyName()
-    {
-        connected = true;
-    }
 
     static void gameEventManager_waitingForOpponent()
     {
         outputString = "Waiting for opponent..";
     }
+
+    static void gameEventManager_setRound(bool param)
+    {
+        round = param;
+    }
+
+    public bool returnRound()
+    {
+        return round;
+    }
+
     #endregion
 
 }

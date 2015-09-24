@@ -60,21 +60,19 @@ namespace GameLogic
         #region Who start
         public void ThrowDice()
         {
-            ThrowDice(Player.ThrowDice(9999999));
+            ThrowDice(Player.ThrowDice(2));
         }
-
+    
         public void ThrowDice(int diceValue)
         {
             diceResult = diceValue;
-            if(sendDiceResult != null)
+            if (sendDiceResult != null)
                 sendDiceResult(diceResult);
         }
 
-
-
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
-                myRound = false;
+            myRound = false;
             if (diceResult == opponentDiceResult)
             {
                 ThrowDice();
@@ -88,8 +86,8 @@ namespace GameLogic
                 }
                 FirstRoundStart();
             }
-                
-                
+
+
         }
         #endregion
 
@@ -97,7 +95,7 @@ namespace GameLogic
 
         public LinkedList<Invocation> MenuFiltered(List<Enums.Filter> param) //questa funzione ritorna una linkedList delle carte filtrate
         {
-            return bibliotheca.getCards(param,shaman.mana); 
+            return bibliotheca.getCards(param, shaman.mana);
         }
         public void EndTourn() //viene chiamato quando shaman passa il turno
         {
@@ -111,7 +109,7 @@ namespace GameLogic
             comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
-        public void ManaAtStart( Enums.Mana param )
+        public void ManaAtStart(Enums.Mana param)
         {
             shaman.mana.incMana(param);    //se ha raggiunto il mana max non viene aggiunto il mana
             Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
@@ -149,21 +147,21 @@ namespace GameLogic
         #region Metodi chiamati da altri oggetti a Comunicator
         public void GetAnyTarget()
         {
-            //comm.getAnyTarget();
+            comm.GetAnyTarget();
         }
 
         public void GetPlayerTarget()
         {
-            //comm.getPlayerTarget();
+            comm.GetPlayersTarget();
         }
         public void GetElementalTarget()
         {
-            //comm.GetElementalTarget();
+            comm.GetElementalTarget();
         }
 
         public void GetSpiritTarget()
         {
-            //comm.GetSpiritTarget();
+            comm.GetAllyElementalTarget();
         }
 
         #endregion
@@ -185,12 +183,12 @@ namespace GameLogic
                 ret.name = "OPPONENT";
                 ret.target = Enums.Target.Player;
             }
-            if ( ret.id > 1 )
+            if (ret.id > 1)
             {
 
-                foreach(Card card in shaman.cars)
+                foreach (Card card in shaman.cars)
                 {
-                    if( card.id == id )
+                    if (card.id == id)
                     {
                         ret.name = card.name;
                         ret.target = card.target;
@@ -210,7 +208,7 @@ namespace GameLogic
 
             }
 
-                return ret;
+            return ret;
         }
         public void FirstRoundStart()
         {

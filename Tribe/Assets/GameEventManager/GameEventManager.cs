@@ -37,7 +37,6 @@ namespace GameEventManagement
 
         #region events for communicator
         public static event GenericEventHandler throwDice;
-        public static event GenericEventHandler opponentReceveMyName;
         public static event GenericEventHandler getManaAtStart; //richiede la selezione del mana da parte dell'utente
         public static event SendStringEventHandler sendMana;    //chiamato da game quando c'e' da visualizzare il mana cambiato
         public static event SendBoolEventHandler setRound;      //per aggiornare lo stato del round
@@ -45,6 +44,7 @@ namespace GameEventManagement
         public static event SendStringBoolEventHandler canPlayCardChecked;
         public static event GenericEventHandler getAnyTarget;
         public static event GenericEventHandler getPlayersTarget;
+        public static event GenericEventHandler getSpiritsTarget;
         public static event GenericEventHandler getElementalTarget;
         public static event GenericEventHandler getAllyElementalTarget;
         public static event GenericEventHandler getEnemyElementalTarget;
@@ -81,10 +81,7 @@ namespace GameEventManagement
             requestXmlForBibliotheca();
         }
 
-        public static void OpponentReceiveMyName()
-        {
-            opponentReceveMyName();
-        }
+
 
         public static void SendMana(string mana)
         {
@@ -111,6 +108,10 @@ namespace GameEventManagement
         public static void GetPlayersTarget()
         {
             getPlayersTarget();
+        }
+        public static void GetSpiritsTarget()
+        {
+            getSpiritsTarget();
         }
         public static void GetElementalTarget()
         {

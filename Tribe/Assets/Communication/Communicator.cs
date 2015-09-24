@@ -165,9 +165,21 @@ namespace Communication
         {
             GameEventManager.GetPlayersTarget();
         }
+        public void GetSpiritTarget()
+        {
+            GameEventManager.GetSpiritsTarget();
+        }
         public void GetElementalTarget()
         {
             GameEventManager.GetElementalTarget();
+        }
+        public void GetAllyElementalTarget()
+        {
+            GameEventManager.GetAllyElementalTarget();
+        }
+        public void GetEnemyElementalTarget()
+        {
+            GameEventManager.GetEnemyElementalTarget();
         }
         #endregion
 
@@ -184,11 +196,6 @@ namespace Communication
             param = param.Replace("\"", "");
             GameEventManager.GetOpponentName(param);
             game.SetOpponentName(param);
-        }
-
-        public void opponentReceveMyName()
-        {
-            GameEventManager.OpponentReceiveMyName();
         }
 
         public void SetOpponentInfo(Object data)

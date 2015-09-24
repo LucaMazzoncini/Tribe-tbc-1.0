@@ -19,9 +19,6 @@ namespace Communication
                 case MessagesEnums.Message.OpponentName:
                     caller.OpponentName(data.ToString());
                     break;
-                case MessagesEnums.Message.nameReceived:
-                    caller.opponentReceveMyName();
-                    break;
                 case MessagesEnums.Message.OpponentInfo:
                     caller.SetOpponentInfo(data);
                     break;
