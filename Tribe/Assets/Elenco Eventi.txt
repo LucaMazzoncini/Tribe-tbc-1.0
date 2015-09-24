@@ -1,0 +1,39 @@
+Eventi:
+
+Eventi chiamati dall'interfaccia      
+public static event SendOpponentNameEventHandler sendOpponentName;  //contrariamente invio il nome del giocatore non dell'opponent
+public static event SendStringListEventHandler menuFiltered;  //Il giocatore apre il menu
+public static event GenericEventHandler endRoud; 	    //il giocatore ha premuto su fine turno
+public static event SendStringEventHandler playCard;    //Chiedo al game di giocare una carta
+public static event SendStringEventHandler canPlayCard; //chiedo se posso giocare la carta al game
+public static event GenericEventHandler throwDice;    //richiedo il tiro del dado a game
+public static event LoadXmlForBibliothecaEventHandler loadXmlForBibliotheca; //ritorna una linked list che altro non è che l'elenco dei file
+public static event GenericEventHandler nameReceived; //notifica la ricezione del nome
+public static event ResultEventHandler idTarget; //ritorna l'id della carta targhettata
+		
+Eventi chiamati da comunicator
+public static event GenericEventHandler waitingForOpponent; //Aspetta il giocatore avversario
+public static event GenericEventHandler gameStarted;		//Entrambi i giocatori sono connessi alla room e la partita può iniziare
+public static event ResultEventHandler diceResult;		    // invio all'interfaccia il risultato del tiro dei dadi del player
+public static event ResultEventHandler opponentsDiceResult; // invio il risultato del tiro dei dadi all'opponent
+public static event GenericEventHandler requestXmlForBibliotheca; //chiedo all'interfaccia di caricare i file xml, perche' stiamo usando unity ( problema di visibilità)
+public static event GetOpponentNameEventHandler getOpponentName; //invio il nome all'interfaccia
+public static event GenericEventHandler opponentReceveMyName; //questo evento in realta' serve per sapere se la comunicazione e' avvenuta correttamente
+public static event GenericEventHandler getManaAtStart; //richiede la selezione del mana da parte dell'utente
+public static event SendStringEventHandler sendMana;    //chiamato da game quando c'e' da visualizzare il mana cambiato
+public static event SendBoolEventHandler setRound;      //per aggiornare lo stato del round    
+public static event SendStringListEventHandler menuProcessed; //questo evento viene lanciato dal comunicator quando le carte sono state filtrate
+public static event SendStringBoolEventHandler canPlayCardChecked; //ritorna true dopo se la carta puo' essere giocata
+public static event GenericEventHandler getAnyTarget;              //si chiede all'interfaccia di far selezionare un target qualsiasi
+public static event GenericEventHandler getPlayersTarget;		   //si chiede all'interfaccia di far selezionare un player qualsiasi
+public static event GenericEventHandler getElementalTarget;		   //si chiede all'interfaccia di far selezionare un Elemental qualsiasi   
+public static event GenericEventHandler getAllyElementalTarget;		   //si chiede all'interfaccia di far selezionare un Elemental amico
+public static event GenericEventHandler getEnemyElementalTarget;		   //si chiede all'interfaccia di far selezionare un Elemental nemico
+        
+        
+        
+
+		
+
+
+  
