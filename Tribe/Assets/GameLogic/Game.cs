@@ -60,7 +60,7 @@ namespace GameLogic
         #region Who start
         public void ThrowDice()
         {
-            ThrowDice(Player.ThrowDice(2));
+            ThrowDice(Player.ThrowDice(999999999));
         }
     
         public void ThrowDice(int diceValue)
@@ -73,19 +73,19 @@ namespace GameLogic
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
             myRound = false;
-            if (diceResult == opponentDiceResult)
+           /* if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata oppure lasciamo il dado a 99999999999 
             {
-                ThrowDice();
+                ThrowDice();                       
                 comm.game_diceResult(diceResult); //si invia nuovamente il risultato del dado
             }
             else
-            {
+            {*/
                 if (diceResult > opponentDiceResult)
                 {
                     myRound = true;
                 }
                 FirstRoundStart();
-            }
+            //}
 
 
         }
@@ -213,7 +213,7 @@ namespace GameLogic
         public void FirstRoundStart()
         {
             //invio i miei dati all'opponent
-            comm.sendPlayerInfo(shaman);
+            //comm.sendPlayerInfo(shaman);
             comm.setRound(myRound);   //setto il round per la grafica
             if (myRound)
             {

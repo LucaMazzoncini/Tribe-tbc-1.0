@@ -62,7 +62,9 @@ public class multiplayerScript : MonoBehaviour {
             if(textOutput != null)
                 textOutput.text = outputString;
             inputString = textInput.text;
-
+           if(gameStart)
+                Application.LoadLevel("Board");
+            gameStart = false;
     }
     public void Login()
     {
@@ -129,7 +131,7 @@ public class multiplayerScript : MonoBehaviour {
         playerName = inputString;
         gameStart = true;
         GameEventManager.SendOpponentName(playerName); //invio il nome del player 
-        Application.LoadLevel("Board");
+        
 
     }
     static void gameEventManager_getOpponentName(string param)
