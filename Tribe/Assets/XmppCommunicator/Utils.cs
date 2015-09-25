@@ -100,7 +100,8 @@ namespace XmppCommunicator
 
         public static void Log(string s)
         {
-            Console.Out.WriteLine(s);
+            //Console.Out.WriteLine(s);
+            playerText.Print(s);
         }
 
         public static string createRoomRequest(string nick)

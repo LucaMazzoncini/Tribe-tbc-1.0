@@ -52,12 +52,12 @@ namespace Communication
             GameEventManager.throwDice += GameEventManager_throwDice;
             GameEventManager.loadXmlForBibliotheca += GameEventManager_loadXmlForBibliotheca;
             GameEventManager.sendOpponentName += GameEventManager_SendOpponentName;
-            GameEventManager.nameReceived += GameEventManager_nameReceived;
             GameEventManager.menuFiltered += GameEventManager_menuFiltered; //questa funzione viene chiamata dall'interfaccia per filtrare il menu
             GameEventManager.endRoud += GameEventManager_endRound;
             GameEventManager.playCard += GameEventManager_playCard;
             GameEventManager.canPlayCard += GameEventManager_CanPlayCard;
             GameEventManager.idTarget += GameEventManager_idTarget;
+            GameEventManager.unityReady += GameEventManager_unityReady;
             #endregion
 
             tcpConnector.Connect();
@@ -106,14 +106,10 @@ namespace Communication
             GameEventManager.DiceResult(result);
         }
 
-        void GameEventManager_nameReceived()
+       private void TcpConnector_messageRecieved(MessageEventArgs messageArg)
         {
-            sendMessage(generateMessage(MessagesEnums.Message.nameReceived, ""));
-        }
-
-        private void TcpConnector_messageRecieved(MessageEventArgs messageArg)
-        {
-            new MessageDeseralizerAndParser().Read(this, messageArg.Message);
+            //MessageDeseralizerAndParser.pisello(messageArg.Message);
+            MessageDeseralizerAndParser.Read(this, messageArg.Message);
         }
 
         private void TcpConnector_opponentDisconnected()
@@ -129,7 +125,7 @@ namespace Communication
         void tcpConnector_gameStarted(GameStartedEventArgs gameStartedEventArgs)
         {
             GameEventManager.GameStarted();
-            game.GameStarted(); //la sposto di qui, perche' il momento in cui sono sicuro di essere sincronizzato e' quando ricevo l'evento opponentReceveMyName
+            //game.GameStarted(); //la sposto di qui, perche' il momento in cui sono sicuro di essere sincronizzato e' quando ricevo l'evento opponentReceveMyName
             game.SetOpponentName(gameStartedEventArgs.Opponent);
             
         }
@@ -225,6 +221,11 @@ namespace Communication
         public void GameEventManager_idTarget(int id)
         {
             game.TargetEvent(id);
+        }
+
+        public void GameEventManager_unityReady()
+        {
+            game.UnityReady();
         }
         #endregion
 

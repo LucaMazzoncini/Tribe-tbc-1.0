@@ -69,11 +69,14 @@ namespace XmppCommunicator
             #region initial loading sequence
             try
             {
-                tcpConnector.sendServerMessage(messagesQueue.First.Value);
-                //la sequenza di login attualmente la fa senza lo spam del timer, ma alla vecchia maniera, un messaggio alla volta. Per la chat invece spamma
-                if (ServerMessagesInterpreter.Interpret(strRecieved) != "chat")
+                if (messagesQueue.Count > 0)
                 {
-                    messagesQueue.RemoveFirst();
+                    tcpConnector.sendServerMessage(messagesQueue.First.Value);
+                    //la sequenza di login attualmente la fa senza lo spam del timer, ma alla vecchia maniera, un messaggio alla volta. Per la chat invece spamma
+                    if (ServerMessagesInterpreter.Interpret(strRecieved) != "chat")
+                    {
+                        messagesQueue.RemoveFirst();
+                    }
                 }
             }
             catch (Exception e)

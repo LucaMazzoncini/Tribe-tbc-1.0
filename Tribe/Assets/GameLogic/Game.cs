@@ -25,7 +25,8 @@ namespace GameLogic
         #endregion
         public Game(string name)
         {
-            shaman = new Player(name);
+            shaman = new Player(name);         //vanno inizializzati
+            opponent = new Player("Opponent"); //vanno inizializzati
             comm = Communication.Communicator.getInstance();
         }
         #region setGet
@@ -60,20 +61,18 @@ namespace GameLogic
         #region Who start
         public void ThrowDice()
         {
-            ThrowDice(Player.ThrowDice(999999999));
+            ThrowDice(Player.ThrowDice(6));
         }
     
         public void ThrowDice(int diceValue)
         {
             diceResult = diceValue;
-            if (sendDiceResult != null)
-                sendDiceResult(diceResult);
         }
 
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
             myRound = false;
-           /* if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata oppure lasciamo il dado a 99999999999 
+           /* if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata il problema era che nn era inizializzato Comm
             {
                 ThrowDice();                       
                 comm.game_diceResult(diceResult); //si invia nuovamente il risultato del dado
@@ -99,11 +98,13 @@ namespace GameLogic
         }
         public void EndTourn() //viene chiamato quando shaman passa il turno
         {
+            comm = Communication.Communicator.getInstance();
             myRound = false;
             comm.setRound(myRound);
         }
         public void StartTourn()
         {
+            comm = Communication.Communicator.getInstance();
             myRound = true;
             comm.setRound(myRound);
             comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
@@ -111,6 +112,7 @@ namespace GameLogic
 
         public void ManaAtStart(Enums.Mana param)
         {
+            comm = Communication.Communicator.getInstance();
             shaman.mana.incMana(param);    //se ha raggiunto il mana max non viene aggiunto il mana
             Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
             if (manaTemp != Enums.Mana.None)
@@ -147,20 +149,24 @@ namespace GameLogic
         #region Metodi chiamati da altri oggetti a Comunicator
         public void GetAnyTarget()
         {
+            comm = Communication.Communicator.getInstance();
             comm.GetAnyTarget();
         }
 
         public void GetPlayerTarget()
         {
+            comm = Communication.Communicator.getInstance();
             comm.GetPlayersTarget();
         }
         public void GetElementalTarget()
         {
+            comm = Communication.Communicator.getInstance();
             comm.GetElementalTarget();
         }
 
         public void GetSpiritTarget()
         {
+            comm = Communication.Communicator.getInstance();
             comm.GetAllyElementalTarget();
         }
 
@@ -213,8 +219,10 @@ namespace GameLogic
         public void FirstRoundStart()
         {
             //invio i miei dati all'opponent
+            comm = Communication.Communicator.getInstance();
             //comm.sendPlayerInfo(shaman);
             comm.setRound(myRound);   //setto il round per la grafica
+
             if (myRound)
             {
 
@@ -225,15 +233,19 @@ namespace GameLogic
                 }
                 //adesso dovrei aggiungere il mana delle polle ma non e' senso      
             }
-
         }
-        public void GameStarted()
+        public void UnityReady()
         {
-
             ThrowDice(); //lancio il dado per vedere chi inizia
+            comm = Communication.Communicator.getInstance();
+
             comm.game_diceResult(diceResult);
             requestXmlForBibliotheca();
 
+
         }
+
+
+        
     }
 }

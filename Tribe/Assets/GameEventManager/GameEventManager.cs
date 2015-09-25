@@ -22,7 +22,6 @@ namespace GameEventManagement
         public static event GenericEventHandler waitingForOpponent;
         public static event GenericEventHandler opponentDisconnected;
         public static event GenericEventHandler gameStarted;
-        public static event GenericEventHandler nameReceived;
         public static event ResultEventHandler diceResult;
         public static event ResultEventHandler opponentsDiceResult;
         public static event GenericEventHandler requestXmlForBibliotheca;
@@ -49,6 +48,7 @@ namespace GameEventManagement
         public static event GenericEventHandler getElementalTarget;
         public static event GenericEventHandler getAllyElementalTarget;
         public static event GenericEventHandler getEnemyElementalTarget;
+        public static event GenericEventHandler unityReady;
         #endregion
 
         #region methods called from communicator
@@ -133,6 +133,11 @@ namespace GameEventManagement
         #endregion
 
         #region methods called from interface
+        public static void  UnityReady()
+        {
+            unityReady();
+        }
+
         public static void ThrowDice()
         {
             throwDice();
@@ -150,10 +155,6 @@ namespace GameEventManagement
             sendOpponentName(name);
         }
 
-        public static void NameReceived()
-        {
-            nameReceived();
-        }
         public static void MenuFiltered(List<string> param) //lista separata da spazi
         {
             menuFiltered(param);

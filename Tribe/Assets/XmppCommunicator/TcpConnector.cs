@@ -119,7 +119,7 @@ namespace XmppCommunicator
             strRecieved = Encoding.ASCII.GetString(mResponse, 0, nCountResponseBytes);
 
             //debug per vedere i messaggi grezzi in arrivo
-            //Utils.Log((strRecieved));
+           // Utils.Log((strRecieved));
 
             completeMessage += strRecieved;
 

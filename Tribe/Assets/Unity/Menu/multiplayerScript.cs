@@ -61,6 +61,7 @@ public class multiplayerScript : MonoBehaviour {
     void Update () {
             if(textOutput != null)
                 textOutput.text = outputString;
+            if(textInput != null)
             inputString = textInput.text;
            if(gameStart)
                 Application.LoadLevel("Board");
@@ -141,7 +142,6 @@ public class multiplayerScript : MonoBehaviour {
     static void gameEventManager_getOpponentName(string param)
     {
         opponentName = param;
-        GameEventManager.NameReceived(); //notifico all'opponent che ho ricevuto il suo nome e quindi sono connesso
     }
 
 
@@ -153,6 +153,7 @@ public class multiplayerScript : MonoBehaviour {
     static void gameEventManager_setRound(bool param)
     {
         round = param;
+
     }
 
     public bool returnRound()

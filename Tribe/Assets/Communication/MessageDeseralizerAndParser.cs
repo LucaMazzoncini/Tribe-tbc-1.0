@@ -6,11 +6,12 @@ namespace Communication
 {
     class MessageDeseralizerAndParser
     {
-        public void Read(Communicator caller, string message)
+        public static void Read(Communicator caller, string message)
         {
             string[] splittedData = message.Split(new string[] { ":separator:" }, StringSplitOptions.None);
             MessagesEnums.Message name = (MessagesEnums.Message)Enum.Parse(typeof(MessagesEnums.Message), splittedData[0]);
             Object data = splittedData[1];
+            XmppCommunicator.Utils.Log(message);
             switch (name)
             {
                 case MessagesEnums.Message.DiceResult:
@@ -25,6 +26,10 @@ namespace Communication
                 default:
                     break;
             }
+        }
+        public static void pisello(string message)
+        {
+            XmppCommunicator.Utils.Log(message);
         }
     }
 }
