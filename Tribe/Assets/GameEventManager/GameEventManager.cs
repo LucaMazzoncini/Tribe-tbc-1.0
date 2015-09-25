@@ -20,6 +20,7 @@ namespace GameEventManagement
 
         #region events for interface
         public static event GenericEventHandler waitingForOpponent;
+        public static event GenericEventHandler opponentDisconnected;
         public static event GenericEventHandler gameStarted;
         public static event GenericEventHandler nameReceived;
         public static event ResultEventHandler diceResult;
@@ -51,6 +52,10 @@ namespace GameEventManagement
         #endregion
 
         #region methods called from communicator
+        public static void OpponentDisconnected()
+        {
+            opponentDisconnected();
+        }
         public static void DiceResult(int result)
         {
             diceResult(result);

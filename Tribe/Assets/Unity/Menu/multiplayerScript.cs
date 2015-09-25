@@ -36,7 +36,7 @@ public class multiplayerScript : MonoBehaviour {
         GameEventManager.requestXmlForBibliotheca += GameEventManager_requestXmlForBibliotheca;
         GameEventManager.getOpponentName += gameEventManager_getOpponentName;
         GameEventManager.setRound += gameEventManager_setRound;
-        
+        GameEventManager.opponentDisconnected += gameEventManager_opponentDisconnected;
         textOutput = testoOutput.GetComponent<Text>();
         textInput = testoInput.GetComponent<Text>();
     }
@@ -131,9 +131,13 @@ public class multiplayerScript : MonoBehaviour {
         playerName = inputString;
         gameStart = true;
         GameEventManager.SendOpponentName(playerName); //invio il nome del player 
-        
-
     }
+
+    public static void gameEventManager_opponentDisconnected()
+    {
+        opponentName += "\nDisconnesso ";
+    }
+
     static void gameEventManager_getOpponentName(string param)
     {
         opponentName = param;

@@ -45,6 +45,7 @@ namespace Communication
             tcpConnector.waitingForOpponent += tcpConnector_waitingForOpponent;
             tcpConnector.gameStarted += tcpConnector_gameStarted;
             tcpConnector.messageRecieved += TcpConnector_messageRecieved;
+            tcpConnector.opponentDisconnected += TcpConnector_opponentDisconnected;
             #endregion
 
             #region GameEventManager events subscription
@@ -113,6 +114,11 @@ namespace Communication
         private void TcpConnector_messageRecieved(MessageEventArgs messageArg)
         {
             new MessageDeseralizerAndParser().Read(this, messageArg.Message);
+        }
+
+        private void TcpConnector_opponentDisconnected()
+        {
+            GameEventManager.OpponentDisconnected();
         }
 
         void game_requestXmlForBibliotheca()
