@@ -36,7 +36,7 @@ namespace GameLogic
         }
         public enum Filter
         {
-            None, Water, Earth, Fire, Magma, Vapor, Flora, Ancestral, Ritual, Elemental, Spirit, Tank, Healer, Dps, Playable,Rank1,Rank2,Rank3
+            None, Water, Earth, Fire, Magma, Vapor, Flora, Ancestral, Ritual, Elemental, Spirit, Tank, Healer, Dps, Playable, Rank1, Rank2, Rank3
         }
         public enum Target
         {

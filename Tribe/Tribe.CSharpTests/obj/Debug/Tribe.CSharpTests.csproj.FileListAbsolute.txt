@@ -15,3 +15,20 @@ H:\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Mono.Cecil.xml
 H:\Tribe 1.0\Tribe\Tribe.CSharpTests\obj\Debug\Tribe.CSharpTests.csprojResolveAssemblyReference.cache
 H:\Tribe 1.0\Tribe\Tribe.CSharpTests\obj\Debug\Tribe.CSharpTests.dll
 H:\Tribe 1.0\Tribe\Tribe.CSharpTests\obj\Debug\Tribe.CSharpTests.pdb
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\obj\Debug\Tribe.CSharpTests.csprojResolveAssemblyReference.cache
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\obj\Debug\Tribe.CSharpTests.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\obj\Debug\Tribe.CSharpTests.pdb
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Tribe.CSharpTests.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Tribe.CSharpTests.pdb
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Assembly-CSharp.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\UnityEngine.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\UnityEngine.UI.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Newtonsoft.Json.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\UnityEditor.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Mono.Cecil.dll
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Assembly-CSharp.pdb
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\UnityEngine.xml
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\UnityEngine.UI.xml
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\UnityEditor.xml
+C:\TRIBE - TBC\Tribe 1.0\Tribe\Tribe.CSharpTests\bin\Debug\Mono.Cecil.xml

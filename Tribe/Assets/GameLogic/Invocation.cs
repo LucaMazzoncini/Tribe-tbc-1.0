@@ -21,6 +21,7 @@ namespace GameLogic
         #region variables
         public string name { get; set; }
         public string from { get; set; }
+        public string RANK { get; set; }
         public int rank { get; set; }
         public int strength { get; set; }
         public int constitution { get; set; }
@@ -45,27 +46,44 @@ namespace GameLogic
         {
             //ATTENTO quando si chiama il costruttore si deve inizializzare anche card con un formato da decidere
             this.xmlDoc = xmlDoc;
-            name = GetDataFromXml("Name"); 
+            name = GetDataFromXml("Name");
+            card += ("NAME:" + name);
             from = GetDataFromXml("From");
+            card += (" FROM:" + from);
             manaCost = LoadCostFromString(GetDataFromXml("Cost"));
+            card += (" MANACOST:" + (GetDataFromXml("Cost")));
             type = LoadTypeFromString(GetDataFromXml("Type"));
+            card += (" TYPE:" + (GetDataFromXml("Type")));
             subType = LoadSubTypeFromString(GetDataFromXml("SubType"));
+            card += (" SUBTYPE:" + (GetDataFromXml("SubType")));
             role = LoadRoleFromString(GetDataFromXml("Role"));
-            if(GetDataFromXml("Rank")!="")
+            card += (" ROLE:" + (GetDataFromXml("Role")));
+            if (GetDataFromXml("Rank")!="")
                 rank = Int32.Parse(GetDataFromXml("Rank"));
+                RANK = "RANK" + (GetDataFromXml("Rank"));
+                card += (" RANK:" + (GetDataFromXml("Rank")));
             if (GetDataFromXml("Strength") != "")
                 strength = Int32.Parse(GetDataFromXml("Strength"));
+                card += (" STRENGTH:" + (GetDataFromXml("Strength")));
             if (GetDataFromXml("Constitution") != "")
                 constitution = Int32.Parse(GetDataFromXml("Constitution"));
+                card += (" CONSTITUTION:" + (GetDataFromXml("Constitution")));
             if (GetDataFromXml("CastLimit") != "")
                 castLimit = Int32.Parse(GetDataFromXml("CastLimit"));
+                card += (" CASTLIMIT:" + (GetDataFromXml("CastLimit")));
             properties = LoadPropertiesFromString(GetDataFromXml("Properties"));
+            card += (" PROPERTIES:" + (GetDataFromXml("Properties")));
             powers = LoadPowersFromString(GetDataFromXml("Powers"));
+            card += (" POWERS:" + (GetDataFromXml("Powers")));
             onAppearActions = LoadActionsAndEffectFromString(GetDataFromXml("OnAppear"));
+            card += (" ONAPPEARACTIONS:" + (GetDataFromXml("OnAppear")));
             effects = LoadActionsAndEffectFromString(GetDataFromXml("Effect"));
+            card += (" EFFECTS:" + (GetDataFromXml("Effect")));
             onDeath = LoadActionsAndEffectFromString(GetDataFromXml("OnDeath"));
+            card += (" ONDEATH:" + (GetDataFromXml("OnDeath")));
             flavour = GetDataFromXml("Flavour");
-            
+            card += (" FLAVOUR:" + (GetDataFromXml("Flavour")));
+
         }
 
         public string returnStringFormat()
