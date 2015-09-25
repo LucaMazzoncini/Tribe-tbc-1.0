@@ -24,6 +24,8 @@ namespace GameLogic
 
         public LinkedList<Invocation> getCards(List<Enums.Filter> filterList,Mana manaParam) //questa funzione filtra le carte e ritorna una lista 
         {
+            if (filterList.Count == 0) // Se non ci sono filtri, ritorna la lista di tutte le carte.
+                return Invocations;
 
             LinkedList<Invocation> InvTempList = new LinkedList<Invocation>();//lista temporanea su cui caricare le carte filtrate.
             
