@@ -11,7 +11,8 @@ namespace Communication
             DiceResult,
             OpponentName,
             nameReceived,
-            OpponentInfo
+            OpponentInfo,
+            ChangeRound
         }
     }
 }

@@ -23,6 +23,9 @@ namespace Communication
                 case MessagesEnums.Message.OpponentInfo:
                     caller.SetOpponentInfo(data);
                     break;
+                case MessagesEnums.Message.ChangeRound:
+                    //caller.ChangeRound();
+                    break;
                 default:
                     break;
             }

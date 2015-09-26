@@ -159,6 +159,12 @@ namespace Communication
         {
             GameEventManager.SetRound(param);
         }
+
+        public void EndRound()
+        {
+            sendMessage(generateMessage(MessagesEnums.Message.ChangeRound, null)); //invio param negato perche' e' il turno dell'avversario
+        }
+
         public void GetAnyTarget()
         {
             GameEventManager.GetAnyTarget();
@@ -198,6 +204,12 @@ namespace Communication
             param = param.Replace("\"", "");
             GameEventManager.GetOpponentName(param);
             game.SetOpponentName(param);
+        }
+
+        public void ChangeRound()
+        {
+            game.StartTourn();
+
         }
 
         public void SetOpponentInfo(Object data)

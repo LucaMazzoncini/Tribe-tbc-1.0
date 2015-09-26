@@ -61,7 +61,7 @@ namespace GameLogic
         #region Who start
         public void ThrowDice()
         {
-            ThrowDice(Player.ThrowDice(6));
+            ThrowDice(Player.ThrowDice(2));
         }
     
         public void ThrowDice(int diceValue)
@@ -71,20 +71,27 @@ namespace GameLogic
 
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
+            comm = Communication.Communicator.getInstance();
             myRound = false;
-           /* if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata il problema era che nn era inizializzato Comm
+            if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata il problema era che nn era inizializzato Comm
             {
                 ThrowDice();                       
                 comm.game_diceResult(diceResult); //si invia nuovamente il risultato del dado
+                if (diceResult > opponentDiceResult)
+                {
+                    myRound = true;
+                    FirstRoundStart();
+                }
+                
             }
             else
-            {*/
+            {
                 if (diceResult > opponentDiceResult)
                 {
                     myRound = true;
                 }
                 FirstRoundStart();
-            //}
+            }
 
 
         }
@@ -98,16 +105,18 @@ namespace GameLogic
         }
         public void EndTourn() //viene chiamato quando shaman passa il turno
         {
-            comm = Communication.Communicator.getInstance();
+           /* comm = Communication.Communicator.getInstance();
             myRound = false;
-            comm.setRound(myRound);
+            comm.setRound(myRound);*/
         }
         public void StartTourn()
-        {
+        {/*
             comm = Communication.Communicator.getInstance();
             myRound = true;
-            comm.setRound(myRound);
-            comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
+            comm.setRound(myRound);//invio la chiamata in locale
+            comm.EndRound();//invio la chiamata in rete*/
+
+            //comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
         public void ManaAtStart(Enums.Mana param)
@@ -223,7 +232,7 @@ namespace GameLogic
             //comm.sendPlayerInfo(shaman);
             comm.setRound(myRound);   //setto il round per la grafica
 
-            if (myRound)
+           /* if (myRound)
             {
 
                 Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano se ritorno 
@@ -232,7 +241,7 @@ namespace GameLogic
                     comm.sendMana(shaman.mana);  //invio il mana random generato al comunicator
                 }
                 //adesso dovrei aggiungere il mana delle polle ma non e' senso      
-            }
+            }*/
         }
         public void UnityReady()
         {
