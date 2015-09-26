@@ -26,7 +26,7 @@ public class multiplayerScript : MonoBehaviour {
     private static string opponentName = "";
     private static int opponentDiceResult = 0;
     private static int diceResult = 0;
-    private static bool round = false;
+    public static bool round = false;
     // Use this for initialization
     void Start () {
         GameEventManager.waitingForOpponent += gameEventManager_waitingForOpponent;
@@ -66,6 +66,9 @@ public class multiplayerScript : MonoBehaviour {
            if(gameStart)
                 Application.LoadLevel("Board");
             gameStart = false;
+
+
+
     }
     public void Login()
     {

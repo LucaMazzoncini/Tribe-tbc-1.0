@@ -24,7 +24,7 @@ namespace Communication
                     caller.SetOpponentInfo(data);
                     break;
                 case MessagesEnums.Message.ChangeRound:
-                    //caller.ChangeRound();
+                    caller.ChangeRound();
                     break;
                 default:
                     break;

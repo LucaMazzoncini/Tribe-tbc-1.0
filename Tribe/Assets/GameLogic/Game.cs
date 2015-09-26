@@ -105,17 +105,16 @@ namespace GameLogic
         }
         public void EndTourn() //viene chiamato quando shaman passa il turno
         {
-           /* comm = Communication.Communicator.getInstance();
+            comm = Communication.Communicator.getInstance();
             myRound = false;
-            comm.setRound(myRound);*/
+            comm.setRound(myRound);
+            comm.EndRound(); //chiamata per cambiare il round
         }
         public void StartTourn()
-        {/*
+        {
             comm = Communication.Communicator.getInstance();
             myRound = true;
             comm.setRound(myRound);//invio la chiamata in locale
-            comm.EndRound();//invio la chiamata in rete*/
-
             //comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
