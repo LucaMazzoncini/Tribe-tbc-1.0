@@ -8,6 +8,8 @@
 **Tribe/ProjectSettings/
 **/Tribe/Temp/
 **/Unity/
+**/.vs/
+**/Tribe.CSharpTests/obj/
 **/Assets/Mesh/
 *.gitignore
 *.csproj
