@@ -7,10 +7,10 @@
 **/Tribe/LIbrary
 **Tribe/ProjectSettings/
 **/Tribe/Temp/
-**/Unity/
 **/.vs/
 **/Tribe.CSharpTests/obj/
 **/Assets/Mesh/
+**/Assets/Communication/
 *.gitignore
 *.csproj
 *.meta
