@@ -4,10 +4,21 @@ using System.Linq;
 using System.Text;
 
 namespace GameLogic
-{/*
+{
+    public class Elemental : Card
+    {
+        public Elemental(string param) : base(param)
+        {
+
+    }
+
+    }
+    
+    /*
     class Creature
     {
         #region variables
+        public int id;   //parte da 2
         public string name { get; set; }
         public int Hp { get; set; }
         public int maxHp { get; set; }
@@ -17,14 +28,17 @@ namespace GameLogic
         public List<Enums.Role> role { get; set; }
         public List<Enums.Properties> properties { get; set; }
         public List<Enums.Mana> cost { get; set; }
-        public List<string> buff { get; set; }   //qui ci sarà la lista dei buff che andranno parsati
+        public List<Enum......> buff { get; set; }   //qui ci sarà la lista dei buff che andranno parsati
         public List<string> debuff { get; set; } //qui ci sarà la lista dei debuff che andranno parsati
+    
+    
         public List<Power> power { get; set; } //lista degli eventuali poteri della creatura
+
         public List<string> creatureStatus { get; set; } //In questa lista sono contenuti gli stati della cratura,
         //ho pensato a questa soluzione per evitare che esplodesse il numero delle variabili ovviamente poi ogni stato andrà parsato
         //pero' facilità l'inserimento o la modifica di proprietà abilità o addirittura meccaniche future
         //Ad esempio se definiamo ATTACHED vuol dire che la creatura ha già attaccato, baserà utilizzare creatureStatus.Contains("ATTACHED"); per sapere
-        //se la creatura ha già attaccato
+        //se la creatura ha già attaccato (roba vecchia: avevo pensato di costruire un oggetto a parte che storasse tutti gli stati)
 
         #endregion
         #region method

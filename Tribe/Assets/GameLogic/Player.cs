@@ -35,16 +35,22 @@ namespace GameLogic
             this.hp = MAXHP;
             mana = new Mana(); //alloca e genera i mana random 
             target = null;
+            //metti tutta la lista cards a null
         }
 
-        public void PlayCard(string nameCard)
+        public bool PlayCard(string nameCard)
         {
-            // Get powers
-            // Get params from card -> params
-            // get (if necesary) target
+            if(CanPlayCard(nameCard))
+            {
+                // Get powers
+                // Get params from card -> params
+                // get (if necesary) target
                 // TargetUpdate() -> card.play(param)
-            // else
+                // else
                 // card.play()   
+                return true;
+            }
+            return false;
         }
 
         public bool CanPlayCard(string nameCard)

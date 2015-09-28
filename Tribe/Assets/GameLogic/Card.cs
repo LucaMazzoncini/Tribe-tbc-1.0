@@ -15,6 +15,7 @@ namespace GameLogic
         public Enums.Type type;
         public Enums.Target target; //se non puo' essere targettata va' messo a null
 
+        public Card(){}
 
         public Card(string name)
         {

@@ -63,9 +63,11 @@ namespace GameLogic
             // Dovrebbe settare anche le microactions (le stringhe e basta)
             // return card;
 
-            Card card = new Card(" ");
+            //Card card = new Elemental(" ");
             //card.powers = ["Armor"];
-            return card;
+
+            
+            return null;
          }
     }
 }
