@@ -12,7 +12,6 @@
 **/Assets/Mesh/
 **/Assets/Communication/
 *.gitignore
-*.csproj
 *.meta
 *.jpg
 *.apk
