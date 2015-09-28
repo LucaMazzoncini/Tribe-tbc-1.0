@@ -17,6 +17,7 @@ namespace GameLogic
         private Player shaman;
         private Player opponent;
         private int diceResult;
+        private int opponentDiceResult = 0;
         private bool myRound = false;
         Communication.Communicator comm;
         private static bool manaChosen; //questo flag ci dice se il mana e' gia' stato scelto
@@ -71,6 +72,7 @@ namespace GameLogic
 
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
+            this.opponentDiceResult = opponentDiceResult;
             comm = Communication.Communicator.getInstance();
             myRound = false;
             if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata il problema era che nn era inizializzato Comm
@@ -115,21 +117,34 @@ namespace GameLogic
             comm = Communication.Communicator.getInstance();
             myRound = true;
             comm.setRound(myRound);//invio la chiamata in locale
-            //comm.getManaAtStart(); //Chiedo di selezionare il mana che prendo in manaAtStart
+
+            //////////////////////////Questa e' una parte di test che va' tolta, dopo rimarra' solo getManaAtStart();
+            Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
+            comm.sendMana(shaman.mana);  //invio l'update del mana
+
+            
+            comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
-        public void ManaAtStart(Enums.Mana param)
+
+        public void manaChoosen(Enums.Mana manaParam,Enums.ManaEvent manaEventparam) //mi passa il mana selezionato
         {
-            comm = Communication.Communicator.getInstance();
-            shaman.mana.incMana(param);    //se ha raggiunto il mana max non viene aggiunto il mana
-            Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
-            if (manaTemp != Enums.Mana.None)
+            if (manaEventparam == Enums.ManaEvent.NewRound)
             {
+                comm = Communication.Communicator.getInstance();
+                shaman.mana.incMana(manaParam);    //se ha raggiunto il mana max non viene aggiunto il mana
                 comm.sendMana(shaman.mana);  //invio l'update del mana
+                Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
+                comm.sendMana(shaman.mana);  //invio l'update del mana
+                if (manaTemp != Enums.Mana.None)
+                {
+                    comm.sendMana(shaman.mana);  //invio l'update del mana
+                }
+                //Aggiungo il mana delle polle
+                //shaman.mana.addManaPool();
+                //comm.sendMana(shaman.mana);  //invio l'update del mana
+                                             //Ricordati che ho fatto 3 send mana invece di uno perche' cosi' possiamo fare 3 animazioni distinte in base al mana che viene aggiunto
             }
-            //Aggiungo il mana delle polle
-            shaman.mana.addManaPool();
-            comm.sendMana(shaman.mana);  //invio l'update del mana
         }
 
         public void PlayCard(string name)
@@ -224,31 +239,35 @@ namespace GameLogic
 
             return ret;
         }
-        public void FirstRoundStart()
+        public void FirstRoundStart()  //viene chiamato solo la prima volta
         {
             //invio i miei dati all'opponent
             comm = Communication.Communicator.getInstance();
             //comm.sendPlayerInfo(shaman);
             comm.setRound(myRound);   //setto il round per la grafica
+            comm.sendMana(shaman.mana);  //Primo round invio il mana alla grafica
 
-           /* if (myRound)
-            {
-
-                Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano se ritorno 
-                if (manaTemp != Enums.Mana.None)
-                {
-                    comm.sendMana(shaman.mana);  //invio il mana random generato al comunicator
-                }
-                //adesso dovrei aggiungere il mana delle polle ma non e' senso      
-            }*/
         }
         public void UnityReady()
         {
             ThrowDice(); //lancio il dado per vedere chi inizia
             comm = Communication.Communicator.getInstance();
 
+
             comm.game_diceResult(diceResult);
             requestXmlForBibliotheca();
+
+            //nel caso il dispositivo su cui gioco sia molto lento e vinca il turno senza questo controllo non verrebbe settato il round e la partita non potrebbe iniziare
+            if (opponentDiceResult != 0) 
+            {
+                if (diceResult > opponentDiceResult)
+                {
+                    myRound = true;
+                }
+                FirstRoundStart();
+            }
+
+            
 
 
         }

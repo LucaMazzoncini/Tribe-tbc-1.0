@@ -27,6 +27,7 @@ public class multiplayerScript : MonoBehaviour {
     private static int opponentDiceResult = 0;
     private static int diceResult = 0;
     public static bool round = false;
+    public static string mana = "";
     // Use this for initialization
     void Start () {
         GameEventManager.waitingForOpponent += gameEventManager_waitingForOpponent;
@@ -37,6 +38,7 @@ public class multiplayerScript : MonoBehaviour {
         GameEventManager.getOpponentName += gameEventManager_getOpponentName;
         GameEventManager.setRound += gameEventManager_setRound;
         GameEventManager.opponentDisconnected += gameEventManager_opponentDisconnected;
+        GameEventManager.sendMana += gameEventManager_sendMana;
         textOutput = testoOutput.GetComponent<Text>();
         textInput = testoInput.GetComponent<Text>();
     }
@@ -102,6 +104,18 @@ public class multiplayerScript : MonoBehaviour {
     {
         opponentDiceResult = result;
         outputString = "Opponent's dice result is " + result;
+    }
+
+    public static void gameEventManager_sendMana(string param)
+    {
+
+        mana = " Mana: " + param;
+
+    }
+
+    public string GetManaValue()
+    {
+        return mana;
     }
 
     public int returnOpponentDiceResult()

@@ -26,6 +26,11 @@ namespace GameLogic
             None, Earth, Water, Fire, Life, Death
         }
 
+        public enum ManaEvent //questo enum definisco per quali eventi puo' essere richiesto il mana
+        {
+            None,NewRound
+        }
+
         public enum Properties
         {
             None, Quickness, Guardian ,Penetrate , Rage , Thorns1

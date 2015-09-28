@@ -14,6 +14,7 @@ namespace GameEventManagement
         public delegate void SendStringEventHandler(string name);
         public delegate void SendBoolEventHandler(bool name);
         public delegate void SendStringBoolEventHandler(string name, bool value);
+        public delegate void SendDoubleStringEventHandler(string value,string value1);
         public delegate void SendStringListEventHandler(List<string> name);
         public delegate void LoadXmlForBibliothecaEventHandler(LinkedList<string> xmlList);
         #endregion
@@ -33,11 +34,12 @@ namespace GameEventManagement
         public static event SendStringEventHandler playCard;
         public static event SendStringEventHandler canPlayCard;
         public static event ResultEventHandler idTarget; //0 e' il player, 1 e' l'opponent
+        public static event SendDoubleStringEventHandler manaChosen;
         #endregion
 
         #region events for communicator
         public static event GenericEventHandler throwDice;
-        public static event GenericEventHandler getManaAtStart; //richiede la selezione del mana da parte dell'utente
+        public static event SendStringEventHandler choseMana; //richiede la selezione del mana da parte dell'utente
         public static event SendStringEventHandler sendMana;    //chiamato da game quando c'e' da visualizzare il mana cambiato
         public static event SendBoolEventHandler setRound;      //per aggiornare lo stato del round
         public static event SendStringListEventHandler menuProcessed;
@@ -61,9 +63,9 @@ namespace GameEventManagement
             diceResult(result);
         }
 
-        public static void GetManaAtStart()
+        public static void ChoseMana(string param)
         {
-            getManaAtStart();
+            choseMana(param);
         }
 
         public static void OpponentsDiceResult(int result)
@@ -133,6 +135,12 @@ namespace GameEventManagement
         #endregion
 
         #region methods called from interface
+
+        public static void ManaChosen(string mana,string reason)
+        {
+            manaChosen(mana,reason);
+        }
+
         public static void  UnityReady()
         {
             unityReady();

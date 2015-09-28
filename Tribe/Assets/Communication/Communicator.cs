@@ -58,6 +58,7 @@ namespace Communication
             GameEventManager.canPlayCard += GameEventManager_CanPlayCard;
             GameEventManager.idTarget += GameEventManager_idTarget;
             GameEventManager.unityReady += GameEventManager_unityReady;
+            GameEventManager.manaChosen += GameEventManager_manaChosen;
             #endregion
 
             tcpConnector.Connect();
@@ -140,13 +141,14 @@ namespace Communication
             //lo invio solo a xmpp
             sendMessage(generateMessage(MessagesEnums.Message.OpponentInfo, param));
         }
-        public void getManaAtStart()
+        public void ChoseMana(Enums.ManaEvent param)
         {
-            GameEventManager.GetManaAtStart();
+            string enumString = param.ToString();
+            GameEventManager.ChoseMana(enumString);
         }
         public void sendMana(Mana mana)
         {
-            string manaString = "E:"+mana.valueList[Enums.Mana.Earth]+
+            string manaString = "E:"+ mana.valueList[Enums.Mana.Earth]+
                                 "F:" + mana.valueList[Enums.Mana.Fire] +
                                 "W:" + mana.valueList[Enums.Mana.Water] +
                                 "L:" + mana.valueList[Enums.Mana.Life] +
@@ -238,6 +240,13 @@ namespace Communication
         public void GameEventManager_unityReady()
         {
             game.UnityReady();
+        }
+        public void GameEventManager_manaChosen(string mana,string reason)
+        {
+
+            Enums.Mana manaEnum = (Enums.Mana)Enum.Parse(typeof(Enums.Mana), mana); 
+            Enums.ManaEvent manaEventEnum = (Enums.ManaEvent)Enum.Parse(typeof(Enums.ManaEvent), reason);  
+            game.manaChoosen(manaEnum,manaEventEnum);
         }
         #endregion
 
