@@ -10,7 +10,7 @@
 **/.vs/
 **/Tribe.CSharpTests/obj/
 **/Assets/Mesh/
-**/Assets/Communication/
+**/Assets/Communication/obj/
 *.gitignore
 *.meta
 *.jpg
