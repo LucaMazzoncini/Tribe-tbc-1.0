@@ -10,9 +10,10 @@ namespace GameLogic
         //aggiungere il cast limit
         public string name;
         public int id; //identificatore univoco che viene valorizzato quando entra in gioco
-        public List<string> powers;
-        public Mana cost;
+        public List<Power> powers;
+        public List<Enums.Mana> cost;
         public Enums.Type type;
+        public Enums.SubType subtype;
         public Enums.Target target; //se non puo' essere targettata va' messo a null
 
         public Card(){}
