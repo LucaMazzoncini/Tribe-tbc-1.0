@@ -19,7 +19,7 @@ namespace GameLogic
         public int maxHp { get; set; }
         public Mana mana { get; set; }
         public Target target;
-        public Card[] cars = new Card[4];  //nella 4 carta ci sta' lo spirito
+        public List<Card> cardsOnBoard;  //nella 4 carta ci sta' lo spirito
         
         #endregion
         #region utils methods
