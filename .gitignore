@@ -11,6 +11,7 @@
 **/Tribe.CSharpTests/obj/
 **/Assets/Mesh/
 **/Assets/Communication/obj/
+**/Tribe.CSharpTests/obj/Debug
 *.gitignore
 *.meta
 *.jpg
