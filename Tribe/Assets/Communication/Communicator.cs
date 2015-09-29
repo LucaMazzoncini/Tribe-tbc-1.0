@@ -148,11 +148,12 @@ namespace Communication
         }
         public void sendMana(Mana mana)
         {
-            string manaString = "E:"+ mana.valueList[Enums.Mana.Earth]+
-                                "F:" + mana.valueList[Enums.Mana.Fire] +
-                                "W:" + mana.valueList[Enums.Mana.Water] +
-                                "L:" + mana.valueList[Enums.Mana.Life] +
-                                "D:" + mana.valueList[Enums.Mana.Death];
+            //il mana verra' inviato cosi' " E:1 F:1 W:1 L:1 D:1"
+            string manaString = " E:"+ mana.valueList[Enums.Mana.Earth]+
+                                " F:" + mana.valueList[Enums.Mana.Fire] +
+                                " W:" + mana.valueList[Enums.Mana.Water] +
+                                " L:" + mana.valueList[Enums.Mana.Life] +
+                                " D:" + mana.valueList[Enums.Mana.Death];
             GameEventManager.SendMana(manaString); //invio il mana del player alla gui
 
         }
