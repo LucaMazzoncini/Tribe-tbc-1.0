@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Assets\GameLogic\GameTests.cs" />
+    <Compile Include="Assets\GameLogic\MicroActionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
