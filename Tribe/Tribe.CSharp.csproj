@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -78,6 +80,7 @@
     <Compile Include="Assets\GameEventManager\GameEventManager.cs" />
     <Compile Include="Assets\GameLogic\Bibliotheca.cs" />
     <Compile Include="Assets\GameLogic\Card.cs" />
+    <Compile Include="Assets\GameLogic\Spirit.cs" />
     <Compile Include="Assets\GameLogic\Elemental.cs" />
     <Compile Include="Assets\GameLogic\Enums.cs" />
     <Compile Include="Assets\GameLogic\Game.cs" />
