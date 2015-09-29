@@ -25,6 +25,7 @@ namespace GameLogic
         public int rank { get; set; }
         public int strength { get; set; }
         public int constitution { get; set; }
+        public int essence { get; set; }
         public int castLimit { get; set; }
         public Dictionary<Enums.Mana,int> manaCost{ get; set; }
         public List<Enums.Type> type{ get; set; }
@@ -32,7 +33,7 @@ namespace GameLogic
         public List<Enums.Role> role{ get; set; }
         public List<Enums.Properties> properties { get; set; }
         public List<Power> powers { get; set; }
-        public List<string> onAppearActions { get; set; }
+        public List<string> onAppear { get; set; }
         public List<string> effects { get; set; }
         public List<string> onDeath { get; set; }
         public string flavour { get; set; }
@@ -68,6 +69,9 @@ namespace GameLogic
             if (GetDataFromXml("Constitution") != "")
                 constitution = Int32.Parse(GetDataFromXml("Constitution"));
                 card += (" CONSTITUTION:" + (GetDataFromXml("Constitution")));
+            if (GetDataFromXml("Essence") != "")
+                essence = Int32.Parse(GetDataFromXml("Essence"));
+            card += (" ESSENCE:" + (GetDataFromXml("Essence")));
             if (GetDataFromXml("CastLimit") != "")
                 castLimit = Int32.Parse(GetDataFromXml("CastLimit"));
                 card += (" CASTLIMIT:" + (GetDataFromXml("CastLimit")));
@@ -75,7 +79,7 @@ namespace GameLogic
             card += (" PROPERTIES:" + (GetDataFromXml("Properties")));
             powers = LoadPowersFromString(GetDataFromXml("Powers"));
             card += (" POWERS:" + (GetDataFromXml("Powers")));
-            onAppearActions = LoadActionsAndEffectFromString(GetDataFromXml("OnAppear"));
+            onAppear = LoadActionsAndEffectFromString(GetDataFromXml("OnAppear"));
             card += (" ONAPPEARACTIONS:" + (GetDataFromXml("OnAppear")));
             effects = LoadActionsAndEffectFromString(GetDataFromXml("Effect"));
             card += (" EFFECTS:" + (GetDataFromXml("Effect")));
