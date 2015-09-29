@@ -7,10 +7,16 @@ namespace GameLogic
 {
     public class Elemental : Card
     {
-        public Elemental(string param) : base(param)
-        {
+        public Elemental(string param) : base(param){ }
 
-    }
+        public int strength;
+        public int constitution;
+        public int hp;
+        public int rank;
+        public Enums.Role role;
+        public List<Enums.Properties> properties;
+        private List<string> onAppear;
+        private List<string> onDeath;
 
     }
     
