@@ -45,7 +45,7 @@ namespace GameLogic
         }
         public enum Target
         {
-            None, Player,Elemental,Spirit
+            None, Player,Elemental,Spirit,Mana
         }
     }
 }

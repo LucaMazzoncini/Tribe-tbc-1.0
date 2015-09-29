@@ -94,8 +94,6 @@ namespace GameLogic
                 }
                 FirstRoundStart();
             }
-
-
         }
         #endregion
 

@@ -19,11 +19,63 @@ namespace GameLogic
         //il richiamo a questa funzione sara' MicroAction.table["nomefunzione"](param);  Dove nomefunzione e' ad esempio Armor e invece param un dizionario stringa stringa
         //che in caso deve contenere anche il target
 
-        static MicroActions() 
+        static MicroActions()
         {
             MicroActions.table = new Dictionary<string, Action<Params>>();
             MicroActions.table.Add("Armor", armor);
             MicroActions.table.Add("Kill", kill);
+        }
+
+        //Vanno aggiunti tutti i case delle microazioni
+        public static List<Enums.Target> getTargetsByMicroaction(string microaction)
+        {
+            List<Enums.Target> targetsList = new List<Enums.Target>();
+
+            switch(microaction)
+              {
+                case "DAMAGE":
+                    targetsList.Add(Enums.Target.Player);
+                    targetsList.Add(Enums.Target.Elemental);
+                break;
+                case "ARMOR":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "HEAL":
+                    targetsList.Add(Enums.Target.Player);
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "ADDMANA":
+                    targetsList.Add(Enums.Target.Mana);
+                    break;
+                case "ASLEEP":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                default:
+                    break;
+              }                      
+            return targetsList;
+
+        }
+
+        public static List<Enums.Target> getTargets(string actions)
+        {
+            List<Enums.Target> targetsList = new List<Enums.Target>();
+
+            //creo un vettore microActions con tutte le microazioni
+            string[] microactions = actions.ToUpper().Split(' ');
+
+            //filtro le microazioni togliendogli i parametri dopo il punto
+            for( int i = 0; i < microactions.Length;i++)
+            {
+                string[] stringTemp = microactions[i].Split('.');
+                microactions[i] = stringTemp[0];
+                targetsList.AddRange(getTargetsByMicroaction(microactions[i]));
+            }
+
+            //tolgo le occorrenze inutili dalla lista
+            targetsList = targetsList.Distinct<Enums.Target>().ToList<Enums.Target>();
+
+            return targetsList;
         }
 
         private static void armor(Params param)
