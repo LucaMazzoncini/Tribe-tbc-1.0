@@ -72,6 +72,7 @@ namespace GameLogic
 
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
+            comm.sendMana(shaman.mana);// faccio l'update del mana che e' stato generato
             this.opponentDiceResult = opponentDiceResult;
             comm = Communication.Communicator.getInstance();
             myRound = false;
@@ -94,6 +95,7 @@ namespace GameLogic
                 }
                 FirstRoundStart();
             }
+            
         }
         #endregion
 
@@ -121,7 +123,7 @@ namespace GameLogic
             comm.sendMana(shaman.mana);  //invio l'update del mana
 
             
-            comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
+            //comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
 
@@ -256,6 +258,8 @@ namespace GameLogic
             requestXmlForBibliotheca();
 
             //nel caso il dispositivo su cui gioco sia molto lento e vinca il turno senza questo controllo non verrebbe settato il round e la partita non potrebbe iniziare
+            //in piu setto anche il mana che altrimenti sarebbe legato alla funzione di getOpponentMana
+            comm.sendMana(shaman.mana);  //Aggiorno la grafica
             if (opponentDiceResult != 0) 
             {
                 if (diceResult > opponentDiceResult)
