@@ -217,8 +217,8 @@ namespace GameLogic
                     case "PENETRATE":
                         list.Add(Enums.Properties.Penetrate);
                         break;
-                    case "RAGE":
-                        list.Add(Enums.Properties.Rage);
+                    case "THUNDERBORN":
+                        list.Add(Enums.Properties.Thunderborn);
                         break;
                     case "THORNS.1":
                         list.Add(Enums.Properties.Thorns1);  //ATTENTO qui ci sara' un problema se si utilizza Thorns.x ma per motivi di tempo per adesso e' cosi
