@@ -1,9 +1,0 @@
-NOTA BENE
-
-1-  Ricordarsi che P1 P2 P3 O1 O2 O3 sono Padri dei rispettivi figli Attribute Back Buff e Poison...(vedere il punto 3)
-
-2- Ricordarsi di eseguire le animazioni di SLIDE in reverse (per non avere troppi file di animazioni)
-   //    hand.animation["bridge"].speed = -1;
-   //    hand.animation.Play("bridge");
-     
-3- Per far seguire un FIGLIO animato il proprio padre animato, creare un GAME OBJECT in posizione 0,0,0 contenente il Figlio e metterlo dentro il padre.
