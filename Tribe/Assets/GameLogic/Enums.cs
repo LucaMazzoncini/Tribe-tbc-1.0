@@ -33,11 +33,15 @@ namespace GameLogic
 
         public enum Properties
         {
-            None, Quickness, Guardian ,Penetrate , Rage , Thorns1
+            None, Quickness, Guardian ,Penetrate ,Thunderborn , Thorns1
+        }
+        public enum Buff
+        {
+            None, Shield, Immortal, Quickness, Guardian, Penetrate, Thunderborn, Thorns1, IncreasedStr, IncreasedCon
         }
         public enum Debuff
         {
-            None, Quickness, Guardian, Penetrate, Rage, Thorns1
+            None, Incurable, Asleep, Poison, DecreasedStr, DecreasedCon
         }
         public enum Filter
         {
