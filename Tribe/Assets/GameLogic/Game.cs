@@ -119,10 +119,11 @@ namespace GameLogic
             comm.setRound(myRound);//invio la chiamata in locale
 
             //////////////////////////Questa e' una parte di test che va' tolta, dopo rimarra' solo getManaAtStart();
-            Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
+            shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
             comm.sendMana(shaman.mana);  //invio l'update del mana
 
-            
+            shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
+            comm.sendMana(shaman.mana);  //invio l'update del mana
             //comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
