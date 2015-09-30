@@ -65,7 +65,7 @@ namespace GameLogic
             return this;
         }
 
-        }
+        
 
         public void processMicroaction(List<string> paramList) //questa funzione processa e prepara le microazioni
         {
