@@ -216,7 +216,10 @@ namespace GameLogic
             if (ret.id > 1)
             {
 
+
                 foreach (Card card in shaman.cardsOnBoard)
+
+
                 {
                     if (card.id == id)
                     {
@@ -226,7 +229,9 @@ namespace GameLogic
                     }
                 }
 
+
                 foreach (Card card in opponent.cardsOnBoard)
+
                 {
                     if (card.id == id)
                     {
