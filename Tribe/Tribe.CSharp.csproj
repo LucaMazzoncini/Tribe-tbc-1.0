@@ -88,6 +88,7 @@
     <Compile Include="Assets\GameLogic\Player.cs" />
     <Compile Include="Assets\GameLogic\Spirit.cs" />
     <Compile Include="Assets\GameLogic\Utils.cs" />
+    <Compile Include="Assets\LoadedScript.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\Board.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\ManaScriptUnity.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\NextRound.cs" />

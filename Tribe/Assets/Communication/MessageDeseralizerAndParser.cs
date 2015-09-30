@@ -26,6 +26,9 @@ namespace Communication
                 case MessagesEnums.Message.ChangeRound:
                     caller.ChangeRound();
                     break;
+                case MessagesEnums.Message.UnityOpponentIsReady:
+                    caller.OpponentIsReady();
+                    break;
                 default:
                     break;
             }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
+
 
 namespace GameLogic
 {
@@ -21,6 +23,8 @@ namespace GameLogic
         private bool myRound = false;
         Communication.Communicator comm;
         private static bool manaChosen; //questo flag ci dice se il mana e' gia' stato scelto
+        private static bool opponentReady = false;
+        private bool unityReady = false;
 
         Bibliotheca bibliotheca;
         #endregion
@@ -29,6 +33,8 @@ namespace GameLogic
             shaman = new Player(name);         //vanno inizializzati
             opponent = new Player("Opponent"); //vanno inizializzati
             comm = Communication.Communicator.getInstance();
+            
+
         }
         #region setGet
         public bool isMyRound()
@@ -72,9 +78,10 @@ namespace GameLogic
 
         public void OnOpponentDiceResult(int opponentDiceResult) //in questa funzione viene stabilito di chi e' il turno
         {
-            comm.sendMana(shaman.mana);// faccio l'update del mana che e' stato generato
+            
             this.opponentDiceResult = opponentDiceResult;
             comm = Communication.Communicator.getInstance();
+            comm.sendMana(shaman.mana);
             myRound = false;
             if (diceResult == opponentDiceResult)//questa parte andra' ricontrollata il problema era che nn era inizializzato Comm
             {
@@ -117,13 +124,9 @@ namespace GameLogic
             comm = Communication.Communicator.getInstance();
             myRound = true;
             comm.setRound(myRound);//invio la chiamata in locale
+            shaman.mana.addRandomMana();
+            comm.sendMana(shaman.mana);
 
-            //////////////////////////Questa e' una parte di test che va' tolta, dopo rimarra' solo getManaAtStart();
-            shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
-            comm.sendMana(shaman.mana);  //invio l'update del mana
-
-            shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
-            comm.sendMana(shaman.mana);  //invio l'update del mana
             //comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
@@ -254,33 +257,58 @@ namespace GameLogic
             comm.sendMana(shaman.mana);  //Primo round invio il mana alla grafica
 
         }
-        public void UnityReady()
+
+        public void OpponentIsReady()
         {
-            ThrowDice(); //lancio il dado per vedere chi inizia
-            comm = Communication.Communicator.getInstance();
+            opponentReady = true;
+            if(unityReady)
+            {
+                comm.Loaded();
+                starMatch();
+            }
+        }
+
+        public void UnityReady()
+         {
+            unityReady = true;
+            comm.UnityOpponentIsReady(); //invio all'opponent che il mio dispositivo e' pronto
+            if (opponentReady)
+            {
+                comm.Loaded();
+                starMatch();
+            }
+            
+/*
 
 
-            comm.game_diceResult(diceResult);
-            requestXmlForBibliotheca();
 
             //nel caso il dispositivo su cui gioco sia molto lento e vinca il turno senza questo controllo non verrebbe settato il round e la partita non potrebbe iniziare
             //in piu setto anche il mana che altrimenti sarebbe legato alla funzione di getOpponentMana
-            comm.sendMana(shaman.mana);  //Aggiorno la grafica
-            if (opponentDiceResult != 0) 
+
+            //DA FARE LA PROVA SE SERVE O NO LA RIGA SOTTO
+
+            if (opponentDiceResult > 0)
             {
                 if (diceResult > opponentDiceResult)
                 {
                     myRound = true;
                 }
+
                 FirstRoundStart();
             }
 
-            
-
+            */
 
         }
 
+        public void starMatch()
+        {
+            XmppCommunicator.Utils.Log("Partita Iniziata");
+            comm.SendOpponentName(shaman.Name);
+            ThrowDice(); //lancio il dado per vedere chi inizia
+            requestXmlForBibliotheca();
+            comm.game_diceResult(diceResult);
+        }
 
-        
     }
 }

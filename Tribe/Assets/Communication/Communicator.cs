@@ -86,6 +86,23 @@ namespace Communication
         #endregion
 
         #region methods triggered by events or called by Game
+
+        public void SendOpponentName(string name)
+        {
+            GameEventManager.SendOpponentName(name);
+
+        }
+
+        public void UnityOpponentIsReady()
+        { 
+            sendMessage(generateMessage(MessagesEnums.Message.UnityOpponentIsReady, null));
+        }
+
+        public void Loaded() //questo evento notifica che sia io che l'opponent abbiamo caricato tutto
+        {
+            GameEventManager.Loaded();
+        }
+
         void GameEventManager_menuFiltered(List<string> param)
         {
             List<Enums.Filter> Filter = new List<Enums.Filter>();
@@ -195,6 +212,11 @@ namespace Communication
         #endregion
 
         #region methods triggered by opponent's messages
+
+        public void OpponentIsReady()
+        {
+            game.OpponentIsReady();
+        }
 
         public void OpponentsDiceResult(int result)
         {

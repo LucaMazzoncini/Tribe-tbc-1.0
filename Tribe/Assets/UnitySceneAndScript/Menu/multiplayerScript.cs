@@ -76,14 +76,10 @@ public class multiplayerScript : MonoBehaviour {
         if (inputString != "")
         {
             string playerName = inputString;
-            game = new GameLogic.Game(playerName);
-
             Communicator.init(inputString, "46.101.155.56", 5222);
             communicator = Communicator.getInstance();
-            /*
-            
-            communicator = new Communicator();
-            */
+            game = new GameLogic.Game(playerName);
+
             communicator.SetGame(game);
             outputString = "Connesso";
             
@@ -142,7 +138,7 @@ public class multiplayerScript : MonoBehaviour {
         outputString = "GameStarted!";
         playerName = inputString;
         gameStart = true;
-        GameEventManager.SendOpponentName(playerName); //invio il nome del player 
+        //GameEventManager.SendOpponentName(playerName); //invio il nome del player 
     }
 
     public static void gameEventManager_opponentDisconnected()

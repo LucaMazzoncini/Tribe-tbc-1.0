@@ -18,8 +18,7 @@ public class UpdateManaScriptP1 : MonoBehaviour {
                 }
                 else
                 {
-                    int a = 5;
-                    a = 6;
+                    Debug.Log("Sta' girando");
                 }
                 
 

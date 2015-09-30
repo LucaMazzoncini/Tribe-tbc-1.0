@@ -11,10 +11,16 @@ public class UpdateManaScriptP5 : MonoBehaviour {
         {
             if (transform.FindChild("ManaText").GetComponent<TextMesh>().text != value)
             {
-                this.GetComponent<Animator>().Play("on");
-                transform.FindChild("ManaText").GetComponent<TextMesh>().text = value;
+                if (!this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Base.on")) //Se non sta' andando
+                {
+                    this.GetComponent<Animator>().Play("on");
+                    transform.FindChild("ManaText").GetComponent<TextMesh>().text = value;
+                }
+                else
+                {
+                    Debug.Log("Sta' girando");
+                }
             }
-            update = false;
         }
     }
 

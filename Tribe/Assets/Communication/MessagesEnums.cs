@@ -12,6 +12,7 @@ namespace Communication
             OpponentName,
             nameReceived,
             OpponentInfo,
+            UnityOpponentIsReady,
             ChangeRound
         }
     }

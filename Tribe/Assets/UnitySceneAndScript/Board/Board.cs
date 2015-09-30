@@ -9,8 +9,13 @@ public class Board : MonoBehaviour {
     {
         if( level == 1 )
         {
-            GameEventManager.UnityReady();
+            Invoke("OkReady", 1.0f);
             
         }
+    }
+
+    public void OkReady()
+    {
+        GameEventManager.UnityReady();
     }
 }

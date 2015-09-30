@@ -35,6 +35,7 @@ namespace GameEventManagement
         public static event SendStringEventHandler canPlayCard;
         public static event ResultEventHandler idTarget; //0 e' il player, 1 e' l'opponent
         public static event SendDoubleStringEventHandler manaChosen;
+        public static event GenericEventHandler loaded; //notifica che entrambi hanno caricato l'interfaccia
         #endregion
 
         #region events for communicator
@@ -135,6 +136,11 @@ namespace GameEventManagement
         #endregion
 
         #region methods called from interface
+
+        public static void Loaded()
+        {
+                loaded();
+        }
 
         public static void ManaChosen(string mana,string reason)
         {
