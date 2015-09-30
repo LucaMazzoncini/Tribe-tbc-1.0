@@ -17,7 +17,7 @@ Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.Networking.dll into
 Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
 Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
 Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.056 seconds
+- Completed reload, in  0.045 seconds
 desktop: 1920x1080 50Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
