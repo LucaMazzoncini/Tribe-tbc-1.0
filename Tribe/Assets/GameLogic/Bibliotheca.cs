@@ -58,16 +58,17 @@ namespace GameLogic
 
         public Card getCardByName(string name)
         {
-            // Per esempio se è una creatura
-            // inizializza card = new Creatura(...parametri...)
-            // Dovrebbe settare anche le microactions (le stringhe e basta)
-            // return card;
-
-            //Card card = new Elemental(" ");
-            //card.powers = ["Armor"];
-
-            
+            foreach (Invocation InvTemp in Invocations)
+                if (InvTemp.name == name)
+                {
+                    Card card = new Card(name);
+                    card.InitFromInvocation(InvTemp);
+                    return card;
+                }
+                              
             return null;
-         }
+        }
+
+       
     }
 }
