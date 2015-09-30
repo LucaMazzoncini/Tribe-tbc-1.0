@@ -13,11 +13,11 @@ namespace GameLogic
         public int constitution;
         public int hp;
         public int rank;
-        public Enums.Role role;
+        public string from;
+        public List<Enums.Role> role;
         public List<Enums.Properties> properties;
-        private List<string> onAppear;
-        private List<string> onDeath;
-
+        public List<string> onAppear;
+        public List<string> onDeath;
     }
     
     /*
