@@ -16,7 +16,12 @@ public class UpdateManaScriptP1 : MonoBehaviour {
                     this.GetComponent<Animator>().Play("on");
                     transform.FindChild("ManaText").GetComponent<TextMesh>().text = value;
                 }
-                //qui ci manca l'else che inserisce in una lista la nuova chiamata
+                else
+                {
+                    int a = 5;
+                    a = 6;
+                }
+                
 
             }
             update = false;
