@@ -8,6 +8,7 @@ namespace GameLogic
     using Params = Dictionary<string, string>;
     public class Power
     {
+
         public int cooldown;
         public List<string> value;
         public Power()
