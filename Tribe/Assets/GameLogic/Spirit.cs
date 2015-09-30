@@ -7,7 +7,7 @@ namespace GameLogic
 {
     class Spirit : Card
     {
-        public Spirit(string name) : base(string name) { }
+        public Spirit(string name) : base(name) { }
         public int essence;
         public List<string> onAppear;
         public List<string> onDeath;
