@@ -16,6 +16,7 @@ namespace GameLogic
         public const int COSTFIRSTPOOL = 1;
         public const int COSTSECONDPOOL = 2;
         public int TOTALMANA;
+        private bool PoolFlag = false;
         public Dictionary<Enums.Mana, int> valueList { get; set; } //riserva di mana
         public Dictionary<Enums.Mana, int> poolList { get; set; } // polle
         #endregion
@@ -181,8 +182,9 @@ namespace GameLogic
 
         public bool canCreatePool(Enums.Mana thatMana)
         {
-            bool canPay = false;
-            if (poolList[thatMana] < 2)//se ho già 2 polle di quel tipo ritorno false
+            bool canCreate = false;
+            bool flag = getPoolFlag();
+            if (poolList[thatMana] < 2 && flag == false )//se ho già 2 polle di quel tipo, o se ho già creato una polla, ritorno false
             {
                
                 int costPool = 0;
@@ -192,17 +194,29 @@ namespace GameLogic
                     costPool = COSTSECONDPOOL;
                            
                     if (valueList[thatMana] >= costPool)//controllo se posso pagare
-                    canPay = true;
+                    canCreate = true;
+                    setPoolFlag(true);
             }
-            return canPay; 
+            return canCreate; 
 
         } //controlla se posso creare la polla di un tipo (costo/quantità)
+        public bool getPoolFlag()
+        {
+            return PoolFlag;
+        }
+        public void setPoolFlag(bool param)
+        {
+            PoolFlag = param;
+        }
         public bool createPool(Enums.Mana param)
         {
             bool canPool = false;
             canPool = canCreatePool(param);
             if (canPool)
+            {
                 valueList[param] -= (poolList[param] + 1);
+                poolList[param] += 1;
+            }
             return canPool;
         }    //crea la polla di mana del tipo specificato, altrimenti torna false
         public bool addManaPool() 
