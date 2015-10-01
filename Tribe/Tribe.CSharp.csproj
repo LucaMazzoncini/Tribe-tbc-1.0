@@ -75,6 +75,7 @@
     <Compile Include="Assets\Communication\MessageDeseralizerAndParser.cs" />
     <Compile Include="Assets\Communication\MessagesEnums.cs" />
     <Compile Include="Assets\Communication\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\EnableLoadingPoolScript.cs" />
     <Compile Include="Assets\GameEventManager\GameEventManager.cs" />
     <Compile Include="Assets\GameLogic\Bibliotheca.cs" />
     <Compile Include="Assets\GameLogic\Card.cs" />

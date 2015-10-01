@@ -124,10 +124,16 @@ namespace GameLogic
             comm = Communication.Communicator.getInstance();
             myRound = true;
             comm.setRound(myRound);//invio la chiamata in locale
-            shaman.mana.addRandomMana();
+           /* shaman.mana.addRandomMana();
             comm.sendMana(shaman.mana);
 
-            //comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
+            //da togliere e' per test
+            Dictionary<Enums.Mana, int> temp = new Dictionary<Enums.Mana,int> ();
+            temp.Add(Enums.Mana.Water, -1);
+            shaman.mana.AddMana(temp);
+            comm.sendMana(shaman.mana);
+            */
+            comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
 
@@ -140,10 +146,7 @@ namespace GameLogic
                 comm.sendMana(shaman.mana);  //invio l'update del mana
                 Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
                 comm.sendMana(shaman.mana);  //invio l'update del mana
-                if (manaTemp != Enums.Mana.None)
-                {
-                    comm.sendMana(shaman.mana);  //invio l'update del mana
-                }
+
                 //Aggiungo il mana delle polle
                 //shaman.mana.addManaPool();
                 //comm.sendMana(shaman.mana);  //invio l'update del mana
@@ -248,6 +251,8 @@ namespace GameLogic
 
             return ret;
         }
+
+        #region Inizio round
         public void FirstRoundStart()  //viene chiamato solo la prima volta
         {
             //invio i miei dati all'opponent
@@ -276,29 +281,7 @@ namespace GameLogic
             {
                 comm.Loaded();
                 starMatch();
-            }
-            
-/*
-
-
-
-            //nel caso il dispositivo su cui gioco sia molto lento e vinca il turno senza questo controllo non verrebbe settato il round e la partita non potrebbe iniziare
-            //in piu setto anche il mana che altrimenti sarebbe legato alla funzione di getOpponentMana
-
-            //DA FARE LA PROVA SE SERVE O NO LA RIGA SOTTO
-
-            if (opponentDiceResult > 0)
-            {
-                if (diceResult > opponentDiceResult)
-                {
-                    myRound = true;
-                }
-
-                FirstRoundStart();
-            }
-
-            */
-
+            }            
         }
 
         public void starMatch()
@@ -309,6 +292,8 @@ namespace GameLogic
             requestXmlForBibliotheca();
             comm.game_diceResult(diceResult);
         }
+
+        #endregion
 
     }
 }

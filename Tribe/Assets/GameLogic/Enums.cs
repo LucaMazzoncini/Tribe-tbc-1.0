@@ -23,7 +23,7 @@ namespace GameLogic
 
         public enum Mana
         {
-            None, Earth, Water, Fire, Life, Death
+            None, Water, Earth, Fire, Life, Death
         }
 
         public enum ManaEvent //questo enum definisco per quali eventi puo' essere richiesto il mana

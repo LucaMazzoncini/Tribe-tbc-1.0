@@ -3,7 +3,8 @@ using System.Collections;
 using GameEventManagement;
 public class NextRound : MonoBehaviour {
 
-    private bool premibile = true;
+    private static bool premibile = true;
+    private static bool pushedManaSelect = true;
 	// Setto la texture giusta ed attivo e disattivo il tasto
 	void Update ()
     {
@@ -19,9 +20,15 @@ public class NextRound : MonoBehaviour {
             premibile = false;
           }
     }
+
+    public static void EnableDisableChangeRound(bool enabled)
+    {
+        pushedManaSelect = enabled;
+    }
+
     void OnMouseDown()
     {
-        if (premibile)
+        if (premibile && pushedManaSelect)
         {
             GetComponent<AudioSource>().Play();
             GameEventManager.EndRound();

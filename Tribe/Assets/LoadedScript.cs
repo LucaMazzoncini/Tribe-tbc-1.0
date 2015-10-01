@@ -8,8 +8,9 @@ public class LoadedScript : MonoBehaviour {
     private static bool destroy = false;
 	// Use this for initialization
 	void Start () {
-        GameEventManager.loaded += GameEventManager_loaded;	    
-	}
+        GameEventManager.loaded += GameEventManager_loaded;
+        selfObj.SetActive(true);
+    }
 	
 	// Update is called once per frame
 	void Update () {

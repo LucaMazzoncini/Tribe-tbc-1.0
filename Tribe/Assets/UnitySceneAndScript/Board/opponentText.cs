@@ -26,12 +26,12 @@ public class opponentText : MonoBehaviour {
     {
         if (textOutput != null)
             textOutput.text = outputString;
-        
+       /* 
             bool round = !transform.Find("/Multiplayer").GetComponent<multiplayerScript>().returnRound();
 
         outputString = transform.Find("/Multiplayer").GetComponent<multiplayerScript>().getOpponentName()
            + " Tiro dado = " + transform.Find("/Multiplayer").GetComponent<multiplayerScript>().returnOpponentDiceResult();
-              
+       */       
         
     }
 }

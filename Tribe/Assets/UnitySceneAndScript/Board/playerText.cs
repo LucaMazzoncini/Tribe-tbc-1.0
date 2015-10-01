@@ -30,11 +30,11 @@ public class playerText : MonoBehaviour {
             textOutput.text = outputString;
         }
 
-        
+       /* 
             bool round = transform.Find("/Multiplayer").GetComponent<multiplayerScript>().returnRound();
 
         outputString = transform.Find("/Multiplayer").GetComponent<multiplayerScript>().getPlayerName()
-            + " Tiro dado = " + transform.Find("/Multiplayer").GetComponent<multiplayerScript>().returnDiceResult(); 
+            + " Tiro dado = " + transform.Find("/Multiplayer").GetComponent<multiplayerScript>().returnDiceResult(); */
     }
 
     public static void Print(string param)
