@@ -108,17 +108,23 @@ namespace GameLogic
         public bool AddMana(Dictionary<Enums.Mana, int> param) //se TOTALMANA è già a maxMana ritorna false
         {
             bool capNotReached = true;
-            foreach (KeyValuePair<Enums.Mana, int> manaTemp in param) //controllo se posso aggiungere
-                if (TOTALMANA + manaTemp.Value > MAXMANA)
+            foreach (KeyValuePair<Enums.Mana, int> manaTemp in param)//controllo se posso aggiungere
+            {
+                for (int counter = 0; counter <= manaTemp.Value; counter++)
                 {
-                    capNotReached = false;
+                    if (TOTALMANA + 1 > MAXMANA)
+                    {
+                        capNotReached = false;
+                        return capNotReached;
+                    }
+                    else
+                    {
+                        ++valueList[manaTemp.Key];// aggiungo 1.
+                        ++TOTALMANA;
+                    }
                 }
-                else
-                {
-                    valueList[manaTemp.Key] += manaTemp.Value; // aggiungo
-                    TOTALMANA += manaTemp.Value;
-                }
-            
+                              
+            }
             return capNotReached;
         }
         public bool incMana(Enums.Mana param)
