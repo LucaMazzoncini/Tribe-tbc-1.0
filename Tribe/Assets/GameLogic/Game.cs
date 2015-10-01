@@ -51,7 +51,6 @@ namespace GameLogic
         {
             return shaman.Name;
         }
-
         public void SetOpponentName(string name) //da tenere
         {
             opponent.Name = name;
@@ -123,6 +122,7 @@ namespace GameLogic
         {
             comm = Communication.Communicator.getInstance();
             myRound = true;
+            shaman.mana.setPoolFlag(false);
             comm.setRound(myRound);//invio la chiamata in locale
            /* shaman.mana.addRandomMana();
             comm.sendMana(shaman.mana);
