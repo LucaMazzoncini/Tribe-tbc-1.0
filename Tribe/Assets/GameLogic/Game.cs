@@ -30,8 +30,8 @@ namespace GameLogic
         #endregion
         public Game(string name)
         {
-            shaman = new Player(name);         //vanno inizializzati
-            opponent = new Player("Opponent"); //vanno inizializzati
+            shaman = new Player(name, 0);         //vanno inizializzati
+            opponent = new Player("Opponent",1); //vanno inizializzati
             comm = Communication.Communicator.getInstance();
             
 
@@ -141,6 +141,9 @@ namespace GameLogic
             comm = Communication.Communicator.getInstance();
             myRound = true;
             shaman.mana.setPoolFlag(false);
+            foreach (Elemental elemTemp in shaman.cardsOnBoard)
+                if (elemTemp.type == Enums.Type.Elemental)
+                    elemTemp.hasAttacked = false;                   
             comm.setRound(myRound);//invio la chiamata in locale
             comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
