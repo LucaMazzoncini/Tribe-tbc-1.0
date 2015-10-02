@@ -15,7 +15,6 @@ namespace GameLogic
         public const int MAXINITMANA = 3;
         public const int COSTFIRSTPOOL = 1;
         public const int COSTSECONDPOOL = 2;
-        public int TOTALMANA;
         private bool PoolFlag = false;
         public Dictionary<Enums.Mana, int> valueList { get; set; } //riserva di mana
         public Dictionary<Enums.Mana, int> poolList { get; set; } // polle
@@ -34,6 +33,18 @@ namespace GameLogic
             param.Add(Enums.Mana.Death, 0);
             return param;
         }
+
+        public int GetTotalMana()
+        {
+            int count = 0;
+            List<Enums.Mana> manaList = new List<Enums.Mana>(valueList.Keys);
+            foreach (Enums.Mana mana in manaList)
+                count += valueList[mana];
+
+            return count;
+        }
+
+
         public Mana()
         {
             valueList = Init();
@@ -49,7 +60,6 @@ namespace GameLogic
                             i--;
                         else
                             valueList[Enums.Mana.Earth] += 1;
-                            ++TOTALMANA;
 
                         break;
                     case 2:
@@ -57,28 +67,24 @@ namespace GameLogic
                             i--;
                         else
                             valueList[Enums.Mana.Fire] += 1;
-                            ++TOTALMANA;
                         break;
                     case 3:
                         if (valueList[Enums.Mana.Water] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Water] += 1;
-                            ++TOTALMANA;
                         break;
                     case 4:
                         if (valueList[Enums.Mana.Life] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Life] += 1;
-                            ++TOTALMANA;
                         break;
                     case 5:
                         if (valueList[Enums.Mana.Death] == MAXINITMANA)
                             i--;
                         else
                             valueList[Enums.Mana.Death] += 1;
-                            ++TOTALMANA;
                         break;
                     default:
                         break;
@@ -92,10 +98,8 @@ namespace GameLogic
 
             if (canPay) //se posso pagare pago
                 foreach (KeyValuePair<Enums.Mana, int> manaTemp in param)
-                {
                     valueList[manaTemp.Key] -= manaTemp.Value;
-                    TOTALMANA -= manaTemp.Value;
-                }
+                
             return canPay; //ritorno true se posso pagare
         }
         public bool CanPay(Dictionary<Enums.Mana, int> param) //serve per sapere a priori se posso castare qualcosa
@@ -111,9 +115,9 @@ namespace GameLogic
             bool capNotReached = true;
             foreach (KeyValuePair<Enums.Mana, int> manaTemp in param)//controllo se posso aggiungere
             {
-                for (int counter = 0; counter <= manaTemp.Value; counter++)
+                for (int counter = 0; counter < manaTemp.Value; counter++) //ho tolto l'uguale perche' altrimenti fa' il ciclo una volta in piu
                 {
-                    if (TOTALMANA + 1 > MAXMANA)
+                    if (GetTotalMana() + 1 > MAXMANA)
                     {
                         capNotReached = false;
                         return capNotReached;
@@ -121,7 +125,8 @@ namespace GameLogic
                     else
                     {
                         ++valueList[manaTemp.Key];// aggiungo 1.
-                        ++TOTALMANA;
+                        int a = 3;
+                        a = 5;
                     }
                 }
                               
@@ -144,7 +149,7 @@ namespace GameLogic
         {
             Random random = new Random();
             int randomNumber = random.Next(1, 6);
-            if (TOTALMANA >= MAXMANA)
+            if (GetTotalMana() >= MAXMANA)
                 return Enums.Mana.None;
             else
             {
@@ -153,31 +158,26 @@ namespace GameLogic
                     case 1:
                        
                             valueList[Enums.Mana.Earth] += 1;
-                            ++TOTALMANA;
                             return Enums.Mana.Earth;
 
                     case 2:
                        
                             valueList[Enums.Mana.Fire] += 1;
-                            ++TOTALMANA;
                             return Enums.Mana.Fire;
                     
                     case 3:
                        
                             valueList[Enums.Mana.Water] += 1;
-                            ++TOTALMANA;
                             return Enums.Mana.Water;
                       
                     case 4:
                        
                             valueList[Enums.Mana.Life] += 1;
-                            ++TOTALMANA;
                             return Enums.Mana.Life;
                       
                     case 5:
                         
                             valueList[Enums.Mana.Death] += 1;
-                            ++TOTALMANA;
                             return Enums.Mana.Death;
                       
                     default:
@@ -202,7 +202,7 @@ namespace GameLogic
                            
                     if (valueList[thatMana] >= costPool)//controllo se posso pagare
                     canCreate = true;
-                    setPoolFlag(true);
+                    
             }
             return canCreate; 
 
@@ -223,13 +223,14 @@ namespace GameLogic
             {
                 valueList[param] -= (poolList[param] + 1);
                 poolList[param] += 1;
+                setPoolFlag(true); //il flag va' settato solo dopo che uno ha creato la polla, non nel controllo, perche' se chiamo 10 volte il controllo e nn la creo mai e' un problema
             }
             return canPool;
         }    //crea la polla di mana del tipo specificato, altrimenti torna false
         public bool addManaPool() 
         {
            Boolean canAdd = false;
-            if (TOTALMANA < MAXMANA)
+            if (GetTotalMana() < MAXMANA)
             {
                 var items = from pair in valueList
                             orderby pair.Value ascending
@@ -241,10 +242,9 @@ namespace GameLogic
                 
                 foreach (Enums.Mana Key in buffer)
                 {
-                    if (TOTALMANA + poolList[Key] <= MAXMANA)
+                    if (GetTotalMana() + poolList[Key] <= MAXMANA)
                     {
                         valueList[Key] += poolList[Key];
-                        TOTALMANA += poolList[Key];
                         canAdd = true;
                     }
                     else

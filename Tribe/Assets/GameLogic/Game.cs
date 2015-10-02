@@ -111,12 +111,14 @@ namespace GameLogic
         {
             if(shaman.mana.canCreatePool(mana))
             {
-                shaman.mana.createPool(mana);
-                comm.sendMana(shaman.mana);
-                comm.DisplayPool(mana, shaman.mana.poolList[mana]); //fa' visualizzare dalla grafica le polle
+                if (shaman.mana.createPool(mana)) //se la creazione e' andata a buon fine viene visualizzata altrimenti no
+                {
+                    comm.sendMana(shaman.mana);
+                    comm.DisplayPool(mana, shaman.mana.poolList[mana]); //fa' visualizzare dalla grafica le polle
+                }
             }
         }
-     /*   public void canCreateManaPool(Enum.Mana mana) //questa funzione e' chiamata dalla grafica per sapere se puo' creare una polla di un tipo
+       /* public void canCreateManaPool(Enums.Mana mana) //questa funzione e' chiamata dalla grafica per sapere se puo' creare una polla di un tipo
         {
             if (shaman.mana.canCreatePool(mana))
                 comm.YesYouCanCreateManaPool(mana);
