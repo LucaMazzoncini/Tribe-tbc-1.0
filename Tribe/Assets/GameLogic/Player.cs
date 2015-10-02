@@ -18,6 +18,7 @@ namespace GameLogic
         public int hp { get; set; }
         public int maxHp { get; set; }
         public Mana mana { get; set; }
+        public int id;
         public Target target;
         public List<Card> cardsOnBoard;  //nella 4 carta ci sta' lo spirito
         
@@ -28,15 +29,18 @@ namespace GameLogic
             return new Random().Next(1,numberOfFaces+1);
         }
         #endregion
-
-        public Player(string name)
+       
+        
+        public Player(string name, int idTemp)
         {
             this.Name = name;
             this.hp = MAXHP;
+            this.id = idTemp;
             mana = new Mana(); //alloca e genera i mana random 
-            target = null;
+            target = null;              
             //metti tutta la lista cards a null
         }
+        public Player() { }
 
         public bool PlayCard(string nameCard)
         {
