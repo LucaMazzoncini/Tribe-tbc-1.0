@@ -18,57 +18,37 @@ namespace GameLogic
         public List<Enums.Properties> properties;
         public List<string> onAppear;
         public List<string> onDeath;
-    }
-    
-    /*
-    class Creature
-    {
-        #region variables
-        public int id;   //parte da 2
-        public string name { get; set; }
-        public int Hp { get; set; }
-        public int maxHp { get; set; }
-        public int strength { get; set; }
-        public List<Enums.Type> type { get; set; }
-        public List<Enums.SubType> subType { get; set; }
-        public List<Enums.Role> role { get; set; }
-        public List<Enums.Properties> properties { get; set; }
-        public List<Enums.Mana> cost { get; set; }
-        public List<Enum......> buff { get; set; }   //qui ci sarà la lista dei buff che andranno parsati
-        public List<string> debuff { get; set; } //qui ci sarà la lista dei debuff che andranno parsati
-    
-    
-        public List<Power> power { get; set; } //lista degli eventuali poteri della creatura
+        public List<Enums.Debuff> debuff { get; set; } //qui ci sarà la lista dei debuff che andranno parsati
+        public List<Enums.Buff> buff { get; set; }   //qui ci sarà la lista dei buff che andranno parsati7
+        public bool hasAttacked = false;
 
-        public List<string> creatureStatus { get; set; } //In questa lista sono contenuti gli stati della cratura,
-        //ho pensato a questa soluzione per evitare che esplodesse il numero delle variabili ovviamente poi ogni stato andrà parsato
-        //pero' facilità l'inserimento o la modifica di proprietà abilità o addirittura meccaniche future
-        //Ad esempio se definiamo ATTACHED vuol dire che la creatura ha già attaccato, baserà utilizzare creatureStatus.Contains("ATTACHED"); per sapere
-        //se la creatura ha già attaccato (roba vecchia: avevo pensato di costruire un oggetto a parte che storasse tutti gli stati)
+        
 
-        #endregion
-        #region method
-        public Creature(string paramName,
-                        int paramHp,
-                        int paramStrenght,
-                        List<Enums.Type> paramType,
-                        List<Enums.SubType> paramSubtype,
-                        List<Enums.Role> paramRole,
-                        List<Enums.Properties> paramProperties,
-                        List<Enums.Mana> paramCost,
-                        List<string> paramBuff,
-                        List<string> paramDebuff,
-                        List<Power> paramPower
-                        )
-        { }
-        public Creature attackCreature(Creature param) //attacca la creatura passata ne modifica lo stato e la ritorna modificata.
+        public Elemental initFromInv(Invocation invTemp)
         {
-            return param;
+            Card cardTemp = base.initFromInvocation(invTemp);
+            return (Elemental)cardTemp;
+        }
+        
+        public Elemental attackCreature(Elemental targetElem) //attacca la creatura passata ne modifica lo stato e la ritorna modificata.
+        {
+            return targetElem;
         }
 
-        public bool canAttackCreature(Creature param)
+        public bool canAttackElem(Elemental targetElem, Player controller)
         {
-            return true;
+            if (this.hasAttacked == false && !this.debuff.Contains(Enums.Debuff.Asleep))
+            {
+                if (!targetElem.properties.Contains(Enums.Properties.Guardian))
+                    foreach (Elemental elemTemp in controller.cardsOnBoard)
+                    {
+                        if (elemTemp.properties.Contains(Enums.Properties.Guardian))
+                            return false;
+                    }
+                return true;
+            }
+            
+            return false;
         }
 
         public Player attackPlayer(Player param) //Attacco l'opponent e ritorno le eventuali modifiche.
@@ -89,7 +69,7 @@ namespace GameLogic
         {
             return true;
         }
-        public bool canUsePower(Creature param)
+        public bool canUsePower(Elemental elemTemp)
         {
             return true;
         }
@@ -97,7 +77,7 @@ namespace GameLogic
         {
             return true;
         }
-        #endregion
+        
     }
-    */
+ 
 }
