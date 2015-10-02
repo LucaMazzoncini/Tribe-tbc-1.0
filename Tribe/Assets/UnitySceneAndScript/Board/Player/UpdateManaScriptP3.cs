@@ -49,12 +49,20 @@ public class UpdateManaScriptP3 : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        if (textureOn)
+        if (textureOn) //controllo se sono in selezione mana
         {
             textureOn = false;
             NextRound.EnableDisableChangeRound(true);
             ManaScriptUnity.manaChosed(MANA);
         }
+        else
+        {
+            transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(true, MANA);
+        }
+    }
+    public void OnMouseUp()
+    {
+        transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(false, MANA);
     }
 
 }

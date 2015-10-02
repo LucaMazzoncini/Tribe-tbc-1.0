@@ -19,6 +19,7 @@ namespace GameLogic
         private bool PoolFlag = false;
         public Dictionary<Enums.Mana, int> valueList { get; set; } //riserva di mana
         public Dictionary<Enums.Mana, int> poolList { get; set; } // polle
+
         #endregion
 
         #region methods
@@ -227,23 +228,28 @@ namespace GameLogic
         }    //crea la polla di mana del tipo specificato, altrimenti torna false
         public bool addManaPool() 
         {
-            Boolean canAdd = false;
+           Boolean canAdd = false;
             if (TOTALMANA < MAXMANA)
             {
                 var items = from pair in valueList
                             orderby pair.Value ascending
-                            select pair; 
-                            valueList = (Dictionary<Enums.Mana,int>)items; // sorta la riserva di mana in base al valore
-                foreach (KeyValuePair<Enums.Mana, int> manaTemp in valueList)// aggiunge il mana delle polle alla riserva di mana
-                    if (TOTALMANA + poolList[manaTemp.Key] <= MAXMANA)
+                            select pair;
+                valueList = items.ToDictionary(r => r.Key, r => r.Value);
+
+
+                List<Enums.Mana> buffer = new List<Enums.Mana>(valueList.Keys);
+                
+                foreach (Enums.Mana Key in buffer)
+                {
+                    if (TOTALMANA + poolList[Key] <= MAXMANA)
                     {
-                        valueList[manaTemp.Key] += poolList[manaTemp.Key];
-                        TOTALMANA += poolList[manaTemp.Key];
+                        valueList[Key] += poolList[Key];
+                        TOTALMANA += poolList[Key];
                         canAdd = true;
                     }
                     else
-                        canAdd = false;                  
-                
+                        canAdd = false;
+                }
             }                               
             return canAdd;} //aggiunge il mana delle polle alla riserva di mana (torna false se non si può sommare anche solo un mana) quindi se stiamo bruciando mana
         

@@ -56,13 +56,14 @@ public class UpdateManaScriptP1 : MonoBehaviour {
             ManaScriptUnity.manaChosed(MANA);
         }else
         {
-            transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(true);
+            transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(true,MANA);
         }
     }
     public void OnMouseUp()
     {
-        transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(false);
+        transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(false,MANA);
     }
+
 
 
 }

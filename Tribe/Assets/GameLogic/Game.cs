@@ -107,6 +107,21 @@ namespace GameLogic
 
         #region Metodi chiamati da Comunicator
 
+        public void CreateShamanPool(Enums.Mana mana)
+        {
+            if(shaman.mana.canCreatePool(mana))
+            {
+                shaman.mana.createPool(mana);
+                comm.sendMana(shaman.mana);
+                comm.DisplayPool(mana, shaman.mana.poolList[mana]); //fa' visualizzare dalla grafica le polle
+            }
+        }
+     /*   public void canCreateManaPool(Enum.Mana mana) //questa funzione e' chiamata dalla grafica per sapere se puo' creare una polla di un tipo
+        {
+            if (shaman.mana.canCreatePool(mana))
+                comm.YesYouCanCreateManaPool(mana);
+        }*/
+       
         public LinkedList<Invocation> MenuFiltered(List<Enums.Filter> param) //questa funzione ritorna una linkedList delle carte filtrate
         {
             return bibliotheca.getCards(param, shaman.mana);
@@ -124,15 +139,6 @@ namespace GameLogic
             myRound = true;
             shaman.mana.setPoolFlag(false);
             comm.setRound(myRound);//invio la chiamata in locale
-           /* shaman.mana.addRandomMana();
-            comm.sendMana(shaman.mana);
-
-            //da togliere e' per test
-            Dictionary<Enums.Mana, int> temp = new Dictionary<Enums.Mana,int> ();
-            temp.Add(Enums.Mana.Water, -1);
-            shaman.mana.AddMana(temp);
-            comm.sendMana(shaman.mana);
-            */
             comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
 
@@ -148,8 +154,8 @@ namespace GameLogic
                 comm.sendMana(shaman.mana);  //invio l'update del mana
 
                 //Aggiungo il mana delle polle
-                //shaman.mana.addManaPool();
-                //comm.sendMana(shaman.mana);  //invio l'update del mana
+                shaman.mana.addManaPool();
+                comm.sendMana(shaman.mana);  //invio l'update del mana
                                              //Ricordati che ho fatto 3 send mana invece di uno perche' cosi' possiamo fare 3 animazioni distinte in base al mana che viene aggiunto
             }
         }
@@ -166,8 +172,6 @@ namespace GameLogic
 
         public void TargetEvent(int idTarget) //questa funzione riceve il target richiesto precedentemente
         {
-            //shaman.targetList.Clear();
-            //shaman.targetList.AddRange(param);
             shaman.target = FindTargetById(idTarget);
             shaman.TargetUpdated(); //questo evento viene chiamato per avvertire il player che la carta e' arrivata
         }
@@ -260,7 +264,11 @@ namespace GameLogic
             //comm.sendPlayerInfo(shaman);
             comm.setRound(myRound);   //setto il round per la grafica
             comm.sendMana(shaman.mana);  //Primo round invio il mana alla grafica
-
+            if (myRound)
+            { 
+                Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
+                comm.sendMana(shaman.mana);  //invio l'update del mana
+            }
         }
 
         public void OpponentIsReady()

@@ -36,6 +36,8 @@ namespace GameEventManagement
         public static event ResultEventHandler idTarget; //0 e' il player, 1 e' l'opponent
         public static event SendDoubleStringEventHandler manaChosen;
         public static event GenericEventHandler loaded; //notifica che entrambi hanno caricato l'interfaccia
+        public static event SendStringEventHandler createPool;
+        public static event SendDoubleStringEventHandler displayPool;
         #endregion
 
         #region events for communicator
@@ -133,9 +135,19 @@ namespace GameEventManagement
         {
             getEnemyElementalTarget();
         }
+        public static void DisplayPool(string mana,string value)
+        {
+            displayPool(mana, value);
+        }
         #endregion
 
         #region methods called from interface
+
+
+        public static void CreatePool(string mana)
+        {
+            createPool(mana);
+        }
 
         public static void Loaded()
         {

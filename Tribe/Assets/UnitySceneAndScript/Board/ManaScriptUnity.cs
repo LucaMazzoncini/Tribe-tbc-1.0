@@ -7,15 +7,22 @@ public class ManaClass
 {
     public string manaValue;
     public string manaName;
-
+    
+    public ManaClass(string mana,string value)
+    {
+        manaName = mana;
+        manaValue = value;
+    }
 }
 
 public class ManaScriptUnity : MonoBehaviour {
     private static string reason; //questo parametro potevo anche evitare di passarlo l'ho fatto per una visione piu completa anche dal lato della grafica
     private static List<ManaClass> mana = new List<ManaClass>();
+    private static ManaClass enablePool = null;
 	void Start () {
         GameEventManager.sendMana += GameEventManager_sendMana; //evento che aggiorna il mana
         GameEventManager.choseMana += GameEventManager_choseMana;
+        GameEventManager.displayPool += GameEventManager_displayPool;
     }
 	
     public static void GameEventManager_choseMana(string param)
@@ -85,25 +92,66 @@ public class ManaScriptUnity : MonoBehaviour {
                 mana.RemoveAt(0);
             }
         }
+        if( enablePool != null )
+        {
+            switch(enablePool.manaName)
+            {
+                case "Water":
+                    if (enablePool.manaValue == "1")
+                        transform.FindChild("Mana_P1/Polla_P1").gameObject.SetActive(true);
+                    else
+                        transform.FindChild("Mana_P1/Polla_P2").gameObject.SetActive(true);
+                    break;
+                case "Earth":
+                    if (enablePool.manaValue == "1")
+                        transform.FindChild("Mana_P2/Polla_P3").gameObject.SetActive(true);
+                    else
+                        transform.FindChild("Mana_P2/Polla_P4").gameObject.SetActive(true);
+                    break;
+                case "Fire":
+                    if (enablePool.manaValue == "1")
+                        transform.FindChild("Mana_P3/Polla_P5").gameObject.SetActive(true);
+                    else
+                        transform.FindChild("Mana_P3/Polla_P6").gameObject.SetActive(true);
+                    break;
+                case "Life":
+                    if (enablePool.manaValue == "1")
+                        transform.FindChild("Mana_P4/Polla_P7").gameObject.SetActive(true);
+                    else
+                        transform.FindChild("Mana_P4/Polla_P8").gameObject.SetActive(true);
+                    break;
+                case "Death":
+                    if (enablePool.manaValue == "1")
+                        transform.FindChild("Mana_P5/Polla_P9").gameObject.SetActive(true);
+                    else
+                        transform.FindChild("Mana_P6/Polla_P10").gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+            enablePool = null;
+        }
     }
 
     public static void GameEventManager_sendMana(string param)
     {
         //il mana arrivera' cosi' " E:1 F:1 W:1 L:1 D:1"
         string[] splitManaArray = param.Split(' ');//prima splitto per spazio poi per i :
-        foreach(string stringApp in splitManaArray)
+        foreach (string stringApp in splitManaArray)
         {
             string[] valueMana = stringApp.Split(':');
-            ManaClass manaTemp = new ManaClass();
+            
             if (valueMana[0] != "")
             {
-                manaTemp.manaName = valueMana[0];
-                manaTemp.manaValue = valueMana[1];
+                ManaClass manaTemp = new ManaClass(valueMana[0], valueMana[1]);
                 mana.Add(manaTemp);
             }
         }
+    }
 
-    
-    
+    public static void GameEventManager_displayPool(string mana, string value)
+    {
+        enablePool = new ManaClass(mana,value);
+
     }
 }
