@@ -93,6 +93,11 @@
     <Compile Include="Assets\UnitySceneAndScript\Board\LoadedScript.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\ManaScriptUnity.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\NextRound.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\Opponent\OpponentManaUpdateP1.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\Opponent\OpponentManaUpdateP2.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\Opponent\OpponentManaUpdateP3.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\Opponent\OpponentManaUpdateP4.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\Opponent\OpponentManaUpdateP5.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\Player\UpdateManaScriptP1.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\Player\UpdateManaScriptP2.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\Player\UpdateManaScriptP3.cs" />

@@ -13,6 +13,7 @@ namespace Communication
             nameReceived,
             OpponentInfo,
             UnityOpponentIsReady,
+            OpponentManaChosen,
             ChangeRound
         }
     }

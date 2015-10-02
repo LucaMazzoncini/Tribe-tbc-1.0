@@ -29,6 +29,9 @@ namespace Communication
                 case MessagesEnums.Message.UnityOpponentIsReady:
                     caller.OpponentIsReady();
                     break;
+                case MessagesEnums.Message.OpponentManaChosen:
+                    caller.OpponentManaChosenUpdate(data);
+                    break;
                 default:
                     break;
             }

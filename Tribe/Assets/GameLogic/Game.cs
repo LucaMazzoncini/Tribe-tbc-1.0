@@ -151,6 +151,7 @@ namespace GameLogic
             {
                 comm = Communication.Communicator.getInstance();
                 shaman.mana.incMana(manaParam);    //se ha raggiunto il mana max non viene aggiunto il mana
+                comm.SendOpponentManaChosen(manaParam); //invio il mana scelto all'avversario
                 comm.sendMana(shaman.mana);  //invio l'update del mana
                 Enums.Mana manaTemp = shaman.mana.addRandomMana(); //aggiungo il mana random allo shamano
                 comm.sendMana(shaman.mana);  //invio l'update del mana

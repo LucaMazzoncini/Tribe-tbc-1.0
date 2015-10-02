@@ -56,9 +56,14 @@ namespace GameEventManagement
         public static event GenericEventHandler getEnemyElementalTarget;
         public static event GenericEventHandler unityReady;
         public static event SendStringEventHandler canCreateManaPool;
+        public static event SendStringEventHandler opponentChoseMana;
         #endregion
 
         #region methods called from communicator
+        public static void OpponentChoseMana(string mana)
+        {
+            opponentChoseMana(mana);
+        }
         public static void YesYouCanCreateManaPool(string mana)
         {
             yesYouCanCreateManaPool(mana);

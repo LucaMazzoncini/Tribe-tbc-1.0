@@ -91,6 +91,11 @@ namespace Communication
 
         #region methods triggered by events or called by Game
 
+        public void SendOpponentManaChosen(Enums.Mana param)
+        {
+            sendMessage(generateMessage(MessagesEnums.Message.OpponentManaChosen, param.ToString()));
+        }
+
         public void SendOpponentName(string name)
         {
             GameEventManager.SendOpponentName(name);
@@ -266,6 +271,12 @@ namespace Communication
         public void SetOpponentInfo(Object data)
         {
             game.SetOpponent((Player)data);
+        }
+
+        public void OpponentManaChosenUpdate(Object data)
+        {
+            string param = data.ToString().Replace("\"", "");
+            GameEventManager.OpponentChoseMana(param);
         }
 
         public void GameEventManager_endRound()
