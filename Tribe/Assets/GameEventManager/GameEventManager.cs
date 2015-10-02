@@ -38,6 +38,7 @@ namespace GameEventManagement
         public static event GenericEventHandler loaded; //notifica che entrambi hanno caricato l'interfaccia
         public static event SendStringEventHandler createPool;
         public static event SendDoubleStringEventHandler displayPool;
+        public static event SendStringEventHandler yesYouCanCreateManaPool;
         #endregion
 
         #region events for communicator
@@ -54,9 +55,14 @@ namespace GameEventManagement
         public static event GenericEventHandler getAllyElementalTarget;
         public static event GenericEventHandler getEnemyElementalTarget;
         public static event GenericEventHandler unityReady;
+        public static event SendStringEventHandler canCreateManaPool;
         #endregion
 
         #region methods called from communicator
+        public static void YesYouCanCreateManaPool(string mana)
+        {
+            yesYouCanCreateManaPool(mana);
+        }
         public static void OpponentDisconnected()
         {
             opponentDisconnected();
@@ -143,7 +149,10 @@ namespace GameEventManagement
 
         #region methods called from interface
 
-
+        public static void CanCreateManaPool(string mana)
+        {
+            canCreateManaPool(mana);
+        }
         public static void CreatePool(string mana)
         {
             createPool(mana);

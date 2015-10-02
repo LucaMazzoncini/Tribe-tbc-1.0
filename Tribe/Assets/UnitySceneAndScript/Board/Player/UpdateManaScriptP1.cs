@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using GameEventManagement;
 public class UpdateManaScriptP1 : MonoBehaviour {
 
     private const string MANA = "Water";
@@ -9,8 +9,12 @@ public class UpdateManaScriptP1 : MonoBehaviour {
     private Texture on = new Texture();
     private Texture off = new Texture();
     public static bool textureOn = false;
+    public static bool canCreateManaPool = false;
 
-
+    void Start()
+    {
+        GameEventManager.yesYouCanCreateManaPool += YesYouCanCreateManaPool;
+    }
 
     public static void UpdateStatus(string mana)
     {
@@ -49,6 +53,7 @@ public class UpdateManaScriptP1 : MonoBehaviour {
 
     public void OnMouseDown()
     {
+        
         if (textureOn) //controllo se sono in selezione mana
         {
             textureOn = false;
@@ -56,8 +61,19 @@ public class UpdateManaScriptP1 : MonoBehaviour {
             ManaScriptUnity.manaChosed(MANA);
         }else
         {
-            transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(true,MANA);
+            GameEventManager.CanCreateManaPool(MANA);
+            if (canCreateManaPool)
+            {
+                transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(true, MANA);
+                canCreateManaPool = false;
+            }
         }
+    }
+
+    public static void YesYouCanCreateManaPool(string mana)
+    {
+        if (MANA == mana)
+            canCreateManaPool = true;
     }
     public void OnMouseUp()
     {

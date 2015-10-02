@@ -118,11 +118,11 @@ namespace GameLogic
                 }
             }
         }
-       /* public void canCreateManaPool(Enums.Mana mana) //questa funzione e' chiamata dalla grafica per sapere se puo' creare una polla di un tipo
+        public void CanCreateManaPool(Enums.Mana mana) //questa funzione e' chiamata dalla grafica per sapere se puo' creare una polla di un tipo
         {
             if (shaman.mana.canCreatePool(mana))
                 comm.YesYouCanCreateManaPool(mana);
-        }*/
+        }
        
         public LinkedList<Invocation> MenuFiltered(List<Enums.Filter> param) //questa funzione ritorna una linkedList delle carte filtrate
         {

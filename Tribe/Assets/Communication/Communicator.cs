@@ -60,6 +60,7 @@ namespace Communication
             GameEventManager.unityReady += GameEventManager_unityReady;
             GameEventManager.manaChosen += GameEventManager_manaChosen;
             GameEventManager.createPool += GameEventManager_createPool;
+            GameEventManager.canCreateManaPool += GameEvent_canCreateManaPool;
             #endregion
 
             tcpConnector.Connect();
@@ -217,12 +218,23 @@ namespace Communication
             Enums.Mana manaEnum = (Enums.Mana)Enum.Parse(typeof(Enums.Mana), mana);
             game.CreateShamanPool(manaEnum);
         }
+
+        public void GameEvent_canCreateManaPool(string mana)
+        {
+            Enums.Mana manaEnum = (Enums.Mana)Enum.Parse(typeof(Enums.Mana), mana);
+            game.CanCreateManaPool(manaEnum);
+        }
         public void DisplayPool(Enums.Mana mana,int value) //questa funzione prende in ingresso il tipo di polla da visualizzare e quante ne sono state fatte
         {
             string enumString = mana.ToString();
             GameEventManager.DisplayPool(enumString, value.ToString());
         }
-        
+        public void YesYouCanCreateManaPool(Enums.Mana mana)
+        {
+            string enumString = mana.ToString();
+            GameEventManager.YesYouCanCreateManaPool(enumString);
+        }
+
         #endregion
 
         #region methods triggered by opponent's messages
