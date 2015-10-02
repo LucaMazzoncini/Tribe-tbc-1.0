@@ -114,6 +114,7 @@ namespace GameLogic
                 if (shaman.mana.createPool(mana)) //se la creazione e' andata a buon fine viene visualizzata altrimenti no
                 {
                     comm.sendMana(shaman.mana);
+                    comm.sendOpponentPool(mana,shaman.mana.poolList[mana]);
                     comm.DisplayPool(mana, shaman.mana.poolList[mana]); //fa' visualizzare dalla grafica le polle
                 }
             }

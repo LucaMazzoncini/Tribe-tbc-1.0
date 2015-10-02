@@ -16,6 +16,7 @@ namespace GameEventManagement
         public delegate void SendStringBoolEventHandler(string name, bool value);
         public delegate void SendDoubleStringEventHandler(string value,string value1);
         public delegate void SendStringListEventHandler(List<string> name);
+        public delegate void SendStringIntEventHandler(string name, int value);
         public delegate void LoadXmlForBibliothecaEventHandler(LinkedList<string> xmlList);
         #endregion
 
@@ -39,6 +40,7 @@ namespace GameEventManagement
         public static event SendStringEventHandler createPool;
         public static event SendDoubleStringEventHandler displayPool;
         public static event SendStringEventHandler yesYouCanCreateManaPool;
+        public static event SendStringIntEventHandler opponentPoolUpdate;
         #endregion
 
         #region events for communicator
@@ -60,6 +62,10 @@ namespace GameEventManagement
         #endregion
 
         #region methods called from communicator
+        public static void OpponentPoolUpdate(string mana,int value)
+        {
+            opponentPoolUpdate(mana, value);
+        }
         public static void OpponentChoseMana(string mana)
         {
             opponentChoseMana(mana);

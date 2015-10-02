@@ -234,6 +234,13 @@ namespace Communication
             string enumString = mana.ToString();
             GameEventManager.DisplayPool(enumString, value.ToString());
         }
+
+        public void sendOpponentPool(Enums.Mana mana, int value)
+        {
+            string param = mana.ToString() + " " + value.ToString();
+            sendMessage(generateMessage(MessagesEnums.Message.OpponentPool, param));
+            
+        }
         public void YesYouCanCreateManaPool(Enums.Mana mana)
         {
             string enumString = mana.ToString();
@@ -248,7 +255,13 @@ namespace Communication
         {
             game.OpponentIsReady();
         }
+        public void OpponentPoolUpdate(string param)
+        {
+            param = param.Replace("\"", "");
+            string[] vector = param.Split(' ');
+            GameEventManager.OpponentPoolUpdate(vector[0], Int32.Parse(vector[1]));
 
+        }
         public void OpponentsDiceResult(int result)
         {
             GameEventManager.OpponentsDiceResult(result);

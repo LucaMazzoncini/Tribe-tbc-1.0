@@ -14,6 +14,7 @@ namespace Communication
             OpponentInfo,
             UnityOpponentIsReady,
             OpponentManaChosen,
+            OpponentPool,
             ChangeRound
         }
     }

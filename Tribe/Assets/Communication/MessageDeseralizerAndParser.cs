@@ -32,6 +32,9 @@ namespace Communication
                 case MessagesEnums.Message.OpponentManaChosen:
                     caller.OpponentManaChosenUpdate(data);
                     break;
+                case MessagesEnums.Message.OpponentPool:
+                    caller.OpponentPoolUpdate(data.ToString()); //questa stringa e' composta cosi' : "Fire 1"
+                    break;
                 default:
                     break;
             }
