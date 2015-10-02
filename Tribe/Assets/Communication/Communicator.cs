@@ -59,6 +59,7 @@ namespace Communication
             GameEventManager.idTarget += GameEventManager_idTarget;
             GameEventManager.unityReady += GameEventManager_unityReady;
             GameEventManager.manaChosen += GameEventManager_manaChosen;
+            GameEventManager.createPool += GameEventManager_createPool;
             #endregion
 
             tcpConnector.Connect();
@@ -83,6 +84,8 @@ namespace Communication
         {
             game.LoadBibliotheca(xmlList);
         }
+
+
         #endregion
 
         #region methods triggered by events or called by Game
@@ -209,6 +212,17 @@ namespace Communication
         {
             GameEventManager.GetEnemyElementalTarget();
         }
+        public void GameEventManager_createPool(string mana)
+        {
+            Enums.Mana manaEnum = (Enums.Mana)Enum.Parse(typeof(Enums.Mana), mana);
+            game.CreateShamanPool(manaEnum);
+        }
+        public void DisplayPool(Enums.Mana mana,int value) //questa funzione prende in ingresso il tipo di polla da visualizzare e quante ne sono state fatte
+        {
+            string enumString = mana.ToString();
+            GameEventManager.DisplayPool(enumString, value.ToString());
+        }
+        
         #endregion
 
         #region methods triggered by opponent's messages
@@ -271,6 +285,7 @@ namespace Communication
             Enums.ManaEvent manaEventEnum = (Enums.ManaEvent)Enum.Parse(typeof(Enums.ManaEvent), reason);  
             game.manaChoosen(manaEnum,manaEventEnum);
         }
+
         #endregion
 
         private void sendMessage(string message)
