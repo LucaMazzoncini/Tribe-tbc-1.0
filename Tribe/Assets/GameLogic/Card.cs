@@ -14,6 +14,7 @@ namespace GameLogic
         public Dictionary<Enums.Mana, int> manaCost;
         public Enums.Type type;
         public Enums.SubType subtype;
+        public int castLimit;
         public Enums.Target target; //se non puo' essere targettata va' messo a null
 
         public Card(){}
@@ -30,13 +31,14 @@ namespace GameLogic
         {
             //paga il costo della carta
         }
-        public Card InitFromInvocation(Invocation InvTemp)
+        public Card initFromInvocation(Invocation InvTemp)
         {
             this.name = InvTemp.name;
             this.manaCost = InvTemp.manaCost;
             this.type = InvTemp.type[0];
             this.subtype = InvTemp.subType[0];
             this.powers = InvTemp.powers;
+            this.castLimit = InvTemp.castLimit;
             if (this.type == Enums.Type.Elemental)
             {
                 Elemental ElemTemp = new Elemental(this.name);
@@ -63,10 +65,7 @@ namespace GameLogic
                 return SpiritTemp;
             }
             return this;
-        }
-
-        
-
+        }     
         public void processMicroaction(List<string> paramList) //questa funzione processa e prepara le microazioni
         {
 
