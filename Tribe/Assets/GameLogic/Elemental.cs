@@ -30,8 +30,12 @@ namespace GameLogic
             return (Elemental)cardTemp;
         }
         
-        public Elemental attackCreature(Elemental targetElem) //attacca la creatura passata ne modifica lo stato e la ritorna modificata.
+        public Elemental attackCreature(Elemental targetElem) //attacca la creatura passata modifica lo stato dell'attaccante e del target e ritorn il target modificato.
         {
+            if (this.buff.Contains(Enums.Buff.Shield))
+                this.buff.Remove(Enums.Buff.Shield);
+
+            this.hp -= targetElem.strength;
             return targetElem;
         }
 
