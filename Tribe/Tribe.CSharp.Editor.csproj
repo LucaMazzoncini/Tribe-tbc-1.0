@@ -180,7 +180,11 @@
     <None Include="Assets\Cards\temp\Tongue of Kair.xml" />
     <None Include="Assets\Cards\temp\Voice of the River.xml" />
     <None Include="Assets\Cards\temp\francesco.xml" />
+    <None Include="Assets\Communication\obj\Debug\Communication.csproj.FileListAbsolute.txt" />
     <None Include="Assets\Elenco Eventi.txt" />
+    <None Include="Assets\GameEventManager\obj\Debug\GameEventManager.csproj.FileListAbsolute.txt" />
+    <None Include="Assets\GameLogic\obj\Debug\GameLogic.csproj.FileListAbsolute.txt" />
+    <None Include="Assets\XmppCommunicator\obj\Debug\XmppCommunicator.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

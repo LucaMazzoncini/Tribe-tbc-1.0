@@ -44,3 +44,6 @@ H:\Tribe 1.0\Tribe\Assets\ConsoleInterface\bin\Debug\GameLogic.pdb
 H:\Tribe 1.0\Tribe\Assets\ConsoleInterface\bin\Debug\XmppCommunicator.pdb
 H:\Tribe 1.0\Tribe\Assets\ConsoleInterface\bin\Debug\Newtonsoft.Json.xml
 H:\Tribe 1.0\Tribe\Assets\ConsoleInterface\obj\Debug\ConsoleInterface.csprojResolveAssemblyReference.cache
+H:\Tribe 1.0\ConsoleInterface\bin\Debug\ConsoleInterface.exe.config
+H:\Tribe 1.0\ConsoleInterface\obj\Debug\ConsoleInterface.exe
+H:\Tribe 1.0\ConsoleInterface\obj\Debug\ConsoleInterface.pdb

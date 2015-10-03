@@ -76,6 +76,9 @@
     <Compile Include="Assets\Communication\MessagesEnums.cs" />
     <Compile Include="Assets\Communication\Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\GameEventManager\GameEventManager.cs" />
+    <Compile Include="Assets\GameEventManager\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="Assets\GameEventManager\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="Assets\GameEventManager\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Assets\GameLogic\Bibliotheca.cs" />
     <Compile Include="Assets\GameLogic\Card.cs" />
     <Compile Include="Assets\GameLogic\Elemental.cs" />
@@ -89,6 +92,10 @@
     <Compile Include="Assets\GameLogic\Spirit.cs" />
     <Compile Include="Assets\GameLogic\Utils.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\Board.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\DisplayCard\CardsUnity.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\DisplayCard\P1Script.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\DisplayCard\P2Script.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\DisplayCard\P3Script.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\EnableLoadingPoolScript.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\LoadedScript.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\ManaScriptUnity.cs" />
@@ -169,7 +176,11 @@
     <None Include="Assets\Cards\temp\Tongue of Kair.xml" />
     <None Include="Assets\Cards\temp\Voice of the River.xml" />
     <None Include="Assets\Cards\temp\francesco.xml" />
+    <None Include="Assets\Communication\obj\Debug\Communication.csproj.FileListAbsolute.txt" />
     <None Include="Assets\Elenco Eventi.txt" />
+    <None Include="Assets\GameEventManager\obj\Debug\GameEventManager.csproj.FileListAbsolute.txt" />
+    <None Include="Assets\GameLogic\obj\Debug\GameLogic.csproj.FileListAbsolute.txt" />
+    <None Include="Assets\XmppCommunicator\obj\Debug\XmppCommunicator.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
