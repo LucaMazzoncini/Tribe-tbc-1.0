@@ -62,7 +62,7 @@ namespace GameLogic
                 if (InvTemp.name == name)
                 {
                     Card card = new Card(name);
-                    card.InitFromInvocation(InvTemp);
+                    card.initFromInvocation(InvTemp);
                     return card;
                 }
                               

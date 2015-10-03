@@ -17,7 +17,7 @@ namespace GameLogic
         public event GenericEventHandler requestXmlForBibliotheca;
 
         private Player shaman;
-        private Player opponent;
+        private static Player opponent;
         private int diceResult;
         private int opponentDiceResult = 0;
         private bool myRound = false;
@@ -143,7 +143,12 @@ namespace GameLogic
             shaman.mana.setPoolFlag(false);
             foreach (Elemental elemTemp in shaman.cardsOnBoard)
                 if (elemTemp.type == Enums.Type.Elemental)
-                    elemTemp.hasAttacked = false;                   
+                {
+                    elemTemp.hasAttacked = false;
+                    elemTemp.hasAttackedThunderborn = false;
+                    elemTemp.hasWeakness = false;
+                }   
+                           
             comm.setRound(myRound);//invio la chiamata in locale
             comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
@@ -181,6 +186,24 @@ namespace GameLogic
         {
             shaman.target = FindTargetById(idTarget);
             shaman.TargetUpdated(); //questo evento viene chiamato per avvertire il player che la carta e' arrivata
+        }
+
+        public void AttackTargets(int idAttacker, int idTarget)
+        {
+            
+            int indexAttacker = 0;
+            int indexTarget = 0;
+            for (indexAttacker = 0; indexAttacker < shaman.cardsOnBoard.Count; indexAttacker++)
+                if (shaman.cardsOnBoard[indexAttacker].id == idAttacker)
+                    break;
+            for (indexTarget = 0; indexTarget < opponent.cardsOnBoard.Count; indexTarget++)
+                if (opponent.cardsOnBoard[indexTarget].id == idTarget)
+                    break;
+
+            if (shaman.cardsOnBoard[indexAttacker].canAttackElem((Elemental)opponent.cardsOnBoard[indexTarget], opponent))
+            shaman.cardsOnBoard[indexAttacker].attackElemental((Elemental)opponent.cardsOnBoard[indexTarget]);
+            //comm.ResultAttack(shaman.cardsOnBoard[indexAttacker], (Elemental)opponent.cardsOnBoard[indexTarget]); // ResultAttack al momento non esiste.
+
         }
 
 

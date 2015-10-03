@@ -31,6 +31,14 @@ namespace GameLogic
         {
             //paga il costo della carta
         }
+        public virtual Elemental attackElemental(Elemental targetElem)
+        {
+            return null;
+        }
+        public virtual bool canAttackElem(Elemental targetElem, Player controller)
+        {
+            return false;
+        }
         public Card initFromInvocation(Invocation InvTemp)
         {
             this.name = InvTemp.name;

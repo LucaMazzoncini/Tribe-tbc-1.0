@@ -2,22 +2,23 @@ Initialize engine version: 5.2.0f3 (e7947df39b5c)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: AMD Radeon HD 5900 Series (ID=0x689c)
-    Vendor:   ATI
-    VRAM:     1012 MB
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     128 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
-Loading H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
-Platform assembly: H:\Tribe 1.0\Tribe\TribeTBC_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.130 seconds
-desktop: 1920x1080 50Hz; virtual: 1920x1080 at 0,0
+Platform assembly: C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+Platform assembly: C:\TRIBE - TBC\Tribe 1.0\Tribe\TribeTBC_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.045 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.

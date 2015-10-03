@@ -33,7 +33,7 @@ namespace GameLogic
 
         public enum Properties
         {
-            None, Quickness, Guardian ,Penetrate ,Thunderborn , Thorns1
+            None, Quickness, Guardian ,Penetrate ,Thunderborn ,Thorns , Armor
         }
         public enum Buff
         {
