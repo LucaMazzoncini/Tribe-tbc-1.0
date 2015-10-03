@@ -18,7 +18,7 @@ namespace GameLogic
         public int hp { get; set; }
         public int maxHp { get; set; }
         public Mana mana { get; set; }
-        public int id;
+        private int id;
         public Target target;
         public List<Card> cardsOnBoard;  //nella 4 carta ci sta' lo spirito
         

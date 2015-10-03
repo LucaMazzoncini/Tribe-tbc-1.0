@@ -31,7 +31,7 @@ namespace GameLogic
         public Game(string name)
         {
             shaman = new Player(name, 0);         //vanno inizializzati
-            opponent = new Player("Opponent",1); //vanno inizializzati
+            opponent = new Player("Opponent", 1); //vanno inizializzati
             comm = Communication.Communicator.getInstance();
             
 
