@@ -6,14 +6,15 @@ public class P1Script : MonoBehaviour {
 
     public bool isPlaying; //questo flag serve per non accumulare le animazioni
     private CardUnity card = null;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
+    public void Start()
+    {
+        card = new CardUnity("P", "","");
+    }
+
+    public CardUnity GetCardDisplayerd()
+    {
+        return card;
     }
 
     public void PlayCard(CardUnity card)
@@ -27,6 +28,9 @@ public class P1Script : MonoBehaviour {
 
     public void Slide_dx()
     {
+        Texture text = new Texture();
+        text = transform.FindChild("P1_back").GetComponent<Renderer>().material.mainTexture;
+        transform.FindChild("P1").GetComponent<Renderer>().material.mainTexture = text;
         GetComponent<Animator>().Play("Slide_dx");
     }
     public void Slide_sx()
@@ -40,6 +44,11 @@ public class P1Script : MonoBehaviour {
     public void Slide_sx_ctr()
     {
         GetComponent<Animator>().Play("Slide_sx_ctr");
+    }
+    public void RemoveCard()
+    {
+        CardUnity emptyCard = new CardUnity("P", "", "");
+        PlayCard(emptyCard);
     }
 
 }

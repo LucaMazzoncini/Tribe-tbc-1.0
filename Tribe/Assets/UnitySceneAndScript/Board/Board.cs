@@ -17,7 +17,7 @@ public class Board : MonoBehaviour {
 
     void Start()
     {
-        loading.SetActive(true);
+        //loading.SetActive(true);
     }
 
     public void OkReady()

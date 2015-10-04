@@ -7,13 +7,15 @@ public class P3Script : MonoBehaviour {
     public bool isPlaying; //questo flag serve per non accumulare le animazioni
     public bool isPlayinPlayCard = false;
     private CardUnity card = null;
-    // Use this for initialization
+
     void Start()
     {
-
+        card = new CardUnity("P", "", "");
     }
-
-    // Update is called once per frame
+    public CardUnity GetCardDisplayerd()
+    {
+        return card;
+    }
     void Update()
     {
         if (isPlayinPlayCard)
@@ -42,5 +44,18 @@ public class P3Script : MonoBehaviour {
     public void Slide_ctr()
     {
         GetComponent<Animator>().Play("Slide_ctr");
+    }
+
+    public void OnMouseDown()
+    {
+        if (card != null) //se c'e' una carta.
+            if (card.name != "P") //se e' stata tolta
+                transform.parent.GetComponent<CardsUnity>().SwitchCard(3);
+    }
+    public void RemoveCard()
+    {
+        card = null;
+        CardUnity emptyCard = new CardUnity("P", "", "");
+        PlayCard(emptyCard);
     }
 }

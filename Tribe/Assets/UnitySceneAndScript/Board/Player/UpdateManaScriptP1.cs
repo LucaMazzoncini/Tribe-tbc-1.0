@@ -79,7 +79,4 @@ public class UpdateManaScriptP1 : MonoBehaviour {
     {
         transform.FindChild("GOLoadingPool").GetComponent<EnableLoadingPoolScript>().SetLoadingPool(false,MANA);
     }
-
-
-
 }

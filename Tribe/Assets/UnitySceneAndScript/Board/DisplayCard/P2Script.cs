@@ -4,15 +4,19 @@ using DisplayCard;
 
 public class P2Script : MonoBehaviour {
 
+    public bool isPlaying; //questo flag serve per non accumulare le animazioni
     public bool isPlayinPlayCard = false;
     private CardUnity card = null;
-    // Use this for initialization
-    void Start()
-    {
 
+    public void Start()
+    {
+        card = new CardUnity("P", "", "");
+    }
+    public CardUnity GetCardDisplayerd()
+    {
+        return card;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isPlayinPlayCard)
@@ -24,13 +28,13 @@ public class P2Script : MonoBehaviour {
             }
         }
     }
+
     public void PlayCard(CardUnity card)
     {
-        if (this.card != null)
-            GetComponent<Renderer>().material.mainTexture = this.card.text;
         this.card = card;
         transform.FindChild("P2_back").GetComponent<Renderer>().material.mainTexture = card.text;
         GetComponent<Animator>().Play("Enter_card");
+        isPlayinPlayCard = true;
     }
 
 
@@ -43,4 +47,17 @@ public class P2Script : MonoBehaviour {
         GetComponent<Animator>().Play("Slide_ctr");
     }
 
+    public void OnMouseDown()
+    {
+        if( card != null ) //se c'e' una carta.
+            if(card.name != "P") //se e' stata tolta
+                transform.parent.GetComponent<CardsUnity>().SwitchCard(2);
+    }
+
+    public void RemoveCard()
+    {
+        card = null;
+        CardUnity emptyCard = new CardUnity("P", "", "");
+        PlayCard(emptyCard);
+    }
 }
