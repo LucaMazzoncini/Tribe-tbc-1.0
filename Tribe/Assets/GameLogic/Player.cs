@@ -20,7 +20,7 @@ namespace GameLogic
         public Mana mana { get; set; }
         private int id;
         public Target target;
-        public List<Card> cardsOnBoard;  //nella 4 carta ci sta' lo spirito
+        public List<Card> cardsOnBoard = new List<Card>(4);  //nella 4 carta ci sta' lo spirito
         
         #endregion
         #region utils methods
