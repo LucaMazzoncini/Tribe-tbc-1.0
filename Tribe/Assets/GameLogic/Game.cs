@@ -141,10 +141,15 @@ namespace GameLogic
             comm = Communication.Communicator.getInstance();
             myRound = true;
             shaman.mana.setPoolFlag(false);
-            if(shaman.cardsOnBoard!=null)
-            foreach (Elemental elemTemp in shaman.cardsOnBoard)
-                if (elemTemp.type == Enums.Type.Elemental)
-                    elemTemp.hasAttacked = false;   
+            if (shaman.cardsOnBoard != null)
+                if (shaman.cardsOnBoard.Count != 0)
+                    foreach (Elemental elemTemp in shaman.cardsOnBoard)
+                        if (elemTemp.type == Enums.Type.Elemental)
+                        {
+                            elemTemp.hasAttacked = false;
+                            elemTemp.hasAttackedThunderborn = false;
+                            elemTemp.hasWeakness = false;
+                        }
                             
             comm.setRound(myRound);//invio la chiamata in locale
             comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart

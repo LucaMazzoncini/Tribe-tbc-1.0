@@ -222,7 +222,7 @@ namespace GameLogic
                         list.Add(Enums.Properties.Thunderborn);
                         break;
                     case "THORNS.1":
-                        list.Add(Enums.Properties.Thorns1);  //ATTENTO qui ci sara' un problema se si utilizza Thorns.x ma per motivi di tempo per adesso e' cosi
+                        list.Add(Enums.Properties.Thorns);  //ATTENTO qui ci sara' un problema se si utilizza Thorns.x ma per motivi di tempo per adesso e' cosi
                         break;
                     default:
                         list.Add(Enums.Properties.None);
