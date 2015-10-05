@@ -34,6 +34,7 @@ public class P3Script : MonoBehaviour {
         transform.FindChild("P3_back").GetComponent<Renderer>().material.mainTexture = card.text;
         GetComponent<Animator>().Play("Enter_card");
         isPlayinPlayCard = true;
+        transform.Find("/UI/Enviroment").GetComponent<EnviromentScript>().PlayAnimationGears();
     }
 
     public void Slide_dx()

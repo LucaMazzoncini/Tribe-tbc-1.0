@@ -35,6 +35,7 @@ public class P2Script : MonoBehaviour {
         transform.FindChild("P2_back").GetComponent<Renderer>().material.mainTexture = card.text;
         GetComponent<Animator>().Play("Enter_card");
         isPlayinPlayCard = true;
+        transform.Find("/UI/Enviroment").GetComponent<EnviromentScript>().PlayAnimationGears();
     }
 
 

@@ -97,6 +97,7 @@
     <Compile Include="Assets\UnitySceneAndScript\Board\DisplayCard\P2Script.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\DisplayCard\P3Script.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\EnableLoadingPoolScript.cs" />
+    <Compile Include="Assets\UnitySceneAndScript\Board\EnviromentScript.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\LoadedScript.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\ManaScriptUnity.cs" />
     <Compile Include="Assets\UnitySceneAndScript\Board\NextRound.cs" />

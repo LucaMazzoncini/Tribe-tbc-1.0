@@ -16,6 +16,7 @@ namespace GameEventManagement
         public delegate void SendStringBoolEventHandler(string name, bool value);
         public delegate void SendDoubleStringEventHandler(string value,string value1);
         public delegate void SendStringListEventHandler(List<string> name);
+        public delegate void SendStringListAndStringEventHandler(List<string> name,string param);
         public delegate void SendStringIntEventHandler(string name, int value);
         public delegate void LoadXmlForBibliothecaEventHandler(LinkedList<string> xmlList);
         #endregion
@@ -59,9 +60,14 @@ namespace GameEventManagement
         public static event GenericEventHandler unityReady;
         public static event SendStringEventHandler canCreateManaPool;
         public static event SendStringEventHandler opponentChoseMana;
+        public static event SendStringListAndStringEventHandler menuRequest;
         #endregion
 
         #region methods called from communicator
+        public static void MenuFiltered(List<string> cards)
+        {
+            menuFiltered(cards);
+        }
         public static void OpponentPoolUpdate(string mana,int value)
         {
             opponentPoolUpdate(mana, value);
@@ -160,6 +166,11 @@ namespace GameEventManagement
 
         #region methods called from interface
 
+        public static void MenuRequest(List<string> filter,string cost)
+        {
+            MenuRequest(filter, cost);
+        }
+
         public static void CanCreateManaPool(string mana)
         {
             canCreateManaPool(mana);
@@ -199,11 +210,6 @@ namespace GameEventManagement
         public static void SendOpponentName(string name)
         {
             sendOpponentName(name);
-        }
-
-        public static void MenuFiltered(List<string> param) //lista separata da spazi
-        {
-            menuFiltered(param);
         }
 
         public static void EndRound()

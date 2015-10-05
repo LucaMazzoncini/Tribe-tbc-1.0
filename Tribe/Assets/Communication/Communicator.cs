@@ -52,7 +52,6 @@ namespace Communication
             GameEventManager.throwDice += GameEventManager_throwDice;
             GameEventManager.loadXmlForBibliotheca += GameEventManager_loadXmlForBibliotheca;
             GameEventManager.sendOpponentName += GameEventManager_SendOpponentName;
-            GameEventManager.menuFiltered += GameEventManager_menuFiltered; //questa funzione viene chiamata dall'interfaccia per filtrare il menu
             GameEventManager.endRoud += GameEventManager_endRound;
             GameEventManager.playCard += GameEventManager_playCard;
             GameEventManager.canPlayCard += GameEventManager_CanPlayCard;
@@ -60,7 +59,8 @@ namespace Communication
             GameEventManager.unityReady += GameEventManager_unityReady;
             GameEventManager.manaChosen += GameEventManager_manaChosen;
             GameEventManager.createPool += GameEventManager_createPool;
-            GameEventManager.canCreateManaPool += GameEvent_canCreateManaPool;
+            GameEventManager.canCreateManaPool += GameEventManager_canCreateManaPool;
+            GameEventManager.menuRequest += GameEventManager_menuRequest;
             #endregion
 
             tcpConnector.Connect();
@@ -91,6 +91,46 @@ namespace Communication
 
         #region methods triggered by events or called by Game
 
+        public void GameEventManager_menuRequest(List<string> filter,string mana)  //il mana deve essere in questo formato ":Fire 2:Earth 3" ecc ecc
+        {
+            List<Enums.Filter> tempFilter = new List<Enums.Filter>();
+            Mana tempMana = new Mana();
+            foreach (string temp in filter)
+                tempFilter.Add((Enums.Filter)Enum.Parse(typeof(Enums.Filter), temp)); //aggiungo i tipi di filtri da string a Enums.filter
+
+            string[] parseMana = mana.Split(':');
+
+            
+            foreach(string stringTemp in parseMana)
+            {
+                if(stringTemp != "") //la prima stringa sara' vuota
+                {
+                    string[] subDivisioString = stringTemp.Split(' ');
+                    tempMana.valueList.Add((Enums.Mana)Enum.Parse(typeof(Enums.Mana), subDivisioString[0]), Int32.Parse(subDivisioString[1])); //carico i valori del mana direttamente nella lista
+                }
+            }
+            game.MenuRequest(tempFilter,tempMana);
+
+        }
+
+        public void MenuFiltered(LinkedList<Invocation> List)
+        {
+            List<string> cards = new List<string>();
+            foreach(Invocation card in List)
+            {
+                string temp = "";
+                temp += ":Name "      + card.name;
+                temp += ":Hp "        + card.constitution;
+                temp += ":Pw "        + card.powers;
+                temp += ":Cost "      + ManaCostToString(card.manaCost);
+                temp += ":Flavor "    + card.flavour;
+                temp += ":Propreties " + PropertiesToString(card.properties);
+
+                cards.Add(temp);
+            }
+            GameEventManager.MenuFiltered(cards);
+        }
+
         public void SendOpponentManaChosen(Enums.Mana param)
         {
             sendMessage(generateMessage(MessagesEnums.Message.OpponentManaChosen, param.ToString()));
@@ -112,16 +152,6 @@ namespace Communication
             GameEventManager.Loaded();
         }
 
-        void GameEventManager_menuFiltered(List<string> param)
-        {
-            List<Enums.Filter> Filter = new List<Enums.Filter>();
-            foreach (string a in param)
-            {
-                Filter.Add(parseFilter(a));
-            }
-            LinkedList<Invocation> cardList = game.MenuFiltered(Filter);
-            parseAndSendMenu(cardList);// trasforma le carte in stringa ed invia le carte richieste
-        }
         void GameEventManager_throwDice()
         {
             game.ThrowDice();
@@ -135,7 +165,6 @@ namespace Communication
 
        private void TcpConnector_messageRecieved(MessageEventArgs messageArg)
         {
-            //MessageDeseralizerAndParser.pisello(messageArg.Message);
             MessageDeseralizerAndParser.Read(this, messageArg.Message);
         }
 
@@ -224,7 +253,7 @@ namespace Communication
             game.CreateShamanPool(manaEnum);
         }
 
-        public void GameEvent_canCreateManaPool(string mana)
+        public void GameEventManager_canCreateManaPool(string mana)
         {
             Enums.Mana manaEnum = (Enums.Mana)Enum.Parse(typeof(Enums.Mana), mana);
             game.CanCreateManaPool(manaEnum);
@@ -278,7 +307,6 @@ namespace Communication
         public void ChangeRound()
         {
             game.StartTourn();
-
         }
 
         public void SetOpponentInfo(Object data)
@@ -402,17 +430,21 @@ namespace Communication
         }
 
 
-        //callback menu
-        private void parseAndSendMenu(LinkedList<Invocation> param)
+        //utlis
+        private string ManaCostToString(Dictionary<Enums.Mana,int> manaCost)
         {
-            List <string> message = new List<string>();
-            foreach(Invocation card in param)
-                message.Add(card.returnStringFormat());
-
-            GameEventManager.MenuProcessed(message);
-
-
+            string ret = "";
+            foreach(KeyValuePair<Enums.Mana,int> iterator in manaCost)
+                ret += iterator.Key.ToString() + " " + iterator.Value.ToString() + ":"; 
+            return ret;
         }
 
+        private string PropertiesToString(List<Enums.Properties> properties)
+        {
+            string ret = "";
+            foreach (Enums.Properties iterator in properties)
+                ret += " " + iterator.ToString();
+            return ret;
+        }
     }
 }

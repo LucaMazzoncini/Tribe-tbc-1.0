@@ -239,6 +239,16 @@ namespace GameLogic
             comm.GetAllyElementalTarget();
         }
 
+
+
+        #endregion
+
+        #region Metodi Chiamati da Interface
+        public void MenuRequest(List<Enums.Filter> filtrerList, Mana mana)
+        {
+            LinkedList<Invocation> cardList = bibliotheca.getCards(filtrerList, mana);
+            comm.MenuFiltered(cardList);
+        }
         #endregion
         public void LoadBibliotheca(LinkedList<string> xmlInvocations)
         {
