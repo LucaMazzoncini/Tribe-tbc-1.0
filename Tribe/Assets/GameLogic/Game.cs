@@ -17,7 +17,7 @@ namespace GameLogic
         public event GenericEventHandler requestXmlForBibliotheca;
 
         private Player shaman;
-        private static Player opponent;
+        private Player opponent;
         private int diceResult;
         private int opponentDiceResult = 0;
         private bool myRound = false;
@@ -189,7 +189,7 @@ namespace GameLogic
             shaman.TargetUpdated(); //questo evento viene chiamato per avvertire il player che la carta e' arrivata
         }
 
-        public void AttackTargets(int idAttacker, int idTarget)
+        public void AttackTarget(int idAttacker, int idTarget)
         {
             
             int indexAttacker = 0;
@@ -207,12 +207,27 @@ namespace GameLogic
                     if (shaman.cardsOnBoard[indexAttacker].canAttackElem((Elemental)opponent.cardsOnBoard[indexTarget], opponent))
                         shaman.cardsOnBoard[indexAttacker].attackElemental((Elemental)opponent.cardsOnBoard[indexTarget]);
                 }
-            //comm.ResultAttack(shaman.cardsOnBoard[indexAttacker], (Elemental)opponent.cardsOnBoard[indexTarget]); // ResultAttack al momento non esiste.
+            //comm.ResultAttackElemental(shaman.cardsOnBoard[indexAttacker], (Elemental)opponent.cardsOnBoard[indexTarget]); // ResultAttack al momento non esiste.
 
         }
 
+        public void AttackPlayer(int idAttacker)
+        {
+            int indexAttacker = 0;
+            if (shaman.cardsOnBoard != null)
+                {
+                    for (indexAttacker = 0; indexAttacker < shaman.cardsOnBoard.Count; indexAttacker++)
+                        if (shaman.cardsOnBoard[indexAttacker].id == idAttacker)
+                            break;
+                
+            if (shaman.cardsOnBoard[indexAttacker].canAttackPlayer(opponent))
+                shaman.cardsOnBoard[indexAttacker].attackPlayer(opponent);
+                }
+            //comm.ResultAttackPlayer(shaman.cardsOnBoard[indexAttacker], opponent); // da implementare.
+        }
 
 
+            
         #endregion
 
         #region Metodi chiamati da altri oggetti a Comunicator
