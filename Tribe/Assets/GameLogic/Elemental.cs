@@ -33,11 +33,22 @@ namespace GameLogic
             return (Elemental)cardTemp;
         }
         
-        public Elemental attackElemental(Elemental targetElem) //attacca la creatura passata modifica lo stato dell'attaccante e del target e ritorn il target modificato.
+        public override Elemental attackElemental(Elemental targetElem) //attacca la creatura passata modifica lo stato dell'attaccante e del target e ritorn il target modificato.
         {
-           
+           //modifica stato Attaccante.
             if(!this.buff.Contains(Enums.Buff.Shield)) // controllo che non abbia shield, se no mi limito a rimuovere shield.
             {
+                if (targetElem.properties.Contains(Enums.Properties.Thorns)) // controlla se il target ha Thorns.
+                {
+                    foreach (Enums.Properties thorn in targetElem.properties)
+                        if (thorn.Equals(Enums.Properties.Thorns))
+                        {
+                            if (this.properties.Contains(Enums.Properties.Armor) && !targetElem.properties.Contains(Enums.Properties.Penetrate))
+                                this.properties.Remove(Enums.Properties.Armor);
+                            else
+                                this.hp -= 1;
+                        } 
+                }
                 for (int dmg = 0; dmg < targetElem.strength; dmg++) // controlla se attaccante e target hanno armor. Se ce l'hanno scalano prima quella poi gli hp. 
                     if (this.properties.Contains(Enums.Properties.Armor) && !targetElem.properties.Contains(Enums.Properties.Penetrate))
                         this.properties.Remove(Enums.Properties.Armor);
@@ -48,11 +59,12 @@ namespace GameLogic
             {
                 this.buff.Remove(Enums.Buff.Shield);
             }
+            // modifica stato Target.
             if (!targetElem.buff.Contains(Enums.Buff.Shield)) // controllo che non abbia shield, altrimenti tolgo shield e ritorno il target.
             {
-                for (int dmg = 0; dmg < this.strength; dmg++)
+                    for (int dmg = 0; dmg < this.strength; dmg++)
                 {
-                    if (targetElem.properties.Contains(Enums.Properties.Armor) && !this.properties.Contains(Enums.Properties.Penetrate))
+                    if (targetElem.properties.Contains(Enums.Properties.Armor) || targetElem.buff.Contains(Enums.Buff.Thunderborn) && !this.properties.Contains(Enums.Properties.Penetrate))
                         targetElem.properties.Remove(Enums.Properties.Armor);
                     else
                         targetElem.hp -= 1;
@@ -71,22 +83,16 @@ namespace GameLogic
                 else
                     this.hasAttacked = true;
                 return targetElem;
-            }
-
-
-            //this.hp -= targetElem.strength;
-            //targetElem.hp -= this.strength;
-
-            return targetElem;
+            }              
         }
 
-        public bool canAttackElem(Elemental targetElem, Player controller)
+        public override bool canAttackElem(Elemental targetElem, Player controller)
         {
             if (this.hasAttacked == false && !this.debuff.Contains(Enums.Debuff.Asleep)) // check se ha già attaccato o se è addormentato
             {
                 if (this.properties.Contains(Enums.Properties.Quickness) || this.hasWeakness == false) //check se ha debolezza da evocazione o Quickness
                 {
-                    if (!targetElem.properties.Contains(Enums.Properties.Guardian))
+                    if (!targetElem.properties.Contains(Enums.Properties.Guardian)) // se il target non ha Guardian, check su tutti gli elementali dell'opponent, per vedere se hanno Guardian.
                         foreach (Elemental elemTemp in controller.cardsOnBoard)
                         {
                             if (elemTemp.properties.Contains(Enums.Properties.Guardian))
@@ -95,7 +101,6 @@ namespace GameLogic
                     return true;
                 }
             }
-            
             return false;
         }
 

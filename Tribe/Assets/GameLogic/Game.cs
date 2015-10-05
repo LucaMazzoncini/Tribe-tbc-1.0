@@ -195,15 +195,19 @@ namespace GameLogic
             
             int indexAttacker = 0;
             int indexTarget = 0;
-            for (indexAttacker = 0; indexAttacker < shaman.cardsOnBoard.Count; indexAttacker++)
-                if (shaman.cardsOnBoard[indexAttacker].id == idAttacker)
-                    break;
-            for (indexTarget = 0; indexTarget < opponent.cardsOnBoard.Count; indexTarget++)
-                if (opponent.cardsOnBoard[indexTarget].id == idTarget)
-                    break;
+            if (shaman.cardsOnBoard != null)
+                if (opponent.cardsOnBoard != null)
+                {
+                    for (indexAttacker = 0; indexAttacker < shaman.cardsOnBoard.Count; indexAttacker++)
+                        if (shaman.cardsOnBoard[indexAttacker].id == idAttacker)
+                            break;
+                    for (indexTarget = 0; indexTarget < opponent.cardsOnBoard.Count; indexTarget++)
+                        if (opponent.cardsOnBoard[indexTarget].id == idTarget)
+                            break;
 
-            if (shaman.cardsOnBoard[indexAttacker].canAttackElem((Elemental)opponent.cardsOnBoard[indexTarget], opponent))
-            shaman.cardsOnBoard[indexAttacker].attackElemental((Elemental)opponent.cardsOnBoard[indexTarget]);
+                    if (shaman.cardsOnBoard[indexAttacker].canAttackElem((Elemental)opponent.cardsOnBoard[indexTarget], opponent))
+                        shaman.cardsOnBoard[indexAttacker].attackElemental((Elemental)opponent.cardsOnBoard[indexTarget]);
+                }
             //comm.ResultAttack(shaman.cardsOnBoard[indexAttacker], (Elemental)opponent.cardsOnBoard[indexTarget]); // ResultAttack al momento non esiste.
 
         }

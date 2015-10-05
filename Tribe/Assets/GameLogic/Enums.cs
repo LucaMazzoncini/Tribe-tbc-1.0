@@ -37,7 +37,9 @@ namespace GameLogic
         }
         public enum Buff
         {
-            None, Shield, Immortal, Quickness, Guardian, Penetrate, Thunderborn, Thorns1, IncreasedStr, IncreasedCon
+            None, Shield, Immortal, Quickness, Guardian, Penetrate, Thunderborn, Thorns, IncreasedStr, IncreasedCon 
+                // Lista di appoggio. Quando viene aggiunto una proprietà come Buff, viene aggiunta anche la Property corrispondente. 
+                // ES: un rituale mi conferisce Guardian. Check su properties: se NON c'è Guardian aggiungo Guardian in buff E in properties.
         }
         public enum Debuff
         {
