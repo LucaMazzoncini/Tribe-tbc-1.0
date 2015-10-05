@@ -31,6 +31,14 @@ namespace GameLogic
         {
             //paga il costo della carta
         }
+        public virtual bool canAttackPlayer(Player targetPlayer)
+        {
+            return false;
+        } // funzioni virtuali per l'override in "Elemental".
+        public virtual Player attackPlayer(Player targetPlayer)
+        {
+            return null;
+        }
         public virtual Elemental attackElemental(Elemental targetElem)
         {
             return null;

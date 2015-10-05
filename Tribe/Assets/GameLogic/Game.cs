@@ -154,8 +154,7 @@ namespace GameLogic
             comm.setRound(myRound);//invio la chiamata in locale
             comm.ChoseMana(Enums.ManaEvent.NewRound); //Chiedo di selezionare il mana che prendo in manaAtStart
         }
-
-
+        
         public void manaChoosen(Enums.Mana manaParam,Enums.ManaEvent manaEventparam) //mi passa il mana selezionato
         {
             if (manaEventparam == Enums.ManaEvent.NewRound)

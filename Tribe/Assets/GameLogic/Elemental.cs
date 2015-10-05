@@ -104,13 +104,38 @@ namespace GameLogic
             return false;
         }
 
-        public Player attackPlayer(Player param) //Attacco l'opponent e ritorno le eventuali modifiche.
+        public override Player attackPlayer(Player targetPlayer) //Attacco l'opponent e ritorno le eventuali modifiche.
         {
-            return param;
+            for (int dmg = 0; dmg < this.strength; dmg++)
+                targetPlayer.hp -= 1;
+
+            if (this.properties.Contains(Enums.Properties.Thunderborn) && this.hasAttackedThunderborn == false)
+                this.hasAttackedThunderborn = true;
+            else
+                this.hasAttacked = true;
+
+            return targetPlayer;
         }
 
-        public bool canAttackOpponent(Player param) //controllo se posso attaccare l'opponent oppure possiede una creatura con protezione ecc ecc...
+        public override bool canAttackPlayer(Player targetPlayer) //controllo se posso attaccare l'opponent oppure possiede una creatura con protezione ecc ecc...
         {
+            if (this.hasAttacked == false && !this.debuff.Contains(Enums.Debuff.Asleep)) // check se ha già attaccato o se è addormentato
+            {
+                if (this.properties.Contains(Enums.Properties.Quickness) || this.hasWeakness == false) //check se ha debolezza da invocazione o Quickness
+                {
+                    if (targetPlayer.cardsOnBoard != null)
+                    {
+                        foreach (Elemental elemTemp in targetPlayer.cardsOnBoard)
+                        {
+                            if (elemTemp.properties.Contains(Enums.Properties.Guardian)) // check se l'opponent ha elementali con Guardian
+                                return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+
             return true;
         }
 
