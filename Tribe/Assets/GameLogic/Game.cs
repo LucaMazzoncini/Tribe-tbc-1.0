@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
@@ -25,13 +25,15 @@ namespace GameLogic
         private static bool manaChosen; //questo flag ci dice se il mana e' gia' stato scelto
         private static bool opponentReady = false;
         private bool unityReady = false;
-
         Bibliotheca bibliotheca;
+        
         #endregion
         public Game(string name)
         {
             shaman = new Player(name, 0);         //vanno inizializzati
             opponent = new Player("Opponent", 1); //vanno inizializzati
+            shaman.InitCastCounter(bibliotheca);  //inizializza i CastCounter.
+            opponent.InitCastCounter(bibliotheca);
             comm = Communication.Communicator.getInstance();
             
 
@@ -121,7 +123,7 @@ namespace GameLogic
         }
         public void CanCreateManaPool(Enums.Mana mana) //questa funzione e' chiamata dalla grafica per sapere se puo' creare una polla di un tipo
         {
-            if (shaman.mana.canCreatePool(mana))
+            if (shaman.mana.canCreatePool(mana) && myRound == true)
                 comm.YesYouCanCreateManaPool(mana);
         }
        
@@ -175,12 +177,13 @@ namespace GameLogic
 
         public void PlayCard(string name)
         {
-            shaman.PlayCard(name);
+            if(CanPlayCard(name))
+            shaman.PlayCard(bibliotheca.getCardByName(name));
         }
 
         public bool CanPlayCard(string name)
-        {
-            return shaman.CanPlayCard(name);
+        {          
+            return shaman.CanPlayCard(bibliotheca.getCardByName(name));
         }
 
         public void TargetEvent(int idTarget) //questa funzione riceve il target richiesto precedentemente

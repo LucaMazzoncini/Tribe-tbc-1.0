@@ -130,13 +130,11 @@ namespace GameLogic
                             if (elemTemp.properties.Contains(Enums.Properties.Guardian)) // check se l'opponent ha elementali con Guardian
                                 return false;
                         }
+                        return true;
                     }
-                    return true;
                 }
             }
-            return false;
-
-            return true;
+            return false;        
         }
 
         public bool powerIsInCd(int n) //controlla se il potere in posizione n della lista powersè in cd oppure no. Per sapere se è in cd si controlla in creatureStatus
