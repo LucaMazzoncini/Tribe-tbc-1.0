@@ -33,7 +33,7 @@ namespace GameLogic
             this.hp = MAXHP;
             this.id = idTemp;
             mana = new Mana(); //alloca e genera i mana random 
-            target = null;              
+                         
             //metti tutta la lista cards a null
         }
         public Player() { }
@@ -48,7 +48,8 @@ namespace GameLogic
                 // TargetUpdate() -> card.play(param)
                 // else
                 // card.play()  
-                castCounter[cardTemp.name] -= 1; // scala dal CastCounter;
+                if(cardTemp.castLimit>0)
+                    castCounter[cardTemp.name] -= 1; // scala dal CastCounter;
                 return true;
             }
             return false;
@@ -92,8 +93,17 @@ namespace GameLogic
                             foreach (Enums.Target targTemp in MicroActions.getTargets(microaction))
                                 targetList.Add(targTemp);
                     foreach (Enums.Target tTemp in targetList)
-                        if (!Game.allTargets.Contains(tTemp))
-                            canPlay = false;
+                    {
+                        if (tTemp.Equals(Enums.Target.Enemy))
+                            if (Game.EnemyElementals.Count == 0)
+                                canPlay = false;
+                        if (tTemp.Equals(Enums.Target.Ally))
+                            if (Game.AllyElementals.Count == 0)
+                                canPlay = false;
+                        if (tTemp.Equals(Enums.Target.Spirit))
+                            if (Game.EnemySpirits.Count == 0 && Game.AllySpirits.Count == 0)
+                                canPlay = false;
+                    }
                         break;
                 }
             return canPlay;        

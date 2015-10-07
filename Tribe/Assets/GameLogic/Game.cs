@@ -26,8 +26,10 @@ namespace GameLogic
         private static bool opponentReady = false;
         private bool unityReady = false;
         Bibliotheca bibliotheca;
-        public static List<Enums.Target> AllyTargets = new List<Enums.Target>();
-        public static List<Enums.Target> EnemyTargets = new List<Enums.Target>();
+        public static List<Enums.Target> AllyElementals = new List<Enums.Target>();
+        public static List<Enums.Target> EnemyElementals = new List<Enums.Target>();
+        public static List<Enums.Target> AllySpirits = new List<Enums.Target>();
+        public static List<Enums.Target> EnemySpirits = new List<Enums.Target>();
 
         #endregion
         public Game(string name)
