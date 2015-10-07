@@ -4,12 +4,7 @@ using System.Text;
 
 namespace GameLogic
 {
-    public class Target
-    {
-        public Enums.Target target;
-        public int id = 0;
-        public string name = "";
-    }
+    
     public class Player
     {
         #region variables
@@ -19,7 +14,7 @@ namespace GameLogic
         public int maxHp { get; set; }
         public Mana mana { get; set; }
         private int id;
-        public Target target;
+        public Enums.Target target = Enums.Target.Player;
         public List<Card> cardsOnBoard = new List<Card>();  //nella 4 carta ci sta' lo spirito
         public Dictionary<string,int> castCounter = new Dictionary<string, int>(); //lista che serve per verificare il castLimit
         
@@ -73,25 +68,35 @@ namespace GameLogic
                 switch (cardTemp.type)
                 {
                     case Enums.Type.Elemental:
+
                         if (cardsOnBoard.Count < 4) // controlla che il board non sia pieno
                         {
                             Elemental elemCard = (Elemental)cardTemp;
                             foreach (Elemental elemTemp in cardsOnBoard)
-                                if (elemCard.from != "" && elemCard.from == elemTemp.name)
+                                if (elemCard.from != "" && elemCard.from != elemTemp.name)
                                     canPlay = false;
                         }
                         break;
                     case Enums.Type.Spirit:
+
                         if (cardsOnBoard.Count < 4) // controlla che il board non sia pieno
                             foreach (Card Ctemp in cardsOnBoard)
                                 if (Ctemp.type == Enums.Type.Spirit)
                                     canPlay = false;
                         break;
                     case Enums.Type.Ritual:
+
+                    List<Enums.Target> targetList = null;
+                    foreach (Power powTemp in cardTemp.powers)
+                        foreach (string microaction in powTemp.microActions)
+                            foreach (Enums.Target targTemp in MicroActions.getTargets(microaction))
+                                targetList.Add(targTemp);
+                    foreach (Enums.Target tTemp in targetList)
+                        if (!Game.allTargets.Contains(tTemp))
+                            canPlay = false;
                         break;
                 }
-            return canPlay;  
-            // mancano i check sui Target Validi per i Rituals. Da aggiungere dopo aver fatto la parte delle Microactions.              
+            return canPlay;        
         }
                            
         public void TargetUpdated()

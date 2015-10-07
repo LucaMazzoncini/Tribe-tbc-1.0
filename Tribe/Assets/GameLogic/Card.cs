@@ -15,7 +15,8 @@ namespace GameLogic
         public Enums.Type type;
         public Enums.SubType subtype;
         public int castLimit;
-        public Enums.Target target; //se non puo' essere targettata va' messo a null
+        public Enums.Target target;  
+        string card; // stringa di info parsate da Xml, inizializzata da invocation
 
         public Card(){}
 
@@ -55,6 +56,7 @@ namespace GameLogic
             this.subtype = InvTemp.subType[0];
             this.powers = InvTemp.powers;
             this.castLimit = InvTemp.castLimit;
+            this.card = InvTemp.getCard();
             if (this.type == Enums.Type.Elemental)
             {
                 Elemental ElemTemp = new Elemental(this.name);

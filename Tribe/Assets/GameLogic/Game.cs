@@ -16,8 +16,8 @@ namespace GameLogic
         public event ResultEventHandler sendDiceResult;
         public event GenericEventHandler requestXmlForBibliotheca;
 
-        private Player shaman;
-        private Player opponent;
+        private static Player shaman;
+        private static Player opponent;
         private int diceResult;
         private int opponentDiceResult = 0;
         private bool myRound = false;
@@ -26,7 +26,9 @@ namespace GameLogic
         private static bool opponentReady = false;
         private bool unityReady = false;
         Bibliotheca bibliotheca;
-        
+        public static List<Enums.Target> AllyTargets = new List<Enums.Target>();
+        public static List<Enums.Target> EnemyTargets = new List<Enums.Target>();
+
         #endregion
         public Game(string name)
         {
@@ -272,7 +274,7 @@ namespace GameLogic
         {
             bibliotheca = new Bibliotheca(xmlInvocations);
         }
-        private Target FindTargetById(int id)
+        /*private Target FindTargetById(int id)
         {
             Target ret = new Target();
             ret.id = id;
@@ -317,7 +319,7 @@ namespace GameLogic
             }
 
             return ret;
-        }
+        } */
 
         #region Inizio round
         public void FirstRoundStart()  //viene chiamato solo la prima volta

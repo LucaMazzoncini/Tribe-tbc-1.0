@@ -18,6 +18,8 @@ namespace GameLogic
         private bool PoolFlag = false;
         public Dictionary<Enums.Mana, int> valueList { get; set; } //riserva di mana
         public Dictionary<Enums.Mana, int> poolList { get; set; } // polle
+        public Enums.Target target = Enums.Target.Mana;
+
 
         #endregion
 

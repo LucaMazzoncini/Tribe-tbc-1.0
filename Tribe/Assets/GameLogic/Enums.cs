@@ -51,7 +51,7 @@ namespace GameLogic
         }
         public enum Target
         {
-            None, Player,Elemental,Spirit,Mana
+            None, Player, Shaman, Opponent, Elemental, Spirit, Mana, Ally, Enemy, Other
         }
     }
 }

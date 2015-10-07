@@ -6,17 +6,7 @@ using System.Xml;
 namespace GameLogic
 {
     using Params = Dictionary<string, string>;
-    public class Power
-    {
-
-        public int cooldown;
-        public List<string> value;
-        public Power()
-        {
-            cooldown = 0;
-            value = new List<string>();
-        }
-    }
+   
     public class Invocation
     {
         #region variables
@@ -35,7 +25,6 @@ namespace GameLogic
         public List<Enums.Properties> properties { get; set; }
         public List<Power> powers { get; set; }
         public List<string> onAppear { get; set; }
-        public List<string> effects { get; set; }
         public List<string> onDeath { get; set; }
         public string flavour { get; set; }
         private System.Xml.XmlDocument xmlDoc;
@@ -43,6 +32,11 @@ namespace GameLogic
         private string card; //in questa stringa ci vanno tutte le informazioni lette che vanno passate all'interfaccia
         #endregion
 
+
+        public string getCard()
+        {
+            return card;
+        }
 
         public Invocation(System.Xml.XmlDocument xmlDoc)
         {
@@ -82,8 +76,6 @@ namespace GameLogic
             card += (" POWERS:" + (GetDataFromXml("Powers")));
             onAppear = LoadActionsAndEffectFromString(GetDataFromXml("OnAppear"));
             card += (" ONAPPEARACTIONS:" + (GetDataFromXml("OnAppear")));
-            effects = LoadActionsAndEffectFromString(GetDataFromXml("Effect"));
-            card += (" EFFECTS:" + (GetDataFromXml("Effect")));
             onDeath = LoadActionsAndEffectFromString(GetDataFromXml("OnDeath"));
             card += (" ONDEATH:" + (GetDataFromXml("OnDeath")));
             flavour = GetDataFromXml("Flavour");

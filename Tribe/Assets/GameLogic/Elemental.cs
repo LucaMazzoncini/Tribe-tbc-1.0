@@ -7,7 +7,15 @@ namespace GameLogic
 {
     public class Elemental : Card
     {
-        public Elemental(string param) : base(param){ }
+        public Elemental() : base()
+        {
+            target = Enums.Target.Elemental;
+        }
+
+        public Elemental(string param) : base(param)
+        {
+            target = Enums.Target.Elemental;
+        }
 
         public int strength;
         public int constitution;
@@ -23,6 +31,7 @@ namespace GameLogic
         public bool hasAttacked = false;
         public bool hasAttackedThunderborn = false; // flag solo per Thunderborn.
         public bool hasWeakness = true; // debolezza da evocazione.
+        
 
         
         

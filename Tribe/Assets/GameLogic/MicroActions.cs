@@ -37,6 +37,36 @@ namespace GameLogic
                     targetsList.Add(Enums.Target.Player);
                     targetsList.Add(Enums.Target.Elemental);
                 break;
+                case "DAMAGEELEMENTAL":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "DAMAGEPLAYER":
+                    targetsList.Add(Enums.Target.Player);
+                    break;
+                case "DISPEL":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "ADDCOS":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "KILLALLY":
+                    targetsList.Add(Enums.Target.Ally);
+                    break;
+                case "SELFDAMAGE":
+                    targetsList.Add(Enums.Target.Shaman);
+                    break;
+                case "DECSTR":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "INCURABLE":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "SHIELD":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "POISON":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
                 case "ARMOR":
                     targetsList.Add(Enums.Target.Elemental);
                     break;
@@ -44,7 +74,17 @@ namespace GameLogic
                     targetsList.Add(Enums.Target.Player);
                     targetsList.Add(Enums.Target.Elemental);
                     break;
+                case "HEALELEMENTAL":
+                    targetsList.Add(Enums.Target.Elemental);
+                    break;
+                case "HEALYOUANDALLALLIES":
+                    targetsList.Add(Enums.Target.Shaman);
+                    targetsList.Add(Enums.Target.Ally);
+                    break;
                 case "ADDMANA":
+                    targetsList.Add(Enums.Target.Mana);
+                    break;
+                case "LOSTRANDOMELEMENT":
                     targetsList.Add(Enums.Target.Mana);
                     break;
                 case "ASLEEP":

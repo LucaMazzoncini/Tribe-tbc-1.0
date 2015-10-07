@@ -7,10 +7,18 @@ namespace GameLogic
 {
     class Spirit : Card
     {
-        public Spirit(string name) : base(name) { }
+        public Spirit() : base()
+        {
+            target = Enums.Target.Spirit;
+        }
+        public Spirit(string name) : base(name)
+        {
+            target = Enums.Target.Spirit;
+        }
         public int essence;
         public List<string> onAppear;
         public List<string> onDeath;
+        
 
         public Spirit initFromInv(Invocation invTemp)
         {

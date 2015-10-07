@@ -83,6 +83,7 @@
     <Compile Include="Assets\GameEventManager\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Assets\GameLogic\Bibliotheca.cs" />
     <Compile Include="Assets\GameLogic\Card.cs" />
+    <Compile Include="Assets\GameLogic\Power.cs" />
     <Compile Include="Assets\GameLogic\Ritual.cs" />
     <Compile Include="Assets\GameLogic\Elemental.cs" />
     <Compile Include="Assets\GameLogic\Enums.cs" />
