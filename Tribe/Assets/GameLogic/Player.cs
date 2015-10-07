@@ -14,7 +14,7 @@ namespace GameLogic
         public int maxHp { get; set; }
         public Mana mana { get; set; }
         private int id;
-        public Enums.Target target = Enums.Target.Player;
+        public Target target = new Target();
         public List<Card> cardsOnBoard = new List<Card>();  //nella 4 carta ci sta' lo spirito
         public Dictionary<string,int> castCounter = new Dictionary<string, int>(); //lista che serve per verificare il castLimit
         
@@ -70,13 +70,24 @@ namespace GameLogic
                 {
                     case Enums.Type.Elemental:
 
-                        if (cardsOnBoard.Count < 4) // controlla che il board non sia pieno
+                    if (cardsOnBoard.Count < 4) // controlla che il board non sia pieno
+                    {
+                        int elemCount = 0; // se è 3, ci sono già 3 elementali sul tuo board e ritorna false.
+                        foreach (Card cTemp in cardsOnBoard)
+                            if (cTemp.type == Enums.Type.Elemental)
+                                elemCount += 1;
+                        if (elemCount == 3)
                         {
-                            Elemental elemCard = (Elemental)cardTemp;
+                            canPlay = false;
+                            break;
+                        }
+                        
+                        Elemental elemCard = (Elemental)cardTemp;
                             foreach (Elemental elemTemp in cardsOnBoard)
                                 if (elemCard.from != "" && elemCard.from != elemTemp.name)
                                     canPlay = false;
-                        }
+                        
+                    }
                         break;
                     case Enums.Type.Spirit:
 
@@ -94,13 +105,13 @@ namespace GameLogic
                                 targetList.Add(targTemp);
                     foreach (Enums.Target tTemp in targetList)
                     {
-                        if (tTemp.Equals(Enums.Target.Enemy))
+                        if (tTemp==Enums.Target.Enemy)
                             if (Game.EnemyElementals.Count == 0)
                                 canPlay = false;
-                        if (tTemp.Equals(Enums.Target.Ally))
+                        if (tTemp==Enums.Target.Ally)
                             if (Game.AllyElementals.Count == 0)
                                 canPlay = false;
-                        if (tTemp.Equals(Enums.Target.Spirit))
+                        if (tTemp==Enums.Target.Spirit)
                             if (Game.EnemySpirits.Count == 0 && Game.AllySpirits.Count == 0)
                                 canPlay = false;
                     }

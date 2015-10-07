@@ -24,14 +24,7 @@ namespace GameLogic
         {
             this.name = name;
         }
-        public bool canPlay()
-        {
-            return true;
-        }
-        public void play() 
-        {
-            //paga il costo della carta
-        }
+       
         public virtual bool canAttackPlayer(Player targetPlayer)
         {
             return false;

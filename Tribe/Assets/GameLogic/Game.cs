@@ -276,7 +276,7 @@ namespace GameLogic
         {
             bibliotheca = new Bibliotheca(xmlInvocations);
         }
-        /*private Target FindTargetById(int id)
+        private Target FindTargetById(int id)
         {
             Target ret = new Target();
             ret.id = id;
@@ -321,7 +321,7 @@ namespace GameLogic
             }
 
             return ret;
-        } */
+        } 
 
         #region Inizio round
         public void FirstRoundStart()  //viene chiamato solo la prima volta

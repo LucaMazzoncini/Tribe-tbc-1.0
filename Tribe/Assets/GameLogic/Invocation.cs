@@ -241,7 +241,7 @@ namespace GameLogic
                 else
                 if(temp != null)
                 {
-                    temp.value.Add(prop); //aggiungo le proprietà del potere
+                    temp.microActions.Add(prop); //aggiungo le proprietà del potere
                 }          
             }
             if (temp != null)
