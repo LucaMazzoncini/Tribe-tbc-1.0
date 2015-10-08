@@ -30,14 +30,13 @@ namespace GameLogic
         public static List<Enums.Target> EnemyElementals = new List<Enums.Target>();
         public static List<Enums.Target> AllySpirits = new List<Enums.Target>();
         public static List<Enums.Target> EnemySpirits = new List<Enums.Target>();
+        public static List<Card> AllCardsOnBoard = new List<Card>();
 
         #endregion
         public Game(string name)
         {
             shaman = new Player(name, 0);         //vanno inizializzati
             opponent = new Player("Opponent", 1); //vanno inizializzati
-            shaman.InitCastCounter(bibliotheca);  //inizializza i CastCounter.
-            opponent.InitCastCounter(bibliotheca);
             comm = Communication.Communicator.getInstance();
             
 
@@ -366,6 +365,8 @@ namespace GameLogic
             ThrowDice(); //lancio il dado per vedere chi inizia
             requestXmlForBibliotheca();
             comm.game_diceResult(diceResult);
+            shaman.InitCastCounter(bibliotheca);  //inizializza i CastCounter.
+            opponent.InitCastCounter(bibliotheca);
         }
 
         #endregion

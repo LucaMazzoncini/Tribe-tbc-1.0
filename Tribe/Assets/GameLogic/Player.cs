@@ -42,6 +42,28 @@ namespace GameLogic
         {
             if(CanPlayCard(cardTemp))
             {
+                this.mana.PayMana(cardTemp.manaCost); // paghi il costo di mana.
+                switch (cardTemp.type)
+                {
+                    case Enums.Type.Elemental:
+                        Elemental ElemTemp = (Elemental)cardTemp; // cast a Elemental.
+                        int idTemp = 1;
+                        foreach (Card cTemp in Game.AllCardsOnBoard)
+                            if (idTemp <= cTemp.id)
+                                idTemp += cTemp.id;
+                        ElemTemp.id = idTemp;
+                        cardsOnBoard.Insert(0, ElemTemp); // lo mette sul board inserendolo in prima posizione.
+                        Game.AllyElementals.Add(ElemTemp.target); // aggiunge a lista di bersagli validi.
+                        if (ElemTemp.onAppear != null) // controlla se ci sono microazioni in OnAppear.
+                            if (ElemTemp.onAppear.Count > 0)
+                                ElemTemp.processMicroaction(ElemTemp.onAppear); // aspett
+                        break;
+
+
+
+
+                }
+
                 // Get powers
                 // Get params from card -> params
                 // get (if necesary) target
@@ -130,6 +152,7 @@ namespace GameLogic
 
         public void InitCastCounter(Bibliotheca invList) //inizializza il castCounter
         {
+            if (invList != null)
             foreach (Invocation invTemp in invList.Invocations)
                 if (invTemp.castLimit > 0)
                     castCounter.Add(invTemp.name, invTemp.castLimit);
