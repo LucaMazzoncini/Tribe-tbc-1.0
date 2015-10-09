@@ -38,43 +38,64 @@ namespace GameLogic
         }
         public Player() { }
 
-        public bool PlayCard(Card cardTemp)
+        public Card PlayCard(Card cardTemp)
         {
             if(CanPlayCard(cardTemp))
             {
                 this.mana.PayMana(cardTemp.manaCost); // paghi il costo di mana.
+                if (cardTemp.castLimit > 0)
+                    castCounter[cardTemp.name] -= 1;
+                int idTemp = 2;
+                List<List<Enums.Target>> validTargets = new List<List<Enums.Target>>(); // target validi delle microazioni contenute in OnAppear. A stessono indice corrispondo Microazione e Target validi.
+
                 switch (cardTemp.type)
                 {
                     case Enums.Type.Elemental:
                         Elemental ElemTemp = (Elemental)cardTemp; // cast a Elemental.
-                        int idTemp = 1;
-                        foreach (Card cTemp in Game.AllCardsOnBoard)
+                        foreach (Card cTemp in Game.AllCardsOnBoard) // assegna ID all'elementale.
                             if (idTemp <= cTemp.id)
-                                idTemp += cTemp.id;
+                                idTemp = cTemp.id + 1;
                         ElemTemp.id = idTemp;
                         cardsOnBoard.Insert(0, ElemTemp); // lo mette sul board inserendolo in prima posizione.
-                        Game.AllyElementals.Add(ElemTemp.target); // aggiunge a lista di bersagli validi.
+                        Game.AllCardsOnBoard.Add(ElemTemp);
+                        Game.AllyElementals.Add(ElemTemp.target); // aggiunge a lista di bersagli validi sul board.
                         if (ElemTemp.onAppear != null) // controlla se ci sono microazioni in OnAppear.
                             if (ElemTemp.onAppear.Count > 0)
-                                ElemTemp.processMicroaction(ElemTemp.onAppear); // aspett
-                        break;
+                            {
+                                foreach (string microAct in ElemTemp.onAppear)
+                                    validTargets.Insert(0, MicroActions.getTargets(microAct));
+                                //qui ci sarebbe da mandare i target all'interfaccia che fa illuminare i target validi, prende quello selezionato
+                                //dall'utente e lo rimanda indietro come target effettivo della microazione.
 
+                                //foreach (string microaction in ElemTemp.onAppear) -- e qui andrebbero passati i Target effettivi alla chiamata delle MicroActions.
+                                    //ElemTemp.processMicroaction(ElemTemp.onAppear);                                        
+                            }
+                        return ElemTemp;
 
+                    case Enums.Type.Spirit:
+                        Spirit SpiritTemp = (Spirit)cardTemp; // cast a Spirit
+                        foreach (Card cTemp in Game.AllCardsOnBoard) // assegna ID all'elementale.
+                            if (idTemp <= cTemp.id)
+                                idTemp = cTemp.id + 1;
+                        SpiritTemp.id = idTemp;
+                        cardsOnBoard.Add(SpiritTemp); // lo mette sul board in ultima posizione.
+                        Game.AllCardsOnBoard.Add(SpiritTemp);
+                        Game.AllySpirits.Add(SpiritTemp.target);//aggiunge a lista bersagli validi sul board.
+                        return SpiritTemp;
 
+                    case Enums.Type.Ritual:
+                        Ritual ritualTemp = (Ritual)cardTemp; // cast a Ritual
+                        foreach (Power powTemp in ritualTemp.powers)
+                            foreach (string microAct in powTemp.microActions)
+                                validTargets.Insert(0, MicroActions.getTargets(microAct));
+                        //stesso discorso che per gli Elementals.
+                        return ritualTemp;
 
-                }
-
-                // Get powers
-                // Get params from card -> params
-                // get (if necesary) target
-                // TargetUpdate() -> card.play(param)
-                // else
-                // card.play()  
-                if(cardTemp.castLimit>0)
-                    castCounter[cardTemp.name] -= 1; // scala dal CastCounter;
-                return true;
+                    default:
+                        return null;                        
+                }                       
             }
-            return false;
+            return null;
         }
 
         public bool CanPlayCard(Card cardTemp)

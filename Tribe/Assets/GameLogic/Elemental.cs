@@ -24,7 +24,7 @@ namespace GameLogic
         public string from;
         public List<Enums.Role> role;
         public List<Enums.Properties> properties;
-        public List<string> onAppear;
+        public List<string> onAppear = new List<string>();
         public List<string> onDeath;
         public List<Enums.Debuff> debuff { get; set; } //qui ci sarà la lista dei debuff che andranno parsati
         public List<Enums.Buff> buff { get; set; }   //qui ci sarà la lista dei buff che andranno parsati7

@@ -180,8 +180,8 @@ namespace GameLogic
 
         public void PlayCard(string name)
         {
-            if(CanPlayCard(name))
-            shaman.PlayCard(bibliotheca.getCardByName(name));
+            if (CanPlayCard(name))
+                shaman.PlayCard(bibliotheca.getCardByName(name));
         }
 
         public bool CanPlayCard(string name)
