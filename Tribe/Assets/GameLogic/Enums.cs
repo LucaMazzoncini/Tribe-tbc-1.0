@@ -43,7 +43,8 @@ namespace GameLogic
         }
         public enum Debuff
         {
-            None, Incurable, Asleep, Poison, DecreasedStr, DecreasedCon
+            None, Incurable, Asleep, PoisonShaman, PoisonOpponent, DecreasedStr, DecreasedCon 
+            // PoisonShaman è il Poison controllato da te e scala all'inizio del tuo turno. PoisonOpponent è il Poison controllato dall'Opponent e scala alla fine del tuo turno.
         }
         public enum Filter
         {

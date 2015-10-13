@@ -232,6 +232,126 @@ namespace GameLogic
             //comm.ResultAttackPlayer(shaman.cardsOnBoard[indexAttacker], opponent); // da implementare.
         }
 
+        public static Card FindTargetCardByID(int idTemp)
+        {
+            if (idTemp > 1)
+              if (shaman.cardsOnBoard != null)
+                foreach (Card cardTemp in shaman.cardsOnBoard)
+                    if(cardTemp.id == idTemp)
+                        switch (cardTemp.type)
+                        {
+                            case Enums.Type.Elemental:
+                                Elemental ElemTemp = (Elemental)cardTemp;
+                                return ElemTemp;
+
+                            case Enums.Type.Spirit:
+                                Spirit SpiritTemp = (Spirit)cardTemp;
+                                return SpiritTemp;
+                        }
+            if(opponent.cardsOnBoard != null)
+            foreach (Card cardTemp in opponent.cardsOnBoard)
+                if (cardTemp.id == idTemp)
+                    switch (cardTemp.type)
+                    {
+                        case Enums.Type.Elemental:
+                                Elemental ElemTemp = (Elemental)cardTemp; 
+                                return ElemTemp;
+
+                        case Enums.Type.Spirit:
+                                Spirit SpiritTemp = (Spirit)cardTemp;
+                                return SpiritTemp;
+                    }
+            return null;
+        }
+
+        public static Player FindTargetPlayerById(int idTemp)
+        {
+            if (idTemp == 0)
+                return shaman;
+            if (idTemp == 1)
+                return opponent;
+
+            return null;
+        }
+
+        public static void RemoveCardById(int idTemp)
+        {
+            if (idTemp > 1)
+                if (shaman.cardsOnBoard != null)
+                    foreach (Card cardTemp in shaman.cardsOnBoard)
+                    {
+                        if (cardTemp.id == idTemp)
+                        {
+                            if (cardTemp.GetType() == typeof(Elemental))
+                            {
+                                if (AllyElementals != null)
+                                    foreach (Enums.Target targTemp in AllyElementals)
+                                        if (targTemp == cardTemp.target)
+                                        {
+                                            AllyElementals.Remove(targTemp); // rimuove dai target validi
+                                            break;
+                                        }
+                            }
+                            if (cardTemp.GetType() == typeof(Spirit))
+                            {
+                                if (AllySpirits != null)
+                                    foreach (Enums.Target targTemp in AllySpirits)
+                                        if (targTemp == cardTemp.target)
+                                        {
+                                            AllySpirits.Remove(targTemp); // rimuove dai target validi
+                                            break;
+                                        }
+                            }
+                            shaman.cardsOnBoard.Remove(cardTemp); // rimuove dal board
+                            break;
+                        }
+                    }                      
+           
+               if (opponent.cardsOnBoard != null)
+                foreach (Card cardTemp in opponent.cardsOnBoard)
+                {
+                    if (cardTemp.id == idTemp)
+                    {
+                        if (cardTemp.GetType() == typeof(Elemental))
+                        {
+                            if (EnemyElementals != null)
+                                foreach (Enums.Target targTemp in EnemyElementals)
+                                    if (targTemp == cardTemp.target)
+                                    {
+                                        EnemyElementals.Remove(targTemp); // rimuove dai target validi
+                                        break;
+                                    }
+                        }
+                        if (cardTemp.GetType() == typeof(Spirit))
+                        {
+                            if (EnemySpirits != null)
+                                foreach (Enums.Target targTemp in EnemySpirits)
+                                    if (targTemp == cardTemp.target)
+                                    {
+                                        EnemySpirits.Remove(targTemp); // rimuove dai target validi
+                                        break;
+                                    }
+                        }
+                        opponent.cardsOnBoard.Remove(cardTemp); // rimuove dal board
+                        break;
+                    }
+                }
+            if (AllCardsOnBoard != null)
+                foreach (Card cardTemp in AllCardsOnBoard)
+                    if (cardTemp.id == idTemp)
+                        AllCardsOnBoard.Remove(cardTemp); // rimuove dalla lista di tutte le carte sul board                    
+        }
+
+        public static bool IsAlly(int idTemp)
+        {
+            foreach (Card cardTemp in shaman.cardsOnBoard)
+                if (cardTemp.id == idTemp)
+                {
+                    return true;
+                }
+            return false;
+        }
+
 
             
         #endregion

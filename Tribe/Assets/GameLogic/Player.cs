@@ -8,10 +8,10 @@ namespace GameLogic
     public class Player
     {
         #region variables
-        public const int MAXHP = 6;
+        
         public string Name { get; set; }
         public int hp { get; set; }
-        public int maxHp { get; set; }
+        public int maxHp = 6;
         public Mana mana { get; set; }
         private int id;
         public Target target = new Target();
@@ -30,7 +30,7 @@ namespace GameLogic
         public Player(string name, int idTemp)
         {
             this.Name = name;
-            this.hp = MAXHP;
+            this.hp = maxHp;
             this.id = idTemp;
             mana = new Mana(); //alloca e genera i mana random 
                          
